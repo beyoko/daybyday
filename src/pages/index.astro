@@ -1,6 +1,7 @@
 ---
 import HeaderLink from '../components/HeaderLink.astro';
 import GlobalHead from '../components/globalHead.astro';
+import Body from '../components/Body.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
@@ -9,12 +10,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <head>
   <GlobalHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 </head>
-<body>
+<Body>
   <main>
     <HeaderLink href="/day">day</HeaderLink>
     <HeaderLink href="/think">think</HeaderLink>
   </main>
-</body>
+</Body>
 </html>
 
 <style>
