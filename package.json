@@ -5,7 +5,8 @@
   "repository": "git@github.com:beyoko/daybyday.git",
   "license": "MIT",
   "scripts": {
-    "dev": "astro dev --show-all",
+    "dev": "astro dev --show-all --port 3010",
+    "turbo": "turbo run dev --show-all --port 3010",
     "start": "astro dev"
   },
   "dependencies": {
@@ -20,6 +21,8 @@
     "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@typescript-eslint/parser": "^5.59.1",
     "eslint": "^8.39.0",
     "eslint-plugin-astro": "^0.26.1"
   }

@@ -1,0 +1,39 @@
+---
+import HeaderLink from '../components/HeaderLink.astro';
+import GlobalHead from '../components/globalHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <GlobalHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+</head>
+<body>
+  <main>
+    <HeaderLink href="/day">day</HeaderLink>
+    <HeaderLink href="/think">think</HeaderLink>
+  </main>
+</body>
+</html>
+
+<style>
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 500px) {
+    #name {
+      font-size: 13vw;
+    }
+
+    #info {
+      font-size: 5.3vw;
+    }
+  }
+</style>

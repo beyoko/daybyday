@@ -1,0 +1,16 @@
+---
+import Header from '../components/Header.astro';
+import GlobalHead from '../components/globalHead.astro';
+import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <GlobalHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+</head>
+<body>
+<Header title={SITE_TITLE} />
+<main>think</main>
+</body>
+</html>
