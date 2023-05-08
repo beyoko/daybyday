@@ -1,32 +1,14 @@
 ---
-import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
-<header>
-  <h2>{SITE_TITLE}</h2>
-  <nav>
-    <HeaderLink href='/day'>day</HeaderLink>
-    <HeaderLink href='/think'>think</HeaderLink>
-  </nav>
+<header class="p-2 z-20">
+  <div class="mx-auto max-w-3xl font-sans">
+      <nav class="flex items-center justify-between px-4 py-3">
+          <HeaderLink  href='/day'>day</HeaderLink>
+          <HeaderLink href='/think'>think</HeaderLink>
+      </nav>
+    </div>
+  </div>
 </header>
 
-<style>
-  header {
-    font-family: Roboto, helvetica, arial, sans-serif;
-    margin: 0em 0 2em;
-    text-align: center;
-    font-weight: 100;
-
-    animation: fade 3s ease;
-
-    color: #37474f;
-    background: #fcfdfd;
-
-  }
-
-  h2 {
-      margin: 0.5em 0;
-    }
-
-  </style>

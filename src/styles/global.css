@@ -2,4 +2,24 @@ body {
   font-family: Roboto, helvetica, arial, sans-serif;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
+  animation: fade 3s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  #name {
+    font-size: 13vw;
+  }
+
+  #info {
+    font-size: 5.3vw;
+  }
 }
