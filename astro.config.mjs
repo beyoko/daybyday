@@ -1,9 +1,35 @@
 import { defineConfig } from 'astro/config'
-import mdx from '@astrojs/mdx'
+import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 
 export default defineConfig({
-  site: 'https://example.com',
-  integrations: [mdx(), sitemap(), tailwind()]
+  site: 'http://127.0.0.1',
+  integrations: [
+    sitemap(),
+    tailwind(),
+    react()
+    // image({
+    //   serviceEntryPoint: '@astrojs/image/sharp' // need add sharp
+    // })
+  ]
+  // markdown: {
+  //   rehypePlugins: [
+  //     [
+  //       addClasses,
+  //       {
+  //         h1: 'text-4xl font-bold font-mplus',
+  //         h2: 'text-2xl font-bold font-mplus',
+  //         h3: 'text-xl font-bold font-mplus',
+  //         h4: 'text-lg font-bold font-mplus',
+  //         h5: 'font-bold font-mplus',
+  //         h6: 'font-bold font-mplus',
+  //         img: 'border border-slate-300 dark:border-zinc-700 rounded-xl mb-6',
+  //         p: 'mb-6',
+  //         a: 'underline underline-offset-2 hover:text-orange-500 decoration-orange-500',
+  //         ul: 'list-disc'
+  //       }
+  //     ]
+  //   ]
+  // }
 })

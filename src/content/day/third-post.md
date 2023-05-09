@@ -1,7 +1,7 @@
 ---
 title: 'Third post'
 description: 'Lorem ipsum dolor sit amet'
-layout: ../../layouts/DayPost.astro
+layout: ../../layouts/Post.astro
 pubDate: 'Jul 15 2022'
 tags:
   - test1

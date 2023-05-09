@@ -1,6 +1,7 @@
 ---
 title: 'First post'
 description: 'Lorem ipsum dolor sit amet'
+layout: '../../layouts/Post.astro'
 pubDate: 'Jul 08 2022'
 tags:
   - test1

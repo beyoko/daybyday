@@ -3,7 +3,6 @@ import GlobalHead from '../components/globalHead.astro';
 import Body from '../components/Body.astro';
 import Content from '../components/Content.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
 ---
 
 <!DOCTYPE html>
@@ -16,11 +15,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     <section class="text-5xl text-center font-sans mt-12 mb-8">
       <div class="flex flex-col items-center justify-center h-screen">
         <main class="flex flex-col md:flex-row justify-between w-full md:w-4/5 lg:w-2/3">
-          <div class="w-full md:w-1/2 p-8">
-            <a href="/day">Day</a>
+          <div class="w-full md:w-1/2 p-8 md:mb-0 mb-8">
+            <a href="/day" class="text-center block md:inline-block">Day</a>
           </div>
-          <div class="w-full md:w-1/2 p-8">
-            <a href="/think">Think</a>
+          <div class="w-full md:w-1/2 p-8 md:mt-0 mt-8">
+            <a href="/think" class="text-center block md:inline-block">Think</a>
           </div>
         </main>
       </div>

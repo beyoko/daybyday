@@ -7,10 +7,10 @@ import GlobalHead from '../components/globalHead.astro';
 import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
 import BackHome from '../components/BackHome.astro';
 
-const thinkMd = (await Astro.glob('../content/think/*.md')).sort(
+const thinkMd = (await Astro.glob('./post/think/*.md')).sort(
   (a: any, b: any) =>
-    new Date(b.frontmatter.createdAt).valueOf() -
-    new Date(a.frontmatter.createdAt).valueOf()
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
 )
 ---
 
@@ -20,13 +20,14 @@ const thinkMd = (await Astro.glob('../content/think/*.md')).sort(
   <GlobalHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 </head>
 <Body>
+
   <Header title={SITE_TITLE} />
     <Content>
       <section class="flex items-center justify-between px-4 py-3">
       <main class="pt-[56px]">
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {
-               thinkMd.map(postThink =>
+             thinkMd.map(postThink =>
                 <li class="mb-4">
                   <a class="text-gray-800 hover:text-white hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium link-with-bg" href={postThink.url}>
                     <div class="mt-3 text-xl font-bold">
@@ -44,7 +45,6 @@ const thinkMd = (await Astro.glob('../content/think/*.md')).sort(
                 </li>
               )
             }
-
         </ul>
       </main>
       </section>

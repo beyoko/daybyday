@@ -10,6 +10,7 @@ export interface Props {
   content: {
     title: string
     description: string
+    pubDate: string
     createdAt?: string
     updatedAt?: string
     heroImage?: string
@@ -18,7 +19,7 @@ export interface Props {
 }
 
 const {
-  content: { title, description, heroImage }
+  content: { title, description, heroImage, pubDate }
 } = Astro.props
 ---
 
@@ -45,9 +46,10 @@ const {
             )
           }
         </div>
+        <h1>{pubDate}</h1>
         <h1 class="text-3xl my-1 font-mplus">{title}</h1>
         <div>{description}</div>
-        <hr class="border-top border-zinc-400 my-4" />
+        <hr class="border-top border-zinc-400 my-4 " />
         <slot />
         <span
           class="underline underline-offset-2 hover:text-orange-500 decoration-orange-500 text-2xl list-disc"
