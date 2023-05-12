@@ -33,6 +33,7 @@ const {
     <Header />
     <main class="pt-[56px]">
       <Content className="pt-6">
+      <article class="prose">
         <div class="mb-8">
           {
             heroImage && (
@@ -47,15 +48,17 @@ const {
           }
         </div>
         <h1>{pubDate}</h1>
-        <h1 class="text-3xl my-1 font-mplus">{title}</h1>
+        <h1 class="text-3xl my-1 font-roboto">{title}</h1>
         <div>{description}</div>
-        <hr class="border-top border-zinc-400 my-4 " />
+        <hr class="border-top border-zinc-400 my-4" />
         <slot />
-        <span
-          class="underline underline-offset-2 hover:text-orange-500 decoration-orange-500 text-2xl list-disc"
-        ></span>
+        <span class="underline underline-offset-2 hover:text-orange-500 decoration-orange-500 text-2xl list-disc"></span>
+        <hr class="border-top border-zinc-400 my-4" />
+      </article>
       </Content>
     </main>
     <Footer />
   </Body>
 </html>
+
+

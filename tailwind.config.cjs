@@ -2,11 +2,22 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   darkMode: 'class',
   theme: {
-    extends: {
+    extend: {
       fontFamily: {
-        mplus: ['Roboto', 'helvetica', 'arial', 'sans-serif']
+        roboto: [
+          'Roboto',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Helvetica Neue',
+          'Segoe UI',
+          'Oxygen',
+          'Ubuntu',
+          'Cantarell',
+          'Open Sans',
+          'sans-serif'
+        ]
       }
     }
   },
-  plugin: []
+  plugin: [require('@tailwindcss/typography')]
 }
