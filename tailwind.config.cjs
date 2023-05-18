@@ -4,20 +4,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        roboto: [
-          'Roboto',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Helvetica Neue',
-          'Segoe UI',
-          'Oxygen',
-          'Ubuntu',
-          'Cantarell',
-          'Open Sans',
-          'sans-serif'
-        ]
+        roto: ['Roboto', 'sans-serif', 'Helvetica', 'Arial']
+      },
+      typography: {
+        DEFAULT: {
+          css: {}
+        }
       }
     }
   },
-  plugin: [require('@tailwindcss/typography')]
+  plugins: [require('@tailwindcss/typography')]
 }

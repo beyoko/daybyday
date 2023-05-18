@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "astro dev --show-all --port 3010",
-    "turbo": "turbo run dev --show-all --port 3010",
+    "turbo": "astro turbo run dev --show-all --port 3010",
     "start": "astro dev"
   },
   "dependencies": {
@@ -16,7 +16,6 @@
     "@astrojs/rss": "^2.3.2",
     "@astrojs/sitemap": "^1.2.2",
     "@astrojs/tailwind": "^3.1.1",
-    "@tailwindcss/typography": "^0.5.9",
     "astro": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,6 +24,7 @@
     "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "@typescript-eslint/parser": "^5.59.1",

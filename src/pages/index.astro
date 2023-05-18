@@ -1,9 +1,9 @@
 ---
-import GlobalHead from '../components/globalHead.astro';
+import GlobalHead from '../components/GlobalHead.astro';
 import Body from '../components/Body.astro';
 import Content from '../components/Content.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import '../styles/fadeFont.css';
+
 ---
 
 <!DOCTYPE html>
@@ -11,16 +11,40 @@ import '../styles/fadeFont.css';
 <head>
   <GlobalHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 </head>
+
+<style>
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  #name {
+    font-size: 13vw;
+  }
+
+  #info {
+    font-size: 5.3vw;
+  }
+}
+</style>
+
 <Body>
   <Content>
-    <section class="text-5xl text-center font-sans mt-12 mb-8">
+    <section class="text-5xl text-center font-sans">
       <div class="flex flex-col items-center justify-center h-screen w-auto">
         <main class="flex flex-col md:flex-row justify-between md:w-4/5 lg:w-2/3">
-          <div class="w-full md:w-1/2 p-8 md:mb-0 mb-8">
-            <a href="/think" class="text-center block ">Think</a>
+          <div class="w-full md:w-1/2 p-8 md:mb-0 mb-8 ">
+            <a href="/think" class="text-center block">Think</a>
           </div>
           <div class="w-full md:w-1/2 p-8 md:mt-0 mt-8">
-            <a href="/tips" class="text-center block ">tips</a>
+            <a href="/tips" class="text-center block">Tips</a>
+          </div>
+          <div class="w-full md:w-1/2 p-8 md:mt-0 mt-8">
           </div>
         </main>
       </div>

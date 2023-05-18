@@ -2,9 +2,10 @@
 title: 'Markdown Style Guide'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
 layout: '../../../layouts/Post.astro'
-pubDate: 'Jul 01 2022'
+pubDate: '06/01/2022'
+heroImage: '../../../../public/fish.png'
 tags:
-  - markdown_demo_test
+  - Think
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.

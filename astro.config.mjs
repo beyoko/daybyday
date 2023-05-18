@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import image from '@astrojs/image';
+import image from '@astrojs/image'
 
 export default defineConfig({
   site: 'http://127.0.0.1',
@@ -13,24 +13,25 @@ export default defineConfig({
     image({
       serviceEntryPoint: '@astrojs/image/sharp' // need add sharp
     })
-  ]
-  // markdown: {
-  //   rehypePlugins: [
-  //     [
-  //       addClasses,
-  //       {
-  //         h1: 'text-4xl font-bold font-mplus',
-  //         h2: 'text-2xl font-bold font-mplus',
-  //         h3: 'text-xl font-bold font-mplus',
-  //         h4: 'text-lg font-bold font-mplus',
-  //         h5: 'font-bold font-mplus',
-  //         h6: 'font-bold font-mplus',
-  //         img: 'border border-slate-300 dark:border-zinc-700 rounded-xl mb-6',
-  //         p: 'mb-6',
-  //         a: 'underline underline-offset-2 hover:text-orange-500 decoration-orange-500',
-  //         ul: 'list-disc'
-  //       }
-  //     ]
-  //   ]
-  // }
+  ],
+  markdown: {
+    drafts: true
+    //   rehypePlugins: [
+    //     [
+    //       addClasses,
+    //       {
+    //         h1: 'text-4xl font-bold font-mplus',
+    //         h2: 'text-2xl font-bold font-mplus',
+    //         h3: 'text-xl font-bold font-mplus',
+    //         h4: 'text-lg font-bold font-mplus',
+    //         h5: 'font-bold font-mplus',
+    //         h6: 'font-bold font-mplus',
+    //         img: 'border border-slate-300 dark:border-zinc-700 rounded-xl mb-6',
+    //         p: 'mb-6',
+    //         a: 'underline underline-offset-2 hover:text-orange-500 decoration-orange-500',
+    //         ul: 'list-disc'
+    //       }
+    //     ]
+    //   ]
+  }
 })

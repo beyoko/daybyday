@@ -1,0 +1,21 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import DayPost from '../../layouts/DayPost.astro';
+
+function getStaticPaths() {
+	const posts = await getCollection('post');
+	return posts.map((postId) => ({
+		params: { slug: postId.slug },
+		props: postId,
+	}));
+}
+type Props = CollectionEntry<'post'>;
+
+const postProp = Astro.props;
+const { Content } = await postProp.render();
+---
+
+<DayPost {...postProp.data}>
+	<h1>{postProp.data.title}</h1>
+	<Content />
+</DayPost>

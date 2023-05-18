@@ -1,0 +1,26 @@
+---
+
+function getStaticPaths() {
+    const posts = await Astro.glob('../post/*.md')
+
+    let tags: string[] = [];
+
+    posts.forEach((post) => {
+      if(post.frontmatter.tags) {
+          tags.push(...post.frontmatter.tags)
+        }
+    })
+
+    return tags.map((tag) => {
+      params: {
+          tag: tag.toLocaleLowerCase()
+        }
+    })
+  }
+
+  const { tag } = Astro.params;
+---
+
+<h1 class="mb-8 text-6xl">day post</h1>
+<p>show {tag} tag</p>
+

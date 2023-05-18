@@ -1,0 +1,21 @@
+---
+import type { MarkdownPostFrontmatter } from '../types';
+import { MarkdownLayoutProps } from 'astro';
+
+
+type Props = MarkdownLayoutProps<MarkdownPostFrontmatter>
+
+const { show: { tags } } = Astro.props
+
+---
+
+<div class="mb-8">
+    tags &&
+    <div class="mb-2">
+    {
+      tags.map((tab: string) => {
+        { <a href='./categoryposts/tab/${tag.toLocaleLowerCase() }'></a>}
+      })
+    }
+    </div>
+</div>

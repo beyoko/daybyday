@@ -1,0 +1,28 @@
+---
+
+// relative after:absolute after:left-0.5 after:top-0.5 after:w-full after:h-full
+---
+
+<style>
+
+div::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  right: 12.5em;
+  top: 1em;
+  width: 64.5%;
+  height: 99.9%;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><path d="M0 0L4 4ZM4 0L0 4Z" stroke-width="0.5" stroke="black"/></svg>');
+  background-repeat: repeat;
+  border-radius: var(--border-radius);
+  mask-image: paint(squircle);
+
+  --squircle-radius: 16px;
+}
+
+</style>
+
+<div class="relative">
+  <slot />
+</div>

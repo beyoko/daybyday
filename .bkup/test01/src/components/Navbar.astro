@@ -1,0 +1,34 @@
+---
+const items =[
+  {
+    title: 'Home',
+    path: '/'
+  },
+  {
+      title: 'Think',
+      path: '/think'
+  },
+  {
+      title: 'Tips',
+      path: '/tips'
+  }
+
+]
+
+---
+
+<div class="flex bg-black text-white">
+  <div class="font-bold text-lg ml-4 bg-white text-black p-4">
+   C.I.C
+  </div>
+
+  <div class="ml-auto">
+    <ul class="flex">
+      {items.map(item => (
+        <li><a class="p-4 block hover:bg-gray-900" href={item.path}><strong>{item.title}</strong></a></li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+
