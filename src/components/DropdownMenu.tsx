@@ -11,7 +11,7 @@ export default function DropdownMenu({ tags }: Props) {
   return (
     <Menu
       as="div"
-      className="relative inline-block text-left bg-white dark:bg-zinc-700"
+      className="relative inline-block text-left bg-gray-50 dark:bg-zinc-700"
     >
       <div>
         <Menu.Button
