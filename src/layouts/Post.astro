@@ -3,7 +3,6 @@ import GlobalHead from '../components/GlobalHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import Body from '../components/Body.astro'
-import ArticleWrap from '../components/ArticleWrap.astro';
 import Content from '../components/Content.astro'
 import BackHome from '../components/BackHome.astro';
 import Prose from '../components/Prose.astro';
@@ -14,16 +13,13 @@ export interface Props {
     title: string
     description: string
     pubDate: string
-    createdAt?: string
-    updatedAt?: string
     heroImage?: string
-    tags?: string[]
-    drafts?: boolean
+    tags: string[]
   }
 }
 
 const {
-  content: { title, description, heroImage, pubDate, tags }
+  content: { title, description, heroImage, pubDate }
 } = Astro.props
 ---
 
@@ -36,7 +32,7 @@ const {
   <Body>
     <Header title={SITE_TITLE} />
     <main class="pt-[60px]">
-        <Content className="pt-0.5 bg-white dark:bg-black border border-solid border-gray-700 rounded-md">
+        <Content className="pt-3 rounded-md bg-gray-50 dark:bg-gray-950">
           <div class="mb-8">
             {
               heroImage && (
@@ -58,7 +54,6 @@ const {
           <Prose>
             <slot />
           </Prose>
-          <span class="underline underline-offset-2 hover:text-orange-500 decoration-orange-500 text-2xl list-disc"></span>
           <hr class="border-top border-zinc-400 my-4" />
           <BackHome />
         </Content>
