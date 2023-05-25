@@ -21,3 +21,5 @@ easy going
 ## [id].astro < find < allTags is not defined > Header.astro
 
 ## may change `interface` contrl or find more version 2 get 'tabs'
+
+hover:bg-gray-50 hover:dark:bg-gray-950 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 transition-all
