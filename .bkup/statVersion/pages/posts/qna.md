@@ -5,7 +5,7 @@ layout: '../../layouts/Post.astro'
 pubDate: 'jul 20 2023'
 heroImage: /public/fish.png
 tags:
-  - Gpt
+  - Question
 ---
 
 ```typescript

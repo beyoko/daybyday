@@ -12,6 +12,10 @@ when page move to button, header bar still here, but hide 50%
 
 ## tailwind puligins edit stlye
 
+### add default css
+
+easy going
+
 # tabs output error ['./src/pages/cat.../[tab].astro']
 
 ## [id].astro < find < allTags is not defined > Header.astro
