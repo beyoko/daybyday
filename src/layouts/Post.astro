@@ -13,8 +13,8 @@ export interface Props {
     title: string
     description: string
     pubDate: string
-    heroImage?: string
     tags: string[]
+    heroImage?: string
   }
 }
 
@@ -46,16 +46,17 @@ const {
               )
             }
           </div>
-          <div class="mb-8">
-          <h1>{pubDate}</h1>
-          <h1 class="text-3xl my-1">{title}</h1>
-          <div>{description}</div>
-          <hr class="border-top border-zinc-400 my-4" />
-          <Prose>
-            <slot />
-          </Prose>
-          <hr class="border-top border-zinc-400 my-4" />
-          <BackHome />
+          <div class="">
+            <h1>{pubDate}</h1>
+            <h1 class="text-3xl my-1">{title}</h1>
+            <div>{description}</div>
+            <hr class="border-top border-zinc-400 my-4" />
+            <Prose>
+              <slot />
+            </Prose>
+            <hr class="border-top border-zinc-400 my-4" />
+            <BackHome />
+          </div>
         </Content>
       </main>
     <Footer />

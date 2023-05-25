@@ -16,7 +16,7 @@ allPosts.map(post => {
       <nav class="flex items-center justify-between gap-3 text-base">
         <a href="/" class="group">
           <h2 class="font-semibold tracking-tighter p-2 text-lg border-4 border-gray-50 dark:border-gray-950 bg-gray-50 dark:bg-gray-950 hover:bg-gray-950 hover:text-gray-50 hover:dark:bg-gray-50 hover:dark:text-gray-950 rounded-md transition-all">
-            C.I.C
+            @C.I.C
           </h2>
         </a>
         <div class="flex gap-4">
@@ -26,7 +26,7 @@ allPosts.map(post => {
           <div class="md:hidden flex">
             <DropdownMenu client:visible tags={Array.from(allTags)} />
           </div>
-          <ThemeToggleButton client:idle />
+          <ThemeToggleButton client:visible />
         </div>
       </nav>
   </div>

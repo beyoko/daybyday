@@ -9,13 +9,10 @@ interface Props {
 
 export default function DropdownMenu({ tags }: Props) {
   return (
-    <Menu
-      as="div"
-      className="relative inline-block text-left bg-gray-50 dark:bg-zinc-700"
-    >
+    <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
-          className="inline-flex justify-center rounded-md border border-gray-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm hover:bg-gray-950 hover:text-gray-50 hover:dark:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-100 transition-all"
+          className="inline-flex justify-center rounded-md border border-gray-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-gray-50 dark:bg-gray-950 hover:bg-gray-950 hover:text-gray-50 hover:dark:bg-gray-50 hover:dark:text-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-100 transition-all"
           aria-label="menu"
         >
           <IoMenu className="h-5 w-5" />
