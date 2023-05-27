@@ -28,7 +28,7 @@ export default function DropdownMenu({ tags }: Props) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md border border-zinc-400 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-800 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none divide-gray-400 dark:divide-zinc-700">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md border border-zinc-400 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-900 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none divide-gray-400 dark:divide-zinc-700">
           <div className="py-1">
             {tags.map(tag => {
               return (
