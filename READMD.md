@@ -1,3 +1,10 @@
+# backup
+
+## Header.astro
+
+header style change
+`<header class="fixed w-full p-2 z-20 backdrop-blur-sm">`
+
 # slug days
 
 only header code is working

@@ -37,14 +37,14 @@ export default function ThemeToggle() {
   }, [])
 
   return isMounted ? (
-    <div className="inline-flex items-center p-[1px] rounded-3xl bg-gray-300 dark:bg-zinc-600 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 transition-all">
+    <div className="inline-flex items-center p-[1px] rounded-3xl bg-zinc-300 dark:bg-zinc-600 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 transition-all">
       {themes.map(t => {
         const checked = t === theme
         return (
           <button
             key={t}
             className={`${
-              checked ? 'bg-gray-50 text-gray-950' : ''
+              checked ? 'bg-zinc-50 text-zinc-950' : ''
             } cursor-pointer rounded-3xl p-2`}
             onClick={toggleTheme}
             aria-label="Toggle theme"
