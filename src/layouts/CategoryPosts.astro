@@ -39,7 +39,7 @@ const posts = (await Astro.glob('../pages/posts/*.md'))
             <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
               {
                 posts.map(post => (
-                  <li class="p-4 text-center mb-4 rounded-xl ring-2 ring-zinc-100 dark:ring-zinc-900 bg-zinc-50 dark:bg-zinc-950 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 transition-all">
+                  <li class="p-4 text-center mb-4 rounded-xl ring-2 ring-zinc-100 dark:ring-zinc-900 bg-zinc-50 dark:bg-zinc-950 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 hover:bg-zinc-100 hover:dark:bg-zinc-900 transition-all">
                     <a href={post.url}>
                       {post.frontmatter.heroImage && (
                         <Image

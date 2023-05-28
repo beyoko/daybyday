@@ -27,7 +27,7 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
             {
               posts.map(post => (
-                <li class="text-center p-4 ring-2 ring-zinc-100 dark:ring-zinc-900 mb-4 rounded-xl bg-zinc-50 dark:bg-zinc-950 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 transition-all">
+                <li class="text-center p-4 ring-2 ring-zinc-100 dark:ring-zinc-900 mb-4 rounded-xl bg-zinc-50 dark:bg-zinc-950 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 hover:bg-zinc-100 hover:dark:bg-zinc-900 transition-all">
                   <a href={ post.url }>
                     <div class="text-xl font-bold">
                       { post.frontmatter.title }
