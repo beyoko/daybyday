@@ -1,0 +1,19 @@
+---
+import { load } from "@astro/types";
+
+// 定义一个客户端函数，在客户端运行
+const clientCode = () => {
+  // 这里是在客户端运行的代码，可以操作 window 对象或其他浏览器 API
+  const scrollY = window.scrollY;
+  // 其他浏览器 API 操作
+};
+
+// 使用 Astro 的 `load` 方法，在客户端加载客户端函数
+load(clientCode);
+---
+
+<header
+  class="fixed w-full p-4 z-20 backdrop-blur-md bg-white shadow-lg transition-transform transform translate-y-0 ease-in-out duration-300 {{ scrollY > 100 ? 'translate-y-0' : '-translate-y-full' }}"
+>
+  <slot />
+</header>

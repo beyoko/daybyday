@@ -5,12 +5,15 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-type Props = {
+export interface DropdownMenuItemProps {
   href: string
   children: ReactNode
 }
 
-export default function DropdownMenuItem({ href, children }: Props) {
+export default function DropdownMenuItem({
+  href,
+  children
+}: DropdownMenuItemProps) {
   return (
     <Menu.Item>
       {({ active }) => (

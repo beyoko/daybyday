@@ -1,7 +1,9 @@
 ---
-export interface Props {
-    className?: string
-}
+import type { MarkdownLayoutProps } from 'astro';
+
+type Props = MarkdownLayoutProps <{
+  className?: string
+}>
 
 const { className = '' } = Astro.props
 

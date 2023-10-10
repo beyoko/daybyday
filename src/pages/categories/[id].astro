@@ -11,8 +11,12 @@ export async function getStaticPaths() {
 
   return Array.from(allTags).map(tag => {
     return {
-      params: { id: tag.toLowerCase() },
-      props: { name: tag }
+      params: {
+        id: tag.toLowerCase()
+      },
+      props: {
+        name: tag
+      }
     }
   })
 }

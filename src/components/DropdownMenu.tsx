@@ -2,12 +2,9 @@ import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
 import { IoMenu } from 'react-icons/io5/index.js'
 import DropdownMenuItem from './DropdownMenuItem'
+import type { DropdownMenuProps } from '../types/interface'
 
-interface Props {
-  tags: string[]
-}
-
-export default function DropdownMenu({ tags }: Props) {
+export default function DropdownMenu({ tags }: DropdownMenuProps) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

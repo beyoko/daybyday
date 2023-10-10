@@ -4,7 +4,7 @@ description: 'fix nextjs project'
 layout: '../../layouts/Post.astro'
 pubDate: '05/22/2023'
 tags:
-  - Nextjs
+  - Next.js
 ---
 
 # new "one" home page

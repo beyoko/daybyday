@@ -1,12 +1,11 @@
 {
   "name": "daybyday",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "private": true,
   "repository": "git@github.com:beyoko/daybyday.git",
   "license": "MIT",
   "scripts": {
     "dev": "astro dev --show-all --port 3010",
-    "turbo": "astro turbo run dev --show-all --port 3010",
     "start": "astro dev"
   },
   "dependencies": {

@@ -4,7 +4,7 @@ description: 'javascript 2 typescript'
 layout: '../../layouts/Post.astro'
 pubDate: '06/03/2023'
 tags:
-  - Nextjs
+  - Next.js
 ---
 
 # tree

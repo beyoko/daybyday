@@ -1,11 +1,13 @@
 ---
-import { IoChevronForward} from 'react-icons/io5/index.js'
+import { IoChevronForward } from 'react-icons/io5/index.js'
 ---
 
 <div class="my-4 flex items-center gap-1">
   <a href="/" class="underline underline-offset-2">
-    Index
+    @C.I.C
   </a>
   <IoChevronForward className="opacity-50" />
-  <span class="text-grey-900 font-mplus font-bold"><slot /></span>
+  <span class="text-grey-900 font-mplus font-bold">
+    <slot />
+  </span>
 </div>

@@ -1,14 +1,18 @@
 ---
-import GlobalHead from '../components/GlobalHead.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import Body from '../components/Body.astro'
+import GlobalHead from '../components/GlobalHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Body from '../components/Body.astro';
 import Content from '../components/Content.astro'
 import BackHome from '../components/BackHome.astro';
 import Prose from '../components/Prose.astro';
-import { SITE_TITLE } from '../consts'
+import BackToTop from '../components/BackToTop.astro';
+import TitleBar from '../components/test/TitleBar.astro';
+import HeaderHidden from '../components/test/HeaderHidden.astro';
+import { SITE_TITLE } from '../consts';
+import type { MarkdownLayoutProps } from 'astro';
 
-export interface Props {
+type Props = MarkdownLayoutProps <{
   content: {
     title: string
     description: string
@@ -16,10 +20,15 @@ export interface Props {
     tags: string[]
     heroImage?: string
   }
-}
+}>
 
 const {
-  content: { title, description, heroImage, pubDate }
+  content: {
+    title,
+    description,
+    heroImage,
+    pubDate
+  }
 } = Astro.props
 ---
 
@@ -31,34 +40,37 @@ const {
 
   <Body>
     <Header title={SITE_TITLE} />
-      <main class="pt-[90px]">
-        <Content className="pt-4 rounded-md bg-zinc-50 dark:bg-zinc-950">
-          <div class="mb-8">
-            {
-              heroImage && (
-                <img
-                  class="border border-slate-300 dark:border-zinc-700 rounded-xl"
-                  width={720}
-                  height={360}
-                  src={ heroImage }
-                  alt=""
-                />
-              )
-            }
+    <main class="pt-[90px]">
+      <Content className="pt-4 rounded-md bg-zinc-50 dark:bg-zinc-950">
+        <div class="mb-8">
+          {
+            heroImage && (
+              <img
+                class="border border-slate-300 dark:border-zinc-700 rounded-xl"
+                width={720}
+                height={360}
+                src={heroImage}
+                alt=""
+              />
+            )
+          }
           </div>
-          <div class="">
+          <div class="py-4">
             <h1>{ pubDate }</h1>
             <h1 class="text-3xl my-1">{ title }</h1>
             <div>{ description }</div>
             <hr class="border-top border-zinc-400 my-4" />
-            <Prose>
-              <slot />
-            </Prose>
+              <Prose>
+                <slot />
+              </Prose>
             <hr class="border-top border-zinc-400 my-4" />
-            <BackHome />
           </div>
-        </Content>
-      </main>
+          <div class="py-4" />
+        </div>
+      </Content>
+      <TitleBar />
+      <BackToTop />
+    </main>
     <Footer />
   </Body>
 </html>

@@ -1,0 +1,26 @@
+---
+// 使用Astro库的glob方法获取所有以.md为扩展名的Markdown文件
+const allPosts = await Astro.glob('../pages/posts/*.md')
+
+// 创建一个空的字符串类型的集合，用于存储次级主题
+const allSubheadings = new Set<string>();
+
+// 遍历每个Markdown文件
+allPosts.map(post => {
+    // 将文件内容拆分成行
+    const lines = post.content.split('\n');
+
+    // 遍历每一行
+    lines.forEach(line => {
+        // 使用正则表达式匹配次级主题（以#、##、###等开头的行）
+        const match = line.match(/^(#{2,})\s+(.*)/);
+
+        // 如果匹配到次级主题
+        if (match) {
+            // 提取次级主题文本，并添加到集合中
+            const subheadingText = match[2];
+            allSubheadings.add(subheadingText);
+        }
+    });
+});
+---

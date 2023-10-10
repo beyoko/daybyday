@@ -1,60 +1,75 @@
-import React, { useEffect, useState } from 'react'
-import { IoSunny, IoMoon } from 'react-icons/io5/index.js'
+import React, { useEffect, useState } from "react";
+import { IoSunny, IoMoon } from "react-icons/io5/index.js";
 
-const themes = ['light', 'dark']
+const themes = ["light", "dark"];
 
 export default function ThemeToggle() {
-  const [isMounted, setIsMounted] = useState(false)
+  const [isMounted, setIsMounted] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (import.meta.env.SSR) {
-      return undefined
+      return undefined;
     }
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme')
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
     }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark'
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
     }
-    return 'light'
-  })
+    return "light";
+  });
   const toggleTheme = () => {
-    const t = theme === 'light' ? 'dark' : 'light'
-    localStorage.setItem('theme', t)
-    setTheme(t)
-  }
+    const t = theme === "light" ? "dark" : "light";
+    localStorage.setItem("theme", t);
+    setTheme(t);
+  };
 
   useEffect(() => {
-    const root = document.documentElement
-    if (theme === 'light') {
-      root.classList.remove('dark')
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.remove("dark");
     } else {
-      root.classList.add('dark')
+      root.classList.add("dark");
     }
-  }, [theme])
+  }, [theme]);
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
   return isMounted ? (
-    <div className="inline-flex items-center p-[1px] rounded-3xl bg-zinc-300 dark:bg-zinc-600 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 transition-all">
-      {themes.map(t => {
-        const checked = t === theme
+    <div
+      className="
+        p-[1px]
+        inline-flex
+        rounded-3xl
+        items-center
+        bg-zinc-300
+        dark:bg-zinc-600
+        focus:ring-2
+        hover:ring-2
+        hover:ring-zinc-800
+        hover:dark:ring-zinc-200
+        hover:ring-offset-2
+        transition-all
+        "
+    >
+      {themes.map((t) => {
+        const checked = t === theme;
         return (
           <button
             key={t}
             className={`${
-              checked ? 'bg-zinc-50 text-zinc-950' : ''
+              checked ? "bg-zinc-50 text-zinc-950" : ""
             } cursor-pointer rounded-3xl p-2`}
             onClick={toggleTheme}
             aria-label="Toggle theme"
           >
-            {t === 'light' ? <IoSunny /> : <IoMoon />}
+            {t === "light" ? <IoSunny /> : <IoMoon />}
           </button>
-        )
+        );
       })}
     </div>
   ) : (
     <div />
-  )
+  );
 }
