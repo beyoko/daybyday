@@ -1,0 +1,44 @@
+// SearchPosts.astro
+
+---
+import { Astro } from '@astro/types';
+
+const search = Astro.get('search', Astro.url.pathname);
+const allPosts = await Astro.glob('../posts/*.md');
+const posts = allPosts.map(post => ({
+  title: post.frontmatter.title,
+  content: post.compiledContent(),
+  // You can add other properties like tags, date, etc.
+}));
+
+const searchResults = search
+  ? posts.filter(post =>
+      post.title.toLowerCase().includes(search.toLowerCase())
+    )
+  : posts;
+
+---
+
+<main>
+  <h1>Search for Markdown Posts</h1>
+  <input
+    type="text"
+    placeholder="Search..."
+    onInput={(event) => {
+      // Set the search parameter in the URL
+      Astro.url.searchParams.set('search', event.target.value);
+      // Navigate to the URL with the search parameter
+      Astro.url.navigate(Astro.url.pathname + Astro.url.search);
+    }}
+  />
+
+  <ul>
+    {searchResults.map((post, index) => (
+      <li key={index}>
+        <a href={`/post/${post.title.replace(/\s+/g, '-').toLowerCase()}`}>{post.title}</a>
+        <p>{post.content}</p>
+      </li>
+    ))}
+  </ul>
+</main>
+

@@ -1,32 +1,37 @@
 ---
-import ThemeToggleButton from './ThemeToggleButton';
-import TagsLink from './TagsLink';
+import TagsLink from './TagsLink'
 import DropdownMenu from './DropdownMenu'
-import SearchBar from './test/Search-Bar';
+import ThemeToggleButton from './ThemeToggleButton'
 
 const allPosts = await Astro.glob('../pages/posts/*.md')
 const allTags = new Set<string>()
 allPosts.map(post => {
   post.frontmatter.tags &&
-  post.frontmatter.tags.map((tag: string) => allTags.add(tag))
+    post.frontmatter.tags.map((tag: string) => allTags.add(tag))
 })
 ---
 
 <!-- <header class="fixed w-full p-2 z-20 backdrop-blur-md"> -->
-
 <header class="fixed w-full p-2 z-20 backdrop-blur-md">
-  <div class="mx-auto max-w-3xl">
+  <div class="mx-auto max-w-5xl">
     <nav class="flex items-center justify-between gap-3 text-base">
-      <a href="/" class="group">
-        <h2 class="font-semibold tracking-tighter p-2 text-lg border-4 border-zinc-50 dark:border-zinc-950 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-950 hover:text-zinc-50 hover:dark:bg-zinc-50 hover:dark:text-zinc-950 rounded-xl transition-all"
+      <a href="/">
+        <h2
+          class="font-semibold tracking-tighter p-2 text-lg border-4 border-zinc-50 dark:border-zinc-950 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-950 hover:text-zinc-50 hover:dark:bg-zinc-50 hover:dark:text-zinc-950 rounded-xl transition-all"
         >
-          @C.I.C
+          C.I.C
         </h2>
       </a>
-      <SearchBar />
+
       <div class="flex gap-4">
-        <div class="hidden md:flex gap-5">
-          <TagsLink tags={Array.from(allTags)} />
+        <div
+          class="hidden md:flex gap-5 border-4 bg-gray-50 dark:bg-gray-950 rounded-xl"
+        >
+          <div class="whitespace-nowrap overflow-x-auto overflow-y-hidden">
+            <div class="flex display:inline-block">
+              <TagsLink tags={Array.from(allTags)} />
+            </div>
+          </div>
         </div>
         <div class="md:hidden flex">
           <DropdownMenu client:visible tags={Array.from(allTags)} />
@@ -36,4 +41,3 @@ allPosts.map(post => {
     </nav>
   </div>
 </header>
-

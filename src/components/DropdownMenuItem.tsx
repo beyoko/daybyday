@@ -1,13 +1,9 @@
+import React from 'react'
 import { Menu } from '@headlessui/react'
-import React, { ReactNode } from 'react'
+import type { DropdownMenuItemProps } from '../types/interface'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
-}
-
-export interface DropdownMenuItemProps {
-  href: string
-  children: ReactNode
 }
 
 export default function DropdownMenuItem({

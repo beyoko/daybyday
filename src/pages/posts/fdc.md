@@ -1,10 +1,10 @@
 ---
-title: 'house'
-description: 'home'
+title: 'Real Estate'
+description: 'Real Property'
 layout: '../../layouts/Post.astro'
 pubDate: 'post_date'
 tags:
-  - House
+  - Real-Estate
 ---
 
 # 房地产

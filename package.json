@@ -8,6 +8,11 @@
     "dev": "astro dev --show-all --port 3010",
     "start": "astro dev"
   },
+  "eslintIgnore": [
+    "/node_modules",
+    "/build",
+    "/public/build"
+  ],
   "dependencies": {
     "@astrojs/image": "^0.16.7",
     "@astrojs/mdx": "^0.19.0",
@@ -19,7 +24,6 @@
     "astro": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
     "sharp": "^0.32.1",
     "tailwindcss": "^3.3.2"
   },

@@ -1,22 +1,12 @@
 ---
-import '../styles/global.css';
-import type { MarkdownLayoutProps } from 'astro';
+import '../styles/global.css'
 
-type Props = MarkdownLayoutProps <{
-  title: string;
-  description: string;
-  image? : string;
-}>
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image='fish.png' } = Astro.props
+const { title, description, image = 'fish.png' } = Astro.props
 ---
 
-
-
 <!-- Global Metadata-->
-
 <meta charset="utf-8" />
 <meta name="keywords" content="width=device-width, initial-scale=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />

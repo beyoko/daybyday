@@ -1,15 +1,15 @@
 ---
-import Body from '../components/Body.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Content from '../components/Content.astro';
-import GlobalHead from '../components/GlobalHead.astro';
-import { formattedDate } from '../components/FormattedDate';
+import Body from '../components/Body.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Content from '../components/Content.astro'
+import GlobalHead from '../components/GlobalHead.astro'
+import { formattedDate } from '../components/FormattedDate'
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 
 const posts = (await Astro.glob('./posts/*.md')).sort(
-  (a: state, b: state) =>
+  (a, b) =>
     new Date(b.frontmatter.pubDate).valueOf() -
     new Date(a.frontmatter.pubDate).valueOf()
 )
@@ -17,18 +17,19 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <GlobalHead title={ SITE_TITLE } description={ SITE_DESCRIPTION } />
-</head>
-<Body>
-  <Header title={ SITE_TITLE } />
+  <head>
+    <GlobalHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <Body>
+    <Header title={SITE_TITLE} />
     <main class="pt-[90px]">
       <Content>
         <section>
-          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+          <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
             {
               posts.map(post => (
-                <li class="
+                <li
+                  class="
                   text-center
                   p-4
                   mb-4
@@ -37,8 +38,8 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
                   dark:ring-zinc-900
                   bg-zinc-50
                   dark:bg-zinc-950
-                  hover:ring-2
                   focus:ring-2
+                  hover:ring-2
                   hover:ring-zinc-800
                   hover:dark:ring-zinc-200
                   hover:ring-offset-2
@@ -46,16 +47,15 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
                   hover:dark:bg-zinc-900
                   rounded-xl
                   transition-all
-                ">
-                  <a href={ post.url }>
+                "
+                >
+                  <a href={post.url}>
                     <div class="text-xl font-bold">
-                      { post.frontmatter.title }
+                      {post.frontmatter.title}
                     </div>
-                    <div>
-                      { post.frontmatter.description }
-                    </div>
+                    <div>{post.frontmatter.description}</div>
                     <div class="underline underline-offset-2">
-                      { formattedDate(post.frontmatter.pubDate) }
+                      {formattedDate(post.frontmatter.pubDate)}
                     </div>
                   </a>
                 </li>
@@ -65,6 +65,6 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
         </section>
       </Content>
     </main>
-  <Footer />
-</Body>
+    <Footer />
+  </Body>
 </html>

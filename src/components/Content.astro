@@ -1,14 +1,11 @@
 ---
-import type { MarkdownLayoutProps } from 'astro';
+type classNameProps = {
+  className: string
+}
 
-type Props = MarkdownLayoutProps <{
-  className?: string
-}>
-
-const { className = '' } = Astro.props
-
+const { className = '' }: classNameProps = Astro.props
 ---
 
-<article class={`px-8 mx-auto max-w-3xl ${className}`}>
+<article class={`px-8 mx-auto max-w-5xl ${className}`}>
   <slot />
 </article>

@@ -1,41 +1,27 @@
 ---
-import GlobalHead from '../components/GlobalHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Body from '../components/Body.astro';
+import GlobalHead from '../components/GlobalHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Body from '../components/Body.astro'
 import Content from '../components/Content.astro'
-import BackHome from '../components/BackHome.astro';
-import Prose from '../components/Prose.astro';
-import BackToTop from '../components/BackToTop.astro';
-import TitleBar from '../components/test/TitleBar.astro';
-import HeaderHidden from '../components/test/HeaderHidden.astro';
-import { SITE_TITLE } from '../consts';
-import type { MarkdownLayoutProps } from 'astro';
+import Prose from '../components/Prose.astro'
+import BackToTop from '../components/BackToTop.astro'
 
-type Props = MarkdownLayoutProps <{
-  content: {
-    title: string
-    description: string
-    pubDate: string
-    tags: string[]
-    heroImage?: string
-  }
-}>
+import { SITE_TITLE } from '../consts'
 
 const {
-  content: {
-    title,
-    description,
-    heroImage,
-    pubDate
-  }
+  content: { title, description, heroImage, pubDate }
 } = Astro.props
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <GlobalHead title={ title + ` / ${SITE_TITLE }` } description={ description } image={ heroImage } />
+    <GlobalHead
+      title={title + ` / ${SITE_TITLE}`}
+      description={description}
+      image={heroImage}
+    />
   </head>
 
   <Body>
@@ -54,24 +40,21 @@ const {
               />
             )
           }
-          </div>
-          <div class="py-4">
-            <h1>{ pubDate }</h1>
-            <h1 class="text-3xl my-1">{ title }</h1>
-            <div>{ description }</div>
-            <hr class="border-top border-zinc-400 my-4" />
-              <Prose>
-                <slot />
-              </Prose>
-            <hr class="border-top border-zinc-400 my-4" />
-          </div>
-          <div class="py-4" />
         </div>
+        <div class="py-4">
+          <h1>{pubDate}</h1>
+          <h1 class="text-3xl my-1">{title}</h1>
+          <div>{description}</div>
+          <hr class="border-top border-zinc-400 my-4" />
+          <Prose>
+            <slot />
+          </Prose>
+          <hr class="border-top border-zinc-400 my-4" />
+        </div>
+        <div class="py-4"></div>
       </Content>
-      <TitleBar />
-      <BackToTop />
     </main>
-    <Footer />
+    <BackToTop client:visible />
   </Body>
+  <Footer />
 </html>
-

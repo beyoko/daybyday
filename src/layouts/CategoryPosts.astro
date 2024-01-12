@@ -1,76 +1,87 @@
 ---
-import { Image } from '@astrojs/image/components'
-import type { MarkdownLayoutProps } from 'astro';
-import GlobalHead from '../components/GlobalHead.astro'
+import { Image, ImageComponentLocalImageProps } from '@astrojs/image/components'
 import Body from '../components/Body.astro'
 import Content from '../components/Content.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
-import Location from '../components/Location.astro';
-import { formattedDate } from '../components/FormattedDate';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Location from '../components/Location.astro'
+import GlobalHead from '../components/GlobalHead.astro'
+import { formattedDate } from '../components/FormattedDate'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 
-type Props = MarkdownLayoutProps <{
+interface PostProps {
+  url: string
+  frontmatter: {
+    heroImage?: string
+    title: string
+    description: string
+    pubDate: string
+  }
+}
+
+type Props = {
   category: string
-}>
+}
 
-const { category } = Astro.props
+const { category }: Props = Astro.props
 
-const posts = (await Astro.glob('../pages/posts/*.md'))
+const posts: PostProps[] = (await Astro.glob('../pages/posts/*.md'))
   .sort(
-    (a, b) =>
+    (a: PostProps, b: PostProps) =>
       new Date(b.frontmatter.pubDate).valueOf() -
       new Date(a.frontmatter.pubDate).valueOf()
   )
-  .filter(item => item.frontmatter.tags.includes(category))
+  .filter((item): PostProps => item.frontmatter.tags.includes(category))
 ---
-
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <GlobalHead title={category + ` / ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <GlobalHead
+      title={category + ` / ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+    />
   </head>
   <Body>
     <Header title={SITE_TITLE} />
-      <main class="pt-[90px]">
-        <Content>
-          <Location>{category}</Location>
-          <section>
-            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-              {
-                posts.map(post => (
+    <main class="pt-[90px]">
+      <Content>
+        <Location>{category}</Location>
+        <section>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+            {
+              posts.map(
+                (post): PostProps => (
                   <li class="p-4 text-center mb-4 rounded-xl ring-2 ring-zinc-100 dark:ring-zinc-900 bg-zinc-50 dark:bg-zinc-950 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 hover:bg-zinc-100 hover:dark:bg-zinc-900 transition-all">
                     <a href={post.url}>
                       {post.frontmatter.heroImage && (
                         <Image
                           class="border border-slate-300 dark:border-zinc-700 rounded-xl"
-                          src={ post.frontmatter.heroImage }
-                          width={ 720 * 2 }
+                          src={post.frontmatter.heroImage}
+                          width={720 * 2}
                           aspectRatio={2.0}
                           alt="Thumbnail"
                         />
                       )}
 
                       <div class="mt-3 text-xl font-bold">
-                        { post.frontmatter.title }
+                        {post.frontmatter.title}
                       </div>
 
-                      <div class="p-1">
-                        { post.frontmatter.description }
-                      </div>
+                      <div class="p-1">{post.frontmatter.description}</div>
 
                       <div class="underline underline-offset-2">
-                        { formattedDate(post.frontmatter.pubDate) }
+                        {formattedDate(post.frontmatter.pubDate)}
                       </div>
                     </a>
                   </li>
-                ))
-              }
-            </ul>
-          </section>
-        </Content>
-      </main>
+                )
+              )
+            }
+          </ul>
+        </section>
+      </Content>
+    </main>
     <Footer />
   </Body>
 </html>

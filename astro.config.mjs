@@ -1,8 +1,8 @@
-import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
+import image from '@astrojs/image'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import image from '@astrojs/image'
+import { defineConfig } from 'astro/config'
 
 export default defineConfig({
   site: 'http://127.0.0.1',

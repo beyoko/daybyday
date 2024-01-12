@@ -4,7 +4,7 @@ description: 'svelte > function'
 layout: '../../layouts/Post.astro'
 pubDate: 'post_date'
 tags:
-  - Svelte.js
+  - Mindmap
 ---
 
 # function l
@@ -29,3 +29,6 @@ Mind-Wired(mind-wired.js) and its respective styling library(mind-wired.css) is 
 
 Node structure typically consists of three values — model, view, and subs.
 
+## [excalidraw]("")
+
+open-source api like mindmap

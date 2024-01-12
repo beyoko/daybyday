@@ -1,8 +1,32 @@
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
 import { IoMenu } from 'react-icons/io5/index.js'
-import DropdownMenuItem from './DropdownMenuItem'
-import type { DropdownMenuProps } from '../types/interface'
+import type {
+  DropdownMenuProps,
+  DropdownMenuItemProps
+} from '../types/interface'
+
+const DropdownMenuItemClassNames = (...classes: string[]) => {
+  return classes.filter(Boolean).join(' ')
+}
+
+function DropdownMenuItem({ href, children }: DropdownMenuItemProps) {
+  return (
+    <Menu.Item>
+      {({ active }) => (
+        <a
+          href={href}
+          className={DropdownMenuItemClassNames(
+            active ? 'bg-gray-950 text-gray-50 dark:bg-zinc-700 ' : '',
+            'block px-4 py-2 text-sm'
+          )}
+        >
+          {children}
+        </a>
+      )}
+    </Menu.Item>
+  )
+}
 
 export default function DropdownMenu({ tags }: DropdownMenuProps) {
   return (
