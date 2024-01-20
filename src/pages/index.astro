@@ -1,4 +1,5 @@
 ---
+import { Image } from '@astrojs/image/components'
 import Body from '../components/Body.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -25,32 +26,42 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
     <main class="pt-[90px]">
       <Content>
         <section>
-          <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
             {
               posts.map(post => (
                 <li
                   class="
-                  text-center
-                  p-4
-                  mb-4
-                  ring-2
-                  ring-zinc-100
-                  dark:ring-zinc-900
-                  bg-zinc-50
-                  dark:bg-zinc-950
-                  focus:ring-2
-                  hover:ring-2
-                  hover:ring-zinc-800
-                  hover:dark:ring-zinc-200
-                  hover:ring-offset-2
-                  hover:bg-zinc-100
-                  hover:dark:bg-zinc-900
-                  rounded-xl
-                  transition-all
+                    text-center
+                    p-4
+                    mb-4
+                    ring-2
+                    ring-gray-100
+                    dark:ring-gray-900
+                    bg-gray-50
+                    dark:bg-gray-950
+                    focus:ring-2
+                    hover:ring-2
+                    hover:ring-gray-800
+                    hover:dark:ring-gray-200
+                    hover:ring-offset-2
+                    hover:bg-gray-100
+                    hover:dark:bg-gray-900
+                    rounded-xl
+                    dark:shadow-gray-800
+                    transition-shadow
                 "
                 >
                   <a href={post.url}>
                     <div class="text-xl font-bold">
+                      {post.frontmatter.heroImage && (
+                        <Image
+                          class="border border-slate-300 dark:border-gray-700 rounded-xl"
+                          src={post.frontmatter.heroImage}
+                          width={720 * 2}
+                          aspectRatio={2.0}
+                          alt="Thumbnail"
+                        />
+                      )}
                       {post.frontmatter.title}
                     </div>
                     <div>{post.frontmatter.description}</div>

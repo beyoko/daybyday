@@ -1,0 +1,28 @@
+---
+import getFiles from '@astrojs/mdx'
+import getMdxComponent from '@astrojs/mdx'
+import { useState } from 'react'
+
+export default function MarkdownContent() {
+  const [showFullContent, setShowFullContent] = useState(false)
+
+  const MdxComponent = getMdxComponent(files[0].path) // 只显示第一个Markdown文件
+
+  return (
+    <div>
+      <MdxComponent components={{ ...components }} />
+
+      {!showFullContent && (
+        <button
+          onClick={() => setShowFullContent(true)}
+          className="flex items-center mt-4 text-blue-500 hover:text-blue-700 cursor-pointer"
+        >
+          点击查看更多
+        </button>
+      )}
+    </div>
+  )
+}
+---
+
+<MarkdownContent />

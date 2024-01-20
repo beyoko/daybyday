@@ -4,6 +4,10 @@
 
 # need 2 do
 
+- (01/17/2024): tags 上检索的卡片展示预览 markdown 中内容的前 30%
+- explain all code by gpt(to know what mean).
+- (16/01/2024): make a navigation bar about markdown title in the bottom of page
+- (15/01/2024): 1. page change theme "shining". 2. theme menu dark mode bakcground color 3. auto logo change to $theme(dark or light)
 - (02/09/2024): input all file **Types**
 - (09/01/2024): 底部添加非全屏内容**导航栏**
 - (01/02/2024): when header title more then screen, left right touch bar can move the title

@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes, HTMLTag } from 'astro/types'
+import { findPaginationEntries } from './utils'
+
+export interface Props extends HTMLAttributes<'ul'> {
+  as?: HTMLTag
+  nextLabel: string
+  prevLabel: string
+}
+
+const { as: Component = 'ol', nextLabel, prevLabel, ...attrs } = Astro.props
+
+const { next, prev } = findPaginationEntries(Astro.url.pathname)
+---
+
+<Component {...attrs}>
+  {
+    prev && (
+      <a href={prev.url} aria-label={prevLabel}>
+        {prev.title}
+      </a>
+    )
+  }
+  {
+    next && (
+      <a href={next.url} aria-label={nextLabel}>
+        {next.title}
+      </a>
+    )
+  }
+</Component>

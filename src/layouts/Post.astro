@@ -6,8 +6,19 @@ import Body from '../components/Body.astro'
 import Content from '../components/Content.astro'
 import Prose from '../components/Prose.astro'
 import BackToTop from '../components/BackToTop.astro'
-
+import RightSidebar from '../components/RightSidebar/RightSidebar.astro'
 import { SITE_TITLE } from '../consts'
+import type { MarkdownLayoutProps } from 'astro'
+
+type Props = MarkdownLayoutProps<{
+  content: {
+    title: string
+    description: string
+    pubDate: string
+    tags: string[]
+    heroImage?: string
+  }
+}>
 
 const {
   content: { title, description, heroImage, pubDate }
@@ -27,12 +38,14 @@ const {
   <Body>
     <Header title={SITE_TITLE} />
     <main class="pt-[90px]">
-      <Content className="pt-4 rounded-md bg-zinc-50 dark:bg-zinc-950">
+      <Content
+        className="pt-4 border-2 border-gray-800 dark:border-gray-200 rounded-md bg-gray-50 dark:bg-gray-950"
+      >
         <div class="mb-8">
           {
             heroImage && (
               <img
-                class="border border-slate-300 dark:border-zinc-700 rounded-xl"
+                class="border border-slate-300 dark:border-gray-700 rounded-xl"
                 width={720}
                 height={360}
                 src={heroImage}
@@ -45,16 +58,17 @@ const {
           <h1>{pubDate}</h1>
           <h1 class="text-3xl my-1">{title}</h1>
           <div>{description}</div>
-          <hr class="border-top border-zinc-400 my-4" />
+          <hr class="border-top border-gray-400 my-4" />
           <Prose>
             <slot />
           </Prose>
-          <hr class="border-top border-zinc-400 my-4" />
+          <hr class="border-top border-gray-400 my-4" />
         </div>
         <div class="py-4"></div>
       </Content>
     </main>
-    <BackToTop client:visible />
+    <RightSidebar />
+    <BackToTop />
   </Body>
   <Footer />
 </html>

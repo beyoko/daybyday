@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { IoSunny, IoMoon, IoBug } from 'react-icons/io5'
+import { SunIcon, MoonIcon, ArrowPathIcon } from '@heroicons/react/24/solid'
 
 const themes = [
-  { id: 'auto', label: 'Auto', icon: <IoBug /> },
-  { id: 'light', label: 'Light', icon: <IoSunny /> },
-  { id: 'dark', label: 'Dark', icon: <IoMoon /> }
+  { id: 'auto', label: 'Auto', icon: <ArrowPathIcon className="h-5 w-5" /> },
+  { id: 'light', label: 'Light', icon: <SunIcon className="h-5 w-5" /> },
+  { id: 'dark', label: 'Dark', icon: <MoonIcon className="h-5 w-5" /> }
 ]
 
 export default function ThemeToggle() {
@@ -14,7 +14,7 @@ export default function ThemeToggle() {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
       return localStorage.getItem('theme')
     }
-    return 'auto'
+    return 'light'
   })
 
   const toggleTheme = (selectedTheme: string): void => {
@@ -24,13 +24,7 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const root = document.documentElement
-    if (theme === 'auto') {
-      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-        root.classList.remove('dark')
-      } else {
-        root.classList.add('dark')
-      }
-    } else if (theme === 'light') {
+    if (theme === 'light') {
       root.classList.remove('dark')
     } else {
       root.classList.add('dark')
@@ -56,47 +50,54 @@ export default function ThemeToggle() {
     }
   }, [theme])
 
-  return isMounted ? (
+  if (!isMounted) {
+    return <div />
+  }
+
+  return (
     <Menu as="div" className="relative inline-block">
-      <Menu.Button className="p-[1px] rounded-3xl bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 cursor-pointer">
-        <div className="flex items-center">
-          {theme !== 'auto' && themes.find(t => t.id === theme)?.icon}
-          <span className="pl-1 pr-2">
-            {themes.find(t => t.id === theme)?.label}
-          </span>
-        </div>
-      </Menu.Button>
-      <Transition
-        as={React.Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute top-8 right-0 mt-2 w-40 bg-white dark:bg-gray-700 rounded-md shadow-lg">
-          {themes.map(t => (
-            <Menu.Item key={t.id}>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? 'bg-gray-200 dark:bg-dark-800' : ''
-                  } w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700 focus:outline-none focus:bg-gray-100 focus:text-gray-900 dark:focus:bg-dark-700 dark:focus:text-gray-300 transition duration-150 ease-in-out`}
-                  onClick={() => toggleTheme(t.id)}
-                >
-                  <div className="flex items-center">
-                    {t.icon}
-                    <span className="pl-2">{t.label}</span>
-                  </div>
-                </button>
-              )}
-            </Menu.Item>
-          ))}
-        </Menu.Items>
-      </Transition>
+      {({ open }) => (
+        <>
+          <Menu.Button className="inline-flex justify-center rounded-xl border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-gray-50 dark:bg-gray-950 hover:bg-gray-950 hover:text-gray-50 hover:dark:bg-gray-50 hover:dark:text-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-100 transition-all">
+            {theme === 'light' ? (
+              <SunIcon className="h-5 w-5" />
+            ) : (
+              <MoonIcon className="h-5 w-5" />
+            )}
+          </Menu.Button>
+          <Transition
+            show={open}
+            enter="transition duration-100 ease-out"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-75 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+          >
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md border border-gray-400 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none divide-gray-400 dark:divide-gray-700">
+              <div className="py-1">
+                {themes.map(t => (
+                  <Menu.Item key={t.id}>
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active
+                            ? 'bg-gray-950 text-gray-50 dark:bg-gray-700 '
+                            : ''
+                        } flex items-center w-full px-2 py-2`}
+                        onClick={() => toggleTheme(t.id)}
+                      >
+                        {t.icon}
+                        <span className="ml-2">{t.label}</span>
+                      </button>
+                    )}
+                  </Menu.Item>
+                ))}
+              </div>
+            </Menu.Items>
+          </Transition>
+        </>
+      )}
     </Menu>
-  ) : (
-    <div />
   )
 }

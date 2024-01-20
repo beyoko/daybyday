@@ -22,7 +22,11 @@ interface PostProps {
 
 type Props = MarkdownLayoutProps<{ category: string }>
 
-const { category } = Astro.props
+const { category }: Props = Astro.props
+
+const {
+  content: { title, description, heroImage, pubDate }
+} = Astro.props
 
 const posts: PostProps[] = (await Astro.glob('../pages/posts/*.md'))
   .sort(

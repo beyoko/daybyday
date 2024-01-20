@@ -1,15 +1,22 @@
 ---
+import type { GetStaticPaths } from 'astro'
 import CategoryPosts from '../../layouts/CategoryPosts.astro'
 
-export async function getStaticPaths() {
-  const allPosts = await Astro.glob('../posts/*.md')
-  const allTags = new Set<string>()
-  allPosts.map(post => {
+type PostProps = {
+  frontmatter: {
+    tags: string[]
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allPosts: PostProps[] = await Astro.glob('../posts/*.md')
+  const allTags: Set<string> = new Set<string>()
+  allPosts.map((post: PostProps) => {
     post.frontmatter.tags &&
       post.frontmatter.tags.map((tag: string) => allTags.add(tag))
   })
 
-  return Array.from(allTags).map(tag => {
+  return Array.from(allTags).map((tag: string) => {
     return {
       params: {
         id: tag.toLowerCase()
@@ -21,7 +28,7 @@ export async function getStaticPaths() {
   })
 }
 
-const { name } = Astro.props
+const { name }: { name: string } = Astro.props
 ---
 
 <CategoryPosts category={name} />

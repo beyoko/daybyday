@@ -3,6 +3,9 @@
   "compilerOptions": {
     "jsx": "react",
     "tsx": "react",
-    "types": ["@astrojs/image/client"]
+    "types": ["@astrojs/image/client"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }
