@@ -5,11 +5,13 @@ export default function TagsLink({ tags }: TagsLinkProps) {
   return tags.map(tag => {
     return (
       <a
-        className="hover:underline border-4 border-transparent bg-transparent"
+        className="border-4 border-transparent"
         key={tag}
         href={`/categories/${tag.toLowerCase()}`}
       >
-        {tag}
+        <p className="flex border-2 border-transparent hover:underline">
+          {tag}
+        </p>
       </a>
     )
   })

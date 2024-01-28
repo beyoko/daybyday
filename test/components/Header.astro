@@ -11,12 +11,12 @@ allPosts.map(post => {
 })
 ---
 
-<header class="fixed w-full p-2 z-20">
+<header class="fixed w-full p-2 z-20 backdrop-blur-md">
   <div class="mx-auto max-w-5xl">
     <nav class="flex items-center justify-between gap-3 text-base">
       <a href="/">
         <h2
-          class="underline underline-offset-2 p-2 font-semibold tracking-tighter gap-4 rounded-md text-lg text-zinc-50 dark:text-zinc-950 bg-zinc-950 dark:bg-zinc-50 hover:bg-zinc-50 hover:text-zinc-950 hover:dark:bg-zinc-950 hover:dark:text-zinc-50 transition-all"
+          class="font-semibold tracking-tighter p-2 text-lg border-2 border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-black hover:bg-zinc-900 hover:text-zinc-100 hover:dark:bg-zinc-100 hover:dark:text-zinc-900 rounded-xl transition-all"
         >
           C.I.C
         </h2>
@@ -24,9 +24,13 @@ allPosts.map(post => {
 
       <div class="flex gap-4">
         <div
-          class="hidden md:flex gap-5 border-2 border-zinc-950 dark:border-zinc-50 rounded-md bg-zinc-50 dark:bg-zinc-950 display:inline-block"
+          class="hidden md:flex gap-5 border-2 border-zinc-700 dark:border-zinc-200 bg-zinc-50 dark:bg-zinc-950 rounded-xl"
         >
-          <TagsLink tags={Array.from(allTags)} />
+          <div class="whitespace-nowrap overflow-x-auto overflow-y-hidden">
+            <div class="flex display:inline-block">
+              <TagsLink tags={Array.from(allTags)} />
+            </div>
+          </div>
         </div>
         <div class="md:hidden flex">
           <DropdownMenu client:visible tags={Array.from(allTags)} />

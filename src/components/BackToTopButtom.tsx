@@ -31,16 +31,19 @@ export default function BackToTopButton() {
           p-2
           rounded-3xl
           md:flex
-          bg-gray-300
-          dark:bg-gray-600
+          bg-zinc-100
+          dark:bg-zinc-600
+          dark:ring-zinc-700
           focus:ring-2
           hover:ring-2
-          hover:ring-gray-800
-          hover:dark:ring-gray-200
-          hover:ring-offset-2
+          hover:ring-zinc-800
+          hover:dark:ring-zinc-200
           transition-all
           ${showButton ? 'scale-100' : 'scale-0'}
-          ${showButton ? 'visible' : 'invisible'}`}
+          ${showButton ? 'visible' : 'invisible'}
+          tranfrom ${showButton ? 'rotate-45' : 'rotate-0'}
+          hover:rotate-0
+          hover:dark:rotate-45`}
         onClick={scrollToTop}
       >
         <ArrowUpIcon className="h-4 w-4" />

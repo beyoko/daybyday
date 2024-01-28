@@ -4,6 +4,9 @@
 
 # need 2 do
 
+- 27/01/2024: when i 'running down' d page, header will be hidden.
+- 25/01/2024: `Header.astro` tags link highlight && Album Gallery
+- 01/23/2024: `Layouts/Posts.astro`-Line 72, mouse hightlight show copy icon
 - (01/17/2024): tags 上检索的卡片展示预览 markdown 中内容的前 30%
 - explain all code by gpt(to know what mean).
 - (16/01/2024): make a navigation bar about markdown title in the bottom of page

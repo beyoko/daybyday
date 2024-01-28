@@ -1,7 +1,7 @@
 import React from 'react'
 import type { TagsLinkItemProps } from '../types/interface'
 
-function classNames(...classes: string[]) {
+const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join('')
 }
 

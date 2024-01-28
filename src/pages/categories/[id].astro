@@ -9,9 +9,9 @@ type PostProps = {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allPosts: PostProps[] = await Astro.glob('../posts/*.md')
+  const allPosts = await Astro.glob('../posts/*.md')
   const allTags: Set<string> = new Set<string>()
-  allPosts.map((post: PostProps) => {
+  allPosts.map(post => {
     post.frontmatter.tags &&
       post.frontmatter.tags.map((tag: string) => allTags.add(tag))
   })

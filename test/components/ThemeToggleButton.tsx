@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
+import { SunIcon, MoonIcon, ArrowPathIcon } from '@heroicons/react/24/solid'
 
 const themes = [
+  { id: 'auto', label: 'Auto', icon: <ArrowPathIcon className="h-5 w-5" /> },
   { id: 'light', label: 'Light', icon: <SunIcon className="h-5 w-5" /> },
   { id: 'dark', label: 'Dark', icon: <MoonIcon className="h-5 w-5" /> }
 ]
@@ -10,9 +11,6 @@ const themes = [
 export default function ThemeToggle() {
   const [isMounted, setIsMounted] = useState(false)
   const [theme, setTheme] = useState(() => {
-    if (import.meta.env.SSR) {
-      return undefined
-    }
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
       return localStorage.getItem('theme')
     }
@@ -61,11 +59,11 @@ export default function ThemeToggle() {
       {({ open }) => (
         <>
           {theme === 'light' ? (
-            <Menu.Button className="inline-flex justify-center rounded-xl border-2 border-zinc-300 hover:border-zinc-900 bg-zinc-50 px-2 py-2 text-sm font-medium shadow-sm  focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100 transition-all">
+            <Menu.Button className="inline-flex justify-center rounded-md ring-2 ring-zinc-300 dark:ring-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-orange-500 hover:bg-zinc-950 hover:text-zinc-50 hover:dark:bg-zinc-50 hover:dark:text-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100 transition-all">
               <SunIcon className="h-5 w-5" />
             </Menu.Button>
           ) : (
-            <Menu.Button className="inline-flex justify-center rounded-md border-2 border-transparent dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm dark:bg-zinc-950 hover:dark:border-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100 transition-all">
+            <Menu.Button className="inline-flex justify-center rounded-md ring-2 ring-zinc-300 dark:ring-zinc-700 px-2 py-2 text-sm font-medium shadow-sm dark:bg-gray-900 hover:bg-zinc-950 hover:text-zinc-50 hover:dark:bg-zinc-50 hover:dark:text-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100 transition-all">
               <MoonIcon className="h-5 w-5" />
             </Menu.Button>
           )}

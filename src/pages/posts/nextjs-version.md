@@ -1,10 +1,10 @@
 ---
-title: 'first note about nextjs'
+title: 'first note about Nextjs'
 description: 'fix nextjs project'
 layout: '../../layouts/Post.astro'
 pubDate: '05/22/2023'
 tags:
-  - Next.js
+  - React
 ---
 
 # new "one" home page

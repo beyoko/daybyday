@@ -35,19 +35,19 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
                     p-4
                     mb-4
                     ring-2
-                    ring-gray-100
-                    dark:ring-gray-900
-                    bg-gray-50
-                    dark:bg-gray-950
+                    ring-zinc-300
+                    dark:ring-zinc-900
+                    bg-zinc-50
+                    dark:bg-black
                     focus:ring-2
                     hover:ring-2
-                    hover:ring-gray-800
-                    hover:dark:ring-gray-200
+                    hover:ring-zinc-800
+                    hover:dark:ring-zinc-200
                     hover:ring-offset-2
-                    hover:bg-gray-100
-                    hover:dark:bg-gray-900
+                    hover:bg-zinc-100
+                    hover:dark:bg-zinc-900
                     rounded-xl
-                    dark:shadow-gray-800
+                    dark:shadow-zinc-800
                     transition-shadow
                 "
                 >
@@ -55,7 +55,7 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
                     <div class="text-xl font-bold">
                       {post.frontmatter.heroImage && (
                         <Image
-                          class="border border-slate-300 dark:border-gray-700 rounded-xl"
+                          class="ring-4 ring-slate-300 dark:ring-zinc-700 rounded-xl"
                           src={post.frontmatter.heroImage}
                           width={720 * 2}
                           aspectRatio={2.0}

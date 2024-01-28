@@ -4,7 +4,7 @@ description: 'svelte > function'
 layout: '../../layouts/Post.astro'
 pubDate: 'post_date'
 tags:
-  - Mindmap
+  - React
 ---
 
 # function l

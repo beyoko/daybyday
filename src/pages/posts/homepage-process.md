@@ -1,11 +1,11 @@
 ---
-title: 'homepage process'
+title: 'homepage process - Next.js'
 description: 'running from'
 layout: '../../layouts/Post.astro'
 pubDate: '06/28/2023'
 heroImage: '../../../public/cat01.png'
 tags:
-  - Next.js
+  - React
 ---
 
 hello[^1]

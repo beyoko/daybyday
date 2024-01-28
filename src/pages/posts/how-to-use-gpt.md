@@ -8,7 +8,7 @@ tags:
   - ChatGpt
 ---
 
-# 指南
+# 如何调教 Gpt 成为你需要的“人才”
 
 ## 充当 Linux 终端
 
