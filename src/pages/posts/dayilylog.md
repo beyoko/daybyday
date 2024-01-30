@@ -21,4 +21,4 @@ tags:
 
   when battery life down to 70%-, will going down to 6%. 😿:
 
-  > only in neovim
+  > only Neovim
