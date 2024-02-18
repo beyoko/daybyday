@@ -1,8 +1,6 @@
 ---
-import TagsLink from './TagsLink'
 import DropdownMenu from './DropdownMenu'
 import ThemeToggleButton from './ThemeToggleButton'
-import HeaderHidden from './HeaderHidden'
 
 const allPosts = await Astro.glob('../pages/posts/*.md')
 const allTags = new Set<string>()
@@ -10,6 +8,9 @@ allPosts.map(post => {
   post.frontmatter.tags &&
     post.frontmatter.tags.map((tag: string) => allTags.add(tag))
 })
+const sortedTags = Array.from(allTags).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' })
+)
 ---
 
 <header class="fixed w-full p-2 z-20">
@@ -17,20 +18,24 @@ allPosts.map(post => {
     <nav class="flex items-center justify-between gap-3 text-base">
       <a href="/">
         <h2
-          class="underline underline-offset-2 p-2 font-semibold tracking-tighter gap-4 rounded-md text-lg text-zinc-50 dark:text-zinc-950 bg-zinc-950 dark:bg-zinc-50 hover:bg-zinc-50 hover:text-zinc-950 hover:dark:bg-zinc-950 hover:dark:text-zinc-50 transition-all"
+          class="underline underline-offset-2 p-2 border border-gray-700 font-semibold tracking-tighter gap-4 rounded-md text-lg bg-white dark:bg-zinc-950 hover:bg-zinc-950 hover:text-zinc-50 hover:dark:bg-zinc-50 hover:dark:text-zinc-950 transition-all"
         >
           C.I.C
         </h2>
       </a>
 
       <div class="flex gap-4">
-        <div
-          class="hidden md:flex gap-5 border-2 border-zinc-950 dark:border-zinc-50 rounded-md bg-zinc-50 dark:bg-zinc-950 display:inline-block"
-        >
-          <TagsLink tags={Array.from(allTags)} />
+        <div class="hidden md:flex">
+          <a href="/memo">
+            <div
+              class="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all"
+            >
+              Memo
+            </div>
+          </a>
         </div>
         <div class="md:hidden flex">
-          <DropdownMenu client:visible tags={Array.from(allTags)} />
+          <DropdownMenu client:visible tags={sortedTags} />
         </div>
         <ThemeToggleButton client:visible />
       </div>

@@ -1,5 +1,6 @@
 ---
 import { Image } from '@astrojs/image/components'
+
 import Body from '../components/Body.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -23,10 +24,23 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
   </head>
   <Body>
     <Header title={SITE_TITLE} />
-    <main class="pt-[90px]">
+    <main class="pt-[56px]">
       <Content>
         <section>
-          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+          <p
+            class="mb-8 indent-4 p-4 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900"
+          >
+            As an indie developer, I&apos;ve been spending hours and hours at my
+            desk every day. So, I&apos;ve been continuously improving my
+            workspace in order to boost my productivity. Whenever I upload new
+            content, people ask me what tools I use. So, here is a living
+            snapshot and a place to point curious developers to when I get
+            asked. Most of the links are amazon affiliate links, so I&apos;ll
+            get filthy rich if you click them and buy something.
+          </p>
+        </section>
+        <section>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {
               posts.map(post => (
                 <li
@@ -34,36 +48,29 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
                     text-center
                     p-4
                     mb-4
-                    ring-2
-                    ring-zinc-300
-                    dark:ring-zinc-900
-                    bg-zinc-50
+                    border
+                    border-zinc-200
+                    dark:border-zinc-900
+                    hover:bg-zinc-50
+                    dark:hover:bg-zinc-950
+                    hover:border-zinc-800
+                    dark:hover:border-zinc-200
+                    bg-white
                     dark:bg-black
-                    focus:ring-2
-                    hover:ring-2
-                    hover:ring-zinc-800
-                    hover:dark:ring-zinc-200
-                    hover:ring-offset-2
-                    hover:bg-zinc-100
-                    hover:dark:bg-zinc-900
                     rounded-xl
-                    dark:shadow-zinc-800
-                    transition-shadow
                 "
                 >
                   <a href={post.url}>
-                    <div class="text-xl font-bold">
-                      {post.frontmatter.heroImage && (
-                        <Image
-                          class="ring-4 ring-slate-300 dark:ring-zinc-700 rounded-xl"
-                          src={post.frontmatter.heroImage}
-                          width={720 * 2}
-                          aspectRatio={2.0}
-                          alt="Thumbnail"
-                        />
-                      )}
-                      {post.frontmatter.title}
-                    </div>
+                    {post.frontmatter.heroImage && (
+                      <Image
+                        class="border border-zinc-300 dark:border-zinc-700 rounded-xl"
+                        src={post.frontmatter.heroImage}
+                        width={720 * 2}
+                        aspectRatio={2.0}
+                        alt="Thumbnail"
+                      />
+                    )}
+                    {post.frontmatter.title}
                     <div>{post.frontmatter.description}</div>
                     <div class="underline underline-offset-2">
                       {formattedDate(post.frontmatter.pubDate)}

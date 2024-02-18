@@ -1,5 +1,15 @@
-# install
+---
+title: 'Archlinux You need to know'
+description: 'Anything about Archlinux installation before'
+layout: '../../layouts/Post.astro'
+pubDate: '01/30/2024'
+tags:
+  - Archlinux
+---
 
+# installation
+
+```
 - `cfdisk /dev/sda` > `dos` > `new` > `+512M` > `new` > `+100%` > `write`
 - `mkfs.ext4 /dev/sda1` && `mkfs.ext4 /dev/sda2`
 - `mkdir  /mnt/boot`
@@ -14,8 +24,9 @@
 - `passwd` `useradd -m -G wheel -s /bin/bash { user }` `passwd user`
 
 - `pacman -S sudo`
-- `pacman -S grub ` for virtualbox
+- `pacman -S grub `
 
 - `grub-mkconfig -o /boot/grub/grub.cfg`
 
 - `systemctl enable systemd-networkd`
+```

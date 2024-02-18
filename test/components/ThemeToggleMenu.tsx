@@ -60,15 +60,13 @@ export default function ThemeToggle() {
     <Menu as="div" className="relative inline-block">
       {({ open }) => (
         <>
-          {theme === 'light' ? (
-            <Menu.Button className="inline-flex justify-center rounded-xl border-2 border-zinc-300 hover:border-zinc-900 bg-zinc-50 px-2 py-2 text-sm font-medium shadow-sm  focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100 transition-all">
+          <Menu.Button className="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:bg-gray-950 hover:text-gray-50 hover:dark:bg-gray-50 hover:dark:text-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-100 transition-all">
+            {theme === 'light' ? (
               <SunIcon className="h-5 w-5" />
-            </Menu.Button>
-          ) : (
-            <Menu.Button className="inline-flex justify-center rounded-md border-2 border-transparent dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm dark:bg-zinc-950 hover:dark:border-zinc-950 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100 transition-all">
+            ) : (
               <MoonIcon className="h-5 w-5" />
-            </Menu.Button>
-          )}
+            )}
+          </Menu.Button>
           <Transition
             show={open}
             enter="transition duration-100 ease-out"
@@ -78,7 +76,7 @@ export default function ThemeToggle() {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md ring-1 ring-black dark:ring-zinc-700 ring-opacity-5  bg-zinc-50 dark:bg-zinc-900 shadow-xl  focus:outline-none divide-zinc-400 dark:divide-zinc-700">
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md ring-1 ring-black dark:ring-zinc-700 ring-opacity-5  bg-white dark:bg-zinc-900 shadow-xl focus:outline-none divide-zinc-400 dark:divide-zinc-700">
               <div className="py-1">
                 {themes.map(t => (
                   <Menu.Item key={t.id}>

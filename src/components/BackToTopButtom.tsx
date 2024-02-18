@@ -31,13 +31,11 @@ export default function BackToTopButton() {
           p-2
           md:flex
           rounded-3xl
-          bg-zinc-100
-          dark:bg-zinc-600
-          dark:ring-zinc-700
-          hover:ring-2
-          hover:ring-zinc-800
-          hover:dark:ring-zinc-200
           transition-all
+          border
+          border-zinc-300
+          dark:border-zinc-700
+          backdrop-blur-md
           ${showButton ? 'scale-100' : 'scale-0'}
           ${showButton ? 'visible' : 'invisible'}`}
         onClick={scrollToTop}

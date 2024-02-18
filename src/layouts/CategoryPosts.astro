@@ -1,6 +1,5 @@
 ---
 import type { MarkdownLayoutProps } from 'astro'
-import type { HTMLTag } from 'astro/types'
 import { Image } from '@astrojs/image/components'
 import Body from '../components/Body.astro'
 import Content from '../components/Content.astro'
@@ -32,7 +31,7 @@ const posts: PostProps[] = (await Astro.glob('../pages/posts/*.md'))
       new Date(b.frontmatter.pubDate).valueOf() -
       new Date(a.frontmatter.pubDate).valueOf()
   )
-  .filter((item): HTMLTag => item.frontmatter.tags.includes(category))
+  .filter((item: any): PostProps[] => item.frontmatter.tags.includes(category))
 ---
 
 <!DOCTYPE html>
@@ -45,19 +44,35 @@ const posts: PostProps[] = (await Astro.glob('../pages/posts/*.md'))
   </head>
   <Body>
     <Header title={SITE_TITLE} />
-    <main class="pt-[90px]">
+    <main class="pt-[56px]">
       <Content>
         <Location>{category}</Location>
         <section>
-          <ul class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-4">
+          <ul class="grid grid-cols-1 md:grid-cols-1 gap-4">
             {
               posts.map(
                 (post): PostProps => (
-                  <li class="p-4 text-center mb-4 rounded-xl ring-2 ring-zinc-300 dark:ring-zinc-900 bg-zinc-50 dark:bg-black hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 hover:bg-zinc-100 hover:dark:bg-zinc-900 transition-shadow">
+                  <li
+                    class="
+                    text-center
+                    p-4
+                    mb-4
+                    border
+                    border-zinc-200
+                    dark:border-zinc-900
+                    hover:bg-zinc-50
+                    dark:hover:bg-zinc-950
+                    hover:border-zinc-800
+                    dark:hover:border-zinc-200
+                    bg-white
+                    dark:bg-black
+                    rounded-xl
+                  "
+                  >
                     <a href={post.url}>
                       {post.frontmatter.heroImage && (
                         <Image
-                          class="ring-2 ring-slate-300 dark:ring-zinc-700 rounded-xl"
+                          class="border border-zinc-300 dark:border-zinc-700 rounded-xl"
                           src={post.frontmatter.heroImage}
                           width={720 * 2}
                           aspectRatio={2.0}
@@ -68,8 +83,7 @@ const posts: PostProps[] = (await Astro.glob('../pages/posts/*.md'))
                         {post.frontmatter.title}
                       </div>
 
-                      <div class="p-1">{post.frontmatter.description}</div>
-
+                      <div>{post.frontmatter.description}</div>
                       <div class="underline underline-offset-2">
                         {formattedDate(post.frontmatter.pubDate)}
                       </div>

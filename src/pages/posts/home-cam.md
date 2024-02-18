@@ -7,7 +7,7 @@ tags:
   - SmartHome
 ---
 
-# need 2 buy
+# Buy list
 
 - arduino
 - home Camera - ESP32-cam 红外线和防水壳

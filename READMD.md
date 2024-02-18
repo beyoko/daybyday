@@ -4,6 +4,10 @@
 
 # need 2 do
 
+- 02/07/2024: comparison def version(craftzdog)
+- 06/02/2024: 1. change `ThemeToggleMenu.tsx` to `ThemeToggleButton`. 2. why phone mode not effice
+- 05/02/2024: works `memo.astro` tags stone
+- 30/01/2024: check this page to learn Astro [link](https://docs.astro.build/en/guides/content-collections/).
 - 27/01/2024: when i 'running down' d page, header will be hidden.
 - 25/01/2024: `Header.astro` tags link highlight && Album Gallery
 - 01/23/2024: `Layouts/Posts.astro`-Line 72, mouse hightlight show copy icon
