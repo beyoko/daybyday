@@ -4,6 +4,8 @@
 
 # need 2 do
 
+- 18/02/2024: add TOC to `Post.astro` in bottom. by [Astro-Toc](https://dev.to/dailydevtips1/adding-a-toc-in-astro-4keh?comments_sort=top)
+- 18/02/2024: look it `TableToContents.astro`[TableToContents.astro](https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3)
 - 02/07/2024: comparison def version(craftzdog)
 - 06/02/2024: 1. change `ThemeToggleMenu.tsx` to `ThemeToggleButton`. 2. why phone mode not effice
 - 05/02/2024: works `memo.astro` tags stone
@@ -34,6 +36,11 @@
   - [Mini-Search](https://github.com/lucaong/minisearch) package
     `<li key={post.title} className="text-blue-500">           `
   - [demo](https://github.com/one-aalam/astro-ink/blob/main/src/components/Search.svelte)
+
+## Table Of Contents
+
+- [demo1](https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3)
+- [demo2](https://medium.com/@rezahedi/how-to-build-table-of-contents-in-astro-and-sectionize-the-markdown-content-78bee84e6a7f)
 
 # backup
 

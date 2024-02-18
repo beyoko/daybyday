@@ -36,6 +36,7 @@ export default function BackToTopButton() {
           border-zinc-300
           dark:border-zinc-700
           backdrop-blur-md
+          hover:backdrop-blur-xl
           ${showButton ? 'scale-100' : 'scale-0'}
           ${showButton ? 'visible' : 'invisible'}`}
         onClick={scrollToTop}

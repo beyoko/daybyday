@@ -63,7 +63,7 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
                   <a href={post.url}>
                     {post.frontmatter.heroImage && (
                       <Image
-                        class="border border-zinc-300 dark:border-zinc-700 rounded-xl"
+                        class="border-2 border-zinc-950 dark:border-white rounded-xl"
                         src={post.frontmatter.heroImage}
                         width={720 * 2}
                         aspectRatio={2.0}
