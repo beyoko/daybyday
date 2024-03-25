@@ -1,24 +1,24 @@
 ---
-import DropdownMenu from './DropdownMenu'
-import ThemeToggleButton from './ThemeToggleButton'
+import { getCollection } from 'astro:content'
+import DropdownMenu from '@/components/DropdownMenu'
+import ThemeToggleButton from '@/components/ThemeToggleButton'
 
-const allPosts = await Astro.glob('../pages/posts/*.md')
+const allPosts = await getCollection('post')
 const allTags = new Set<string>()
 allPosts.map(post => {
-  post.frontmatter.tags &&
-    post.frontmatter.tags.map((tag: string) => allTags.add(tag))
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
 })
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' })
 )
 ---
 
-<header class="fixed w-full p-2 z-20">
+<header class="fixed w-full p-2 z-20 bg-white dark:bg-zinc-950">
   <div class="mx-auto max-w-5xl">
     <nav class="flex items-center justify-between gap-3 text-base">
-      <a href="/">
+      <a href="/" class="group">
         <h2
-          class="inline-flex justify-center rounded-md hover:underline underline-offset-2 border border-gray-400 dark:border-gray-700 px-2 py-2 text-base font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all"
+          class="font-semibold tracking-tighter inline-flex justify-center rounded-md hover:underline underline-offset-2 border border-gray-400 dark:border-gray-700 px-2 py-2 text-base shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all"
         >
           C.I.C
         </h2>
@@ -28,7 +28,7 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
         <div class="hidden md:flex">
           <a href="/memo">
             <div
-              class="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all"
+              class="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950"
             >
               Memo
             </div>

@@ -4,6 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
+  scroll-behavior: smooth;
 }
 
 code {

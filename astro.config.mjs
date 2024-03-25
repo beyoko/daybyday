@@ -3,6 +3,7 @@ import image from '@astrojs/image'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
+import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 
 export default defineConfig({
   site: 'http://127.0.0.1',
@@ -15,6 +16,7 @@ export default defineConfig({
     })
   ],
   markdown: {
-    drafts: true
+    drafts: true,
+    rehypePlugins: [rehypeHeadingIds]
   }
 })

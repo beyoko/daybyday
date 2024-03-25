@@ -1,0 +1,44 @@
+---
+import DropdownMenu from '@/components/DropdownMenu'
+import ThemeToggleButton from '@/components/ThemeToggleButton'
+
+const allPosts = await Astro.glob('../pages/posts/*.md')
+const allTags = new Set<string>()
+allPosts.map(post => {
+  post.frontmatter.tags &&
+    post.frontmatter.tags.map((tag: string) => allTags.add(tag))
+})
+const sortedTags = Array.from(allTags).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' })
+)
+---
+
+<header class="fixed w-full p-2 z-20">
+  <div class="mx-auto max-w-5xl">
+    <nav class="flex items-center justify-between gap-3 text-base">
+      <a href="/" class="group">
+        <h2
+          class="font-semibold tracking-tighter inline-flex justify-center rounded-md hover:underline underline-offset-2 border border-gray-400 dark:border-gray-700 px-2 py-2 text-base shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all"
+        >
+          C.I.C
+        </h2>
+      </a>
+
+      <div class="flex gap-4">
+        <div class="hidden md:flex">
+          <a href="/memo">
+            <div
+              class="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all"
+            >
+              Memo
+            </div>
+          </a>
+        </div>
+        <div class="md:hidden flex">
+          <DropdownMenu client:visible tags={sortedTags} />
+        </div>
+        <ThemeToggleButton client:visible />
+      </div>
+    </nav>
+  </div>
+</header>

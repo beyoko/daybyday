@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import { getPosts } from '@lib/post'
+import MarkdownLayout from '@layouts/Markdown.astro'
+import BlogHead from '@components/BlogHead.astro'
+import TOC from '@components/TOC.astro'
+import '@styles/prism.css'
+
+export const getStaticPaths = async () => {
+  const allBlogs = await getBlogs()
+
+  return allBlogs.map(blog => ({
+    params: { slug: blog.slug },
+    props: { blog }
+  }))
+}
+
+const { blog } = Astro.props as { blog: CollectionEntry<'blog'> }
+const { Content, headings } = await blog.render()
+
+headings.filter(heading => heading.depth <= 3)
+
+const description =
+  blog.data.summary || blog.body.slice(0, 30).replace(/\n/g, '')
+
+const toc = headings.filter(
+  heading =>
+    heading.depth <= 3 &&
+    !(heading.slug === 'footnote-label' && heading.text === 'Footnotes')
+)
+---
+
+<MarkdownLayout title={blog.data.title} description={description}>
+  <div class="xl:grid xl:grid-cols-10 xl:gap-8 xl:items-start">
+    <!-- TODO: <div class="xl:col-span-1" /> -->
+    <div class="xl:col-span-7">
+      <BlogHead
+        title={blog.data.title}
+        date={blog.data.date}
+        tags={blog.data.tags}
+      />
+      <Content />
+    </div>
+    <aside
+      class="hidden xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6"
+    >
+      {toc.length > 0 && <TOC headings={toc} />}
+    </aside>
+  </div>
+</MarkdownLayout>
+      class="hidden xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6"
+    >
+      {toc.length > 0 && <TOC headings={toc} />}
+    </aside>
+  </div>
+</MarkdownLayout>

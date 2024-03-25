@@ -4,6 +4,24 @@
 
 # need 2 do
 
+## add Toc function
+
+- 13/03/2024: check Toc look like `TagsLink.tsx`.
+- 12/03/2024: check `@/components/Toc.astro & TocCard.astro` `@/layouts/TocLayout.astro`
+
+## day
+
+- 03/23/2024: add image with link. showing up underline on image bottom
+- 03/22/2024: title on image. bagpack `index.astro` `<ul>`info
+- 20/03/2024: edit `post.data.*` to image(inside). look like "markdowner" blog
+- 15/03/2024: recheck code, delete long
+- 14/03/2024: check types and only in file. (delete `consts.ts` interface.)
+- 13/03/2024: add Tags function on `Post.astro`
+- 03/04/2024: rebuild `/Layouts/` & `/pages/`
+- 02/03/2024: `yarn add rehype-autolink-headings rehype-toc`
+- 01/03/2024: check `/layout/Post.astro` or `/components/Link.astro` or `/components/Toc.astro`
+- 27/02/2024: when you need to hide `Header.astro`, try `BackToTopButton.tsx`.
+- 27/02/2024: TOC package translation - `rehype-slug rehype-toc`. [reading](https://raahii.me/posts/add-toc-to-astro-blog/)
 - 18/02/2024: add TOC to `Post.astro` in bottom. by [Astro-Toc](https://dev.to/dailydevtips1/adding-a-toc-in-astro-4keh?comments_sort=top)
 - 18/02/2024: look it `TableToContents.astro`[TableToContents.astro](https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3)
 - 02/07/2024: comparison def version(craftzdog)
@@ -36,6 +54,20 @@
   - [Mini-Search](https://github.com/lucaong/minisearch) package
     `<li key={post.title} className="text-blue-500">           `
   - [demo](https://github.com/one-aalam/astro-ink/blob/main/src/components/Search.svelte)
+
+## rebuild
+
+- 20/03/2024: fix `post.formatter.title/pubDate` >> `post.data.title/pubDate` || `const allPosts = await getCollection('post')`
+- 19/03/2024: look it that full info for rebuild [rebuild](https://docs.astro.build/zh-cn/guides/content-collections/) and ['pages/posts > content/posts'](https://github.com/withastro/blog-tutorial-demo)
+- 03/18/2024: edit `CategoryLayout.astro && [id].astro` look like `PostLayout.astro && [...slug.astro]`
+- 18/03/2024: rebuild `BaseLayout.astro` code
+- 16/03/2024: step to `@/content/` when click markdown file error: "content config failed to load.", i added `config.ts` in content folder. but still output this error.
+- 11/03/2024: `Toc.astro` and `[...slug].astro` add to `Post.astro`
+- 11/03/2024: `Toc.astro` and `[...slug].astro` add to `Post.astro`
+- 03/07/2024: 1. add Tags function to `Post.astro` when i click >> Cat 2. edit `Post.astro` && `<MarkdownLayout>`
+- 06/03/2024: `google*.astro` && `<div>Ad</div>` 是广告栏. Toc 位置在`[...slug].astro`, 重点查阅！
+- 05/03/2024: learn jp version, like def version
+- 04/03/2024: `error Cannot find module '@lib/utils/dateSortDesc' imported from '/home/oho/gt/test/daybyday/src/lib/post.ts'`
 
 ## Table Of Contents
 

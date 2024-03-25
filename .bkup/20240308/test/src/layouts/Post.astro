@@ -1,0 +1,72 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import GlobalHead from '../components/GlobalHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Body from '../components/Body.astro'
+import Content from '../components/Content.astro'
+import Prose from '../components/Prose.astro'
+import BackToTop from '../components/BackToTop.astro'
+
+import { SITE_TITLE } from '../consts'
+
+export interface Props {
+  content: {
+    title: string
+    description: string
+    pubDate: string
+    tags: string[]
+    heroImage?: string
+  }
+}
+
+const {
+  content: { title, description, heroImage, pubDate },
+} = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <GlobalHead
+      title={title + ` / ${SITE_TITLE}`}
+      description={description}
+      image={heroImage}
+    />
+  </head>
+
+  <Body>
+    <Header title={SITE_TITLE} />
+    <main class="pt-[56px]">
+      <Content className="pt-6 bg-white dark:bg-zinc-950">
+        <div class="mb-8">
+          {
+            heroImage && (
+              <img
+                class="border-2 border-zinc-950 dark:border-white rounded-xl"
+                width={720}
+                height={360}
+                src={heroImage}
+                alt=""
+              />
+            )
+          }
+        </div>
+        <h1>{pubDate}</h1>
+        <h1 class="text-3xl my-1 font-mplus">{title}</h1>
+        <div>{description}</div>
+        <hr class="border-top border-zinc-400 my-4" />
+        <Prose>
+          <slot />
+        </Prose>
+        <span
+          class="p-1 underline underline-offset-2 hover:text-orange-500 decoration-orange-500 text-2xl list-disc"
+        ></span>
+      </Content>
+    </main>
+  </Body>
+  <BackToTop />
+
+  <Footer />
+</html>

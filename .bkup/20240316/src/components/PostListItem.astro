@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import Time from './Time.astro'
+import Link from './Link.astro'
+
+type Props = {
+  post: CollectionEntry<'post'>
+}
+
+const { post } = Astro.props
+---
+
+<li>
+  <Time date={post.data.date} />
+  <Link href={`/post/${post.slug}`}>{post.data.title}</Link>
+  <p class="line-clamp-2">{post.data.summary}</p>
+</li>

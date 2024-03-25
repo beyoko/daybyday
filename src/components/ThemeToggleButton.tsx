@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 
 export default function ThemeToggle() {
@@ -52,7 +52,7 @@ export default function ThemeToggle() {
   }
 
   return (
-    <div className="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50  hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all">
+    <div className="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50  hover:bg-zinc-50 dark:hover:bg-zinc-950">
       <button
         className={`${theme === 'light'} cursor-pointer rounded-3xl`}
         onClick={toggleTheme}
