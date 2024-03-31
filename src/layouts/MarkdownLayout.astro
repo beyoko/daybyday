@@ -2,9 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Content from '@/components/Content.astro'
 import BackoTopButton from '@/components/BackToTopButtom'
-import { getPosts } from '@/lib/post'
 
-const alllPosts = await getPosts()
 const { title, description, heroImage, pubDate } = Astro.props
 ---
 
@@ -14,7 +12,7 @@ const { title, description, heroImage, pubDate } = Astro.props
   heroImage={heroImage}
   pubDate={pubDate}
 >
-  <Content className="pt-6 bg-white dark:bg-zinc-950">
+  <Content className="pt-6 bg-white dark:bg-zinc-950 rounded-md">
     <slot />
     <BackoTopButton client:visible />
   </Content>

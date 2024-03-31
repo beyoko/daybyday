@@ -8,8 +8,9 @@ import { siteMeta } from '@/consts'
 type Props = {
   title: string
   description: string
-  children: any
 }
+
+export const prerender = true // server side rendering
 
 const { title, description } = Astro.props
 ---

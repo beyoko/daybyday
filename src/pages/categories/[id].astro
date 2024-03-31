@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
-import CategoryPosts from '@/layouts/CategoryPosts.astro'
+import CategoryLayout from '@/layouts/CategoryLayout.astro'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getCollection('post')
@@ -26,4 +26,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const { name } = Astro.props
 ---
 
-<CategoryPosts category={name} />
+<CategoryLayout category={name} />

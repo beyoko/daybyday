@@ -13,12 +13,12 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
 )
 ---
 
-<header class="fixed w-full p-2 z-20 bg-white dark:bg-zinc-950">
+<header class="fixed w-full p-2 z-20">
   <div class="mx-auto max-w-5xl">
     <nav class="flex items-center justify-between gap-3 text-base">
-      <a href="/" class="group">
+      <a href="/" class="group" data-astro-prefetch="false">
         <h2
-          class="font-semibold tracking-tighter inline-flex justify-center rounded-md hover:underline underline-offset-2 border border-gray-400 dark:border-gray-700 px-2 py-2 text-base shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950 transition-all"
+          class="font-semibold tracking-tighter inline-flex justify-center rounded-md md:hover:underline underline-offset-2 border border-gray-400 dark:border-gray-700 px-2 py-2 text-base shadow-sm bg-white dark:bg-gray-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50 md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950 transition-all"
         >
           C.I.C
         </h2>
@@ -28,7 +28,7 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
         <div class="hidden md:flex">
           <a href="/memo">
             <div
-              class="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-zinc-950 dark:hover:border-zinc-50 hover:bg-zinc-50 dark:hover:bg-zinc-950"
+              class="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50 md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950"
             >
               Memo
             </div>

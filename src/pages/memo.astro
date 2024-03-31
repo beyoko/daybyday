@@ -14,6 +14,7 @@ allPosts.map(post => {
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' })
 )
+
 ---
 
 <BaseLayout title={siteMeta.title} description={siteMeta.description}>

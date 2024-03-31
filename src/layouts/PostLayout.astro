@@ -1,28 +1,29 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
-import { Image } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 import { TagIcon } from '@heroicons/react/24/solid'
+import FormattedDate from '@/components/FormattedDate.astro'
 import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
 import TagsLink from '@/components/TagsLink'
 import Prose from '@/components/Prose.astro'
+import Toc from '@/components/Toc.astro'
 
 import { siteMeta } from '@/consts'
 
 type Props = CollectionEntry<'post'>['data']
 
+const { title, description, pubDate, heroImage, heroImageAlt, headings } = Astro.props
 const allPosts = await getCollection('post')
 const allTags = new Set<string>()
 
 allPosts.map(post => {
-  post.data.tags &&
-    post.data.tags.map((tag: string) => allTags.add(tag))
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
 })
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' })
 )
 
-const { title, description, pubDate, heroImage, headings } = Astro.props
 ---
 
 <MarkdownLayout
@@ -34,22 +35,25 @@ const { title, description, pubDate, heroImage, headings } = Astro.props
     {
       heroImage && (
         <Image
-          class="border-2 border-zinc-950 dark:border-white rounded-xl"
+          class="rounded-xl"
           loading="lazy"
           width={720}
           height={360}
           src={heroImage}
           aspectRatio={2.0}
-          alt=""
+          alt={heroImageAlt}
         />
       )
     }
   </div>
   <h1>
-    {pubDate}
+    <FormattedDate date={pubDate} />
   </h1>
   <h1 class="text-3xl my-1 font-mplus">{title}</h1>
   <div>{description}</div>
+  <div>
+    <Toc headings={headings} />
+  </div>
   <div class="flex items-center space-x-2 text-sm">
     <TagIcon className="h-5 w-5 text-gray-500" />
     <TagsLink tags={sortedTags} includeComma={true} />

@@ -15,7 +15,7 @@ export const getPosts = async (): Promise<CollectionEntry<'post'>[]> => {
 
 export const getTags = async () => {
   const tagsCount: Record<string, number> = {}
-  const blogs = await getBlogs()
+  const blogs = await getPosts()
   if (blogs.length) {
     for (const blog of blogs) {
       const tags = blog.data.tags

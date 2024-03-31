@@ -6,11 +6,17 @@
 
 ## add Toc function
 
+- 30/03/2024: move Toc to `Header.astro` 2. demo is not `"rehype-toc"`, think about that. why s here.
 - 13/03/2024: check Toc look like `TagsLink.tsx`.
 - 12/03/2024: check `@/components/Toc.astro & TocCard.astro` `@/layouts/TocLayout.astro`
 
 ## day
 
+- 28/03/2024: fix `formatterdate` && `tags` problem
+- 28/03/2024: fix `Categories.astro` problem.
+- 03/27/2024: rebuild `Categories` >> `tags`[tags](https://docs.astro.build/zh-cn/tutorial/5-astro-api/2/)
+- 26/03/2024: find way to enable `overflow-hidden`.
+- 25/03/2024: add `PostListItem.astro` find way to enable `overflow-hidden`.
 - 03/23/2024: add image with link. showing up underline on image bottom
 - 03/22/2024: title on image. bagpack `index.astro` `<ul>`info
 - 20/03/2024: edit `post.data.*` to image(inside). look like "markdowner" blog
@@ -57,6 +63,9 @@
 
 ## rebuild
 
+- 03/30/2024: fix <Image /> version update, `@astro/image` remove: image base in astro.
+- 03/28/2024: `<Image />` still not working
+- 03/27/2024: version 2.0 >>> 4.0 and mark cn notes.
 - 20/03/2024: fix `post.formatter.title/pubDate` >> `post.data.title/pubDate` || `const allPosts = await getCollection('post')`
 - 19/03/2024: look it that full info for rebuild [rebuild](https://docs.astro.build/zh-cn/guides/content-collections/) and ['pages/posts > content/posts'](https://github.com/withastro/blog-tutorial-demo)
 - 03/18/2024: edit `CategoryLayout.astro && [id].astro` look like `PostLayout.astro && [...slug.astro]`
@@ -73,6 +82,7 @@
 
 - [demo1](https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3)
 - [demo2](https://medium.com/@rezahedi/how-to-build-table-of-contents-in-astro-and-sectionize-the-markdown-content-78bee84e6a7f)
+- [demo3](https://github.com/ega4432/egashira.dev)
 
 # backup
 

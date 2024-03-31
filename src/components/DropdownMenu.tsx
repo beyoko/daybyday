@@ -45,7 +45,7 @@ export default function DropdownMenu({ tags }: DropdownMenuProps) {
       <div>
         <Menu.Button
           onClick={toggleMenu}
-          className="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 hover:border-gray-950 hover:dark:border-gray-50 hover:bg-zinc-50 dark:dark:bg-zinc-950"
+          className="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 md:hover:border-gray-950 md:hover:dark:border-gray-50 md:hover:bg-zinc-50 dark:dark:bg-zinc-950"
           aria-label="menu"
         >
           {menuOpen ? (
