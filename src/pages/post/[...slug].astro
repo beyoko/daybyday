@@ -1,7 +1,6 @@
 ---
 import { getPosts } from '@/lib/post'
 import PostLayout from '@/layouts/PostLayout.astro'
-import TOC from '@/components/Toc.astro'
 
 export const getStaticPaths = async () => {
   const allPosts = await getPosts()
@@ -20,8 +19,5 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
 ---
 
 <PostLayout {...post.data}>
-  <aside class="hidden xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6">
-    {toc.length > 0 && <TOC headings={toc} />}
-  </aside>
   <Content />
 </PostLayout>

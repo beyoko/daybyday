@@ -7,7 +7,6 @@ import FormattedDate from '@/components/FormattedDate.astro'
 import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
 import TagsLink from '@/components/TagsLink'
 import Prose from '@/components/Prose.astro'
-import Toc from '@/components/Toc.astro'
 
 import { siteMeta } from '@/consts'
 
@@ -51,9 +50,6 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
   </h1>
   <h1 class="text-3xl my-1 font-mplus">{title}</h1>
   <div>{description}</div>
-  <div>
-    <Toc headings={headings} />
-  </div>
   <div class="flex items-center space-x-2 text-sm">
     <TagIcon className="h-5 w-5 text-gray-500" />
     <TagsLink tags={sortedTags} includeComma={true} />
