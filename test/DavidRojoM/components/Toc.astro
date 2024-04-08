@@ -1,0 +1,67 @@
+---
+import TableOfContentList from "./TableOfContentList.astro";
+import {
+  type Item,
+  type ItemTree,
+  isItemTree,
+  itemTreeSymbol,
+} from "../models";
+
+interface Props {
+  items: (Item | ItemTree)[];
+  path?: string | undefined;
+}
+
+const { items, path } = Astro.props;
+
+const itemTree: ItemTree = {
+  [itemTreeSymbol]: true,
+};
+for (const item of items) {
+  buildTree(item, itemTree);
+}
+
+function buildTree(
+  itemOrTree: Item | ItemTree,
+  itemTree: ItemTree,
+  fullPath: string = ""
+) {
+  if (isItemTree(itemOrTree)) {
+    itemOrTree[path!] = itemOrTree;
+
+    return;
+  }
+  const [firstPath, ...restOfPaths] = itemOrTree.slug.split("/");
+
+  if (firstPath === undefined) {
+    return;
+  }
+
+  const newPath = fullPath ? `${fullPath}/${firstPath}` : firstPath;
+
+  if (restOfPaths.length === 0) {
+    itemTree[firstPath] = {
+      ...itemOrTree,
+      slug: newPath,
+    };
+    return;
+  }
+
+  if (itemTree[firstPath] === undefined) {
+    itemTree[firstPath] = {
+      [itemTreeSymbol]: true,
+    };
+  }
+
+  buildTree(
+    {
+      ...itemOrTree,
+      slug: restOfPaths.join("/"),
+    },
+    itemTree[firstPath] as ItemTree,
+    newPath
+  );
+}
+---
+
+<TableOfContentList itemTree={itemTree} />

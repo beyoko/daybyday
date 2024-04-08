@@ -4,15 +4,15 @@ import { getCollection } from 'astro:content'
 import { Image } from 'astro:assets'
 import { TagIcon } from '@heroicons/react/24/solid'
 import FormattedDate from '@/components/FormattedDate.astro'
-import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 import TagsLink from '@/components/TagsLink'
+import Content from '@/components/Content.astro'
 import Prose from '@/components/Prose.astro'
-
 import { siteMeta } from '@/consts'
 
-type Props = CollectionEntry<'post'>['data']
+// type Props = CollectionEntry<'post'>['data']
 
-const { title, description, pubDate, heroImage, heroImageAlt, headings } = Astro.props
+const { title, description, pubDate, heroImage, heroImageAlt, post } = Astro.props as { post: CollectionEntry<"post"> }
 const allPosts = await getCollection('post')
 const allTags = new Set<string>()
 
@@ -22,43 +22,43 @@ allPosts.map(post => {
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' })
 )
-
 ---
 
-<MarkdownLayout
+<BaseLayout
   title={title + ` / ${siteMeta.title}`}
   description={description}
   image={heroImage}
+  pubDate={pubDate}
 >
-  <div class="mb-8">
-    {
-      heroImage && (
-        <Image
-          class="rounded-xl"
-          loading="lazy"
-          width={720}
-          height={360}
-          src={heroImage}
-          aspectRatio={2.0}
-          alt={heroImageAlt}
-        />
-      )
-    }
-  </div>
-  <h1>
-    <FormattedDate date={pubDate} />
-  </h1>
-  <h1 class="text-3xl my-1 font-mplus">{title}</h1>
-  <div>{description}</div>
-  <div class="flex items-center space-x-2 text-sm">
-    <TagIcon className="h-5 w-5 text-gray-500" />
-    <TagsLink tags={sortedTags} includeComma={true} />
-  </div>
-  <hr class="border-top border-zinc-400 my-4" />
-  <Prose>
-    <slot />
-  </Prose>
-  <span
-    class="p-1 underline underline-offset-2 hover:text-orange-500 decoration-orange-500 text-2xl list-disc"
-  ></span>
-</MarkdownLayout>
+  <Content className="pt-6 bg-white dark:bg-zinc-950 rounded-md">
+    <div class="mb-8">
+      {
+        heroImage && (
+          <Image
+            class="rounded-xl"
+            loading="lazy"
+            width={720}
+            height={360}
+            src={heroImage}
+            aspectRatio={2.0}
+            alt={heroImageAlt}
+          />
+        )
+      }
+    </div>
+    <h1>
+      <FormattedDate date={pubDate} />
+    </h1>
+    <h1 class="text-3xl my-1 font-mplus">{title}</h1>
+    <div>{description}</div>
+    <div class="flex items-center space-x-2 text-sm">
+      <TagIcon className="h-5 w-5 text-gray-500" />
+      <TagsLink tags={sortedTags} includeComma={true} />
+    </div>
+    <hr class="border-top border-zinc-400 my-4" />
+    <Prose>
+      <slot />
+    </Prose>
+    <span class="p-1 underline underline-offset-2 hover:text-orange-500 decoration-orange-500 text-2xl list-disc" />
+  </Content>
+</BaseLayout>

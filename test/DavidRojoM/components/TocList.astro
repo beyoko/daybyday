@@ -1,0 +1,33 @@
+---
+import { isItemTree, type ItemTree } from "../models";
+
+interface Props {
+  itemTree: ItemTree;
+}
+
+const { itemTree } = Astro.props;
+---
+
+<ul>
+  {
+    Object.entries(itemTree)
+      .filter(([_, value]) => typeof value !== "symbol")
+      .map(([path, value]) => {
+        if (isItemTree(value)) {
+          return (
+            <div class="w-fit ml-4">
+              <h3 class="font-normal text-xl">{path}</h3>
+              <div class="w-fit ml-2">
+                <Astro.self itemTree={value} />
+              </div>
+            </div>
+          );
+        }
+        return (
+          <li class="font-thin">
+            <a href={`#${value.slug}`}>{value.title}</a>
+          </li>
+        );
+      })
+  }
+</ul>

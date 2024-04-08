@@ -6,12 +6,17 @@
 
 ## add Toc function
 
+- 03/04/2024: check `/test/DavidRojoM` maybe it can fix "error :`ERROR] Cannot read properties of undefined (reading 'render') `"
+- 01/04/2024: when i add toc to other file(not `[...slug].astro`), error :`ERROR] Cannot read properties of undefined (reading 'render') `
 - 30/03/2024: move Toc to `Header.astro` 2. demo is not `"rehype-toc"`, think about that. why s here.
 - 13/03/2024: check Toc look like `TagsLink.tsx`.
 - 12/03/2024: check `@/components/Toc.astro & TocCard.astro` `@/layouts/TocLayout.astro`
 
 ## day
 
+- 07/04/2024: maybe need stop now, running other project.
+- 02/04/2024: still realtime toc problem, maybe i can looking at `[id].astro` && `Cat...Layout.astro`.
+- 01/04/2024: follow and show the headings string in `Header.astro`. maybe look like `Location.astro`, look at `[...slug].astro` line 20, filter headings.
 - 28/03/2024: fix `formatterdate` && `tags` problem
 - 28/03/2024: fix `Categories.astro` problem.
 - 03/27/2024: rebuild `Categories` >> `tags`[tags](https://docs.astro.build/zh-cn/tutorial/5-astro-api/2/)

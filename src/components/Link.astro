@@ -15,5 +15,7 @@ const isExternal = pattern.test(href)
   }`}
   href={href}
   target={isExternal ? '_blank' : undefined}
-  rel={isExternal ? 'noreferrer noopener' : undefined}><slot /></a
+  rel={isExternal ? 'noreferrer noopener' : undefined}
 >
+  <slot />
+</a>

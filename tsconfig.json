@@ -2,8 +2,8 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "types": ["@astrojs/image/client"],
-    "baseUrl": ".",
     "strictNullChecks": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
@@ -12,10 +12,8 @@
       "@/pages/*": ["src/pages/*"],
       "@/styles/*": ["src/styles/*"],
       "@/types/*": ["src/lib/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/test/*": ["test/src/*"]
+      "@/lib/*": ["src/lib/*"]
     },
-    "types": ["astro/client"],
     "jsx": "react-jsx"
   },
   "exclude": ["dist", "node_modules"]

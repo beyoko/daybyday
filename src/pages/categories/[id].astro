@@ -3,12 +3,12 @@ import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
 import CategoryLayout from '@/layouts/CategoryLayout.astro'
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async (): Promise<CollectionEntry<'post'>[]> => {
   const allPosts = await getCollection('post')
   const allTags: Set<string> = new Set<string>()
-
   allPosts.map(post => {
-    post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
+    post.data.tags &&
+      post.frontmatter.tags.map((tag: string) => allTags.add(tag))
   })
 
   return Array.from(allTags).map((tag: string) => {
@@ -23,7 +23,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   })
 }
 
-const { name } = Astro.props
+const { name }: { name: string } = Astro.props
 ---
-
 <CategoryLayout category={name} />

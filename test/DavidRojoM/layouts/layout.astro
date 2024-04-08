@@ -1,0 +1,59 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="container mx-auto grid grid-cols-[1fr_300px] gap-5">
+    <slot />
+    <slot name="sidebar" />
+  </body>
+</html>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        const tocItem = document.querySelector(`[href="#${id}"]`);
+
+        if (entry.isIntersecting) {
+          tocItem?.classList.add("active");
+        } else {
+          tocItem?.classList.remove("active");
+        }
+      });
+    },
+    {
+      rootMargin: "-50% 0px",
+    }
+  );
+
+  const blogPosts = document.querySelectorAll(".blog-post");
+
+  blogPosts.forEach((blogPost) => {
+    observer.observe(blogPost);
+  });
+</script>
+
+<style is:global>
+  .active {
+    @apply bg-red-700;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+</style>
