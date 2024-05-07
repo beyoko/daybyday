@@ -29,17 +29,9 @@ export default function BackToTopButton() {
       <div className="flex gap-4">
         <button
           className={`
-          p-2
-          md:flex
-          rounded-3xl
-          transition-all
-          border
-          border-zinc-300
-          dark:border-zinc-700
-          backdrop-blur-md
-          hover:backdrop-blur-xl
-          ${showButton ? 'scale-100' : 'scale-0'}
-          ${showButton ? 'visible' : 'invisible'}`}
+            p-2 md:flex rounded-3xl border border-zinc-300 dark:border-zinc-700 bg-zinc-200 dark:bg-zinc-800
+            ${showButton ? 'scale-100' : 'scale-0'}
+            ${showButton ? 'visible' : 'invisible'}`}
           onClick={scrollToTop}
         >
           <ArrowUpIcon className="h-4 w-4" />

@@ -1,0 +1,15 @@
+---
+import { ChevronRightIcon } from '@heroicons/react/24/solid'
+---
+
+<div class="my-4 flex items-center gap-1">
+  <div class="flex tracking-tight px-3 py-2 bg-white dark:bg-gray-950">
+    <a href="/" class="underline underline-offset-2 hover:no-underline"
+      >@C.I.C</a
+    >
+    <ChevronRightIcon className="w-5 h-5 opacity-50" />
+    <span class="text-grey-900 font-mplus font-bold">
+      <slot />
+    </span>
+  </div>
+</div>

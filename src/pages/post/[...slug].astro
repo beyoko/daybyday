@@ -1,29 +1,38 @@
 ---
-import { getPosts } from '@/lib/post'
-import TOC from '@/components/Toc.astro'
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import { excludeDrafts } from '@/lib/post'
+import TOC from '@/components/TOC.astro'
 import PostLayout from '@/layouts/PostLayout.astro'
-import BackoTopButton from '@/components/BackToTopButtom'
 
 export const getStaticPaths = async () => {
-  const allPosts = await getPosts()
+  const allPosts = await getCollection('post', excludeDrafts)
 
-  return allPosts.map(post => ({
-    params: { slug: post.slug },
-    props: { post }
+  return allPosts.map((post) => ({
+    params: { 
+      slug: post.slug 
+    },
+    props: {
+     blog: post
+    },
   }))
 }
-const { post } = Astro.props as { post: CollectionEntry<"post"> };
-const { Content, headings } = await post.render()
+const { blog } = Astro.props as { post: CollectionEntry<'post'> }
+const { Content, headings } = await blog.render()
 
 headings.filter((heading) => heading.depth <= 3)
 
-const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug === "footnote-label" && heading.text === "Footnotes"));
+const toc = headings.filter(
+  (heading) =>
+    heading.depth <= 3 &&
+    !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
+)
 ---
 
-<PostLayout {...post.data}>
+<PostLayout {...blog.data}>
   <aside class="xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6">
     {toc.length > 0 && <TOC headings={toc} />}
   </aside>
+
   <Content />
-  <BackoTopButton client:visible />
 </PostLayout>

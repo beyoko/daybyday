@@ -7,14 +7,12 @@ import { siteMeta } from '@/consts'
 
 const allPosts = await getCollection('post')
 const allTags = new Set<string>()
-allPosts.map(post => {
-  post.data.tags &&
-    post.data.tags.map((tag: string) => allTags.add(tag))
+allPosts.map((post) => {
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
 })
 const sortedTags = Array.from(allTags).sort((a, b) =>
-  a.localeCompare(b, 'en', { sensitivity: 'base' })
+  a.localeCompare(b, 'en', { sensitivity: 'base' }),
 )
-
 ---
 
 <BaseLayout title={siteMeta.title} description={siteMeta.description}>

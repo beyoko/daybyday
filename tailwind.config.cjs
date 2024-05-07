@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        roto: ['Roboto', 'sans-serif', 'Helvetica', 'Arial']
+        roto: ['Roboto', 'sans-serif', 'Helvetica', 'Arial'],
+        nova: ["'proxima-soft'", 'Verdana', 'sans-serif'],
       },
       backgroundImage: {
         lightBgImg:
@@ -14,14 +15,14 @@ module.exports = {
         ulBgImg:
           'url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="2" fill="black"/></svg>\')',
         FourOFourBgImg:
-          'url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="2" fill="red" fill-opacity="0.5"/></svg>\')'
+          'url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="2" fill="red" fill-opacity="0.5"/></svg>\')',
       },
       typography: {
         DEFAULT: {
-          css: {}
-        }
-      }
-    }
+          css: {},
+        },
+      },
+    },
   },
-  plugins: [require('@tailwindcss/typography')]
+  plugins: [require('@tailwindcss/typography')],
 }

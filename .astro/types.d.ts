@@ -133,6 +133,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"zh-cn/hotspot.md": {
+	id: "zh-cn/hotspot.md";
+  slug: "zh-cn/hotspot";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "zh-cn/podman.md": {
 	id: "zh-cn/podman.md";
   slug: "zh-cn/podman";
@@ -140,9 +147,23 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"zh-cn/prityReject.md": {
+	id: "zh-cn/prityReject.md";
+  slug: "zh-cn/prityreject";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "zh-cn/rebuild-astro.md": {
 	id: "zh-cn/rebuild-astro.md";
   slug: "zh-cn/rebuild-astro";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/rebuild-nextjs.md": {
+	id: "zh-cn/rebuild-nextjs.md";
+  slug: "zh-cn/rebuild-nextjs";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">

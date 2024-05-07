@@ -1,0 +1,31 @@
+---
+import type { MarkdownHeading } from 'astro'
+import Link from '@/components/Link.astro'
+
+type Props = {
+  headings: MarkdownHeading[]
+}
+
+const { headings } = Astro.props
+---
+
+<div>
+  <div
+    class="overflow-y-auto overscroll-contain rounded-md p-3 border-zinc-800 dark:border-zinc-200 border-2"
+  >
+    <ol class="list-none pl-0 my-0 ml-1 relative">
+      {
+        headings.map((heading) => (
+          <li class="relative pl-2">
+            <Link
+              className="block text-zinc-600 hover:text-zinc-800 no-underline font-normal dark:text-zinc-200 dark:hover:text-zinc-100"
+              href={`#${heading.slug}`}
+            >
+              {heading.text}
+            </Link>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</div>

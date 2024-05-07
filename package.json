@@ -7,7 +7,14 @@
   "scripts": {
     "dev": "astro dev --show-all --port 3010",
     "start": "astro dev",
-    "check": "astro check"
+    "check": "astro check",
+    "preview": "astro preview",
+    "prepare": "husky install",
+    "eslint": "eslint ./src --ext '.ts,.astro' --max-warnings 0",
+    "eslint:fix": "eslint ./src --fix --ext '.ts,.astro' --max-warnings 0",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "lint": "lint-staged --config .lintstagedrc.js"
   },
   "eslintIgnore": [
     "/node_modules",
@@ -23,6 +30,8 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.3",
     "astro": "^4.5.12",
+    "axios": "^1.6.8",
+    "hastscript": "^9.0.0",
     "marked": "^11.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,11 +42,19 @@
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
+    "@astrojs/partytown": "^2.0.2",
     "@tailwindcss/typography": "^0.5.12",
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-astro": "^0.26.2"
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^0.26.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.2",
+    "prettier-plugin-tailwindcss": "^0.5.10",
+    "typescript": "^5.3.3"
   }
 }

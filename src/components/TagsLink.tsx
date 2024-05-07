@@ -12,9 +12,9 @@ export default function TagsLink({ tags, includeComma }: Props) {
         key={tag}
         href={`/categories/${tag.toLowerCase()}`}
       >
-        <p className="flex border-2 border-transparent hover:underline">
+        <p className="underline rounded-lg hover:no-underline">
           {tag}
-          {includeComma && index < tagCount - 1 ? ' ,' : ''}
+          {includeComma && index < tagCount - 1 ? ',' : ''}
         </p>
       </a>
     )

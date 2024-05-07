@@ -2,35 +2,47 @@
 import { getCollection } from 'astro:content'
 import ThemeToggleButton from '@/components/ThemeToggleButton'
 import DropdownMenu from '@/components/DropdownMenu'
-import Location from '@/components/Location.astro'
 import Link from '@/components/Link.astro'
-import TOC from '@/components/Toc.astro'
+
+export interface Props {
+  content: {
+    title: string
+  }
+  headings: {
+    slug: string
+    text: string
+    depth: number
+  }[]
+}
 
 const allPosts = await getCollection('post')
 const allTags = new Set<string>()
-allPosts.map(post => {
+allPosts.map((post) => {
   post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
 })
 const sortedTags = Array.from(allTags).sort((a, b) =>
-  a.localeCompare(b, 'en', { sensitivity: 'base' })
+  a.localeCompare(b, 'en', { sensitivity: 'base' }),
 )
 ---
 
 <header class="fixed w-full p-2 z-20">
   <div class="mx-auto max-w-5xl">
     <nav class="flex items-center justify-between gap-3 text-base">
-      <Link href="/" class="group" data-astro-prefetch="false">
-        <h2
-          class="font-semibold tracking-tighter inline-flex justify-center rounded-md md:hover:underline underline-offset-2 border border-gray-400 dark:border-gray-700 px-2 py-2 text-base shadow-sm bg-white dark:bg-gray-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50 md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950 transition-all"
-        >
-          C.I.C
-        </h2>
+      <Link
+        href="/"
+        className="group p-4 font-semibold tracking-tighter inline-flex justify-center rounded-md border border-zinc-50 dark:border-zinc-950 px-2 py-2 text-base text-white dark:text-black shadow-sm bg-black dark:bg-zinc-50 hover:border-zinc-950 dark:hover:border-zinc-100"
+        data-astro-prefetch="false"
+      >
+        C.I.C
       </Link>
 
       <div class="flex gap-4">
         <div class="hidden md:flex">
-          <Link href="/tags" className="inline-flex justify-center rounded-md border border-gray-400 dark:border-gray-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-gray-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50 md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950">
-              Memo
+          <Link
+            href="/categories"
+            className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50 md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950"
+          >
+            Categories
           </Link>
         </div>
         <div class="md:hidden flex">

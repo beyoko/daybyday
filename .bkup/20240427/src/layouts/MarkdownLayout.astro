@@ -4,16 +4,11 @@ import Content from '@/components/Content.astro'
 import BackoTopButton from '@/components/BackToTopButtom'
 import { siteMeta } from '@/consts'
 
-const { title, description, heroImage, pubDate } = Astro.props
+const { title, description } = Astro.props
 ---
 
-<BaseLayout
-  title={title + ` / ${siteMeta.title}`}
-  description={description}
-  heroImage={heroImage}
-  pubDate={pubDate}
->
-  <Content className="pt-6 bg-white dark:bg-zinc-950 rounded-md">
+<BaseLayout title={title + ` / ${siteMeta.title}`} description={description}>
+  <Content className="pt-6 bg-white dark:bg-gray-950 rounded-md">
     <slot />
     <BackoTopButton client:visible />
   </Content>

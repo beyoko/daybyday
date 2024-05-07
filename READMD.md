@@ -1,54 +1,56 @@
-# need 2 know
+# day
 
-- body width size: `{ /src/components/Content }: "max-w-5wl"`was "max-w-3xl"(look like phone size)
-
-# need 2 do
-
-## add Toc function
-
-- 03/04/2024: check `/test/DavidRojoM` maybe it can fix "error :`ERROR] Cannot read properties of undefined (reading 'render') `"
-- 01/04/2024: when i add toc to other file(not `[...slug].astro`), error :`ERROR] Cannot read properties of undefined (reading 'render') `
-- 30/03/2024: move Toc to `Header.astro` 2. demo is not `"rehype-toc"`, think about that. why s here.
-- 13/03/2024: check Toc look like `TagsLink.tsx`.
-- 12/03/2024: check `@/components/Toc.astro & TocCard.astro` `@/layouts/TocLayout.astro`
-
-## day
-
+- 29/04/2024: `Postlayout.astro` fix markdown style.
+- 28/04/2024: need 2 fix 'TimeDate.astro' problem. change `Header.astro` home icon "border" to "- - - - -". change `Categories.astro` function: when click d button, look like `DropdownMenu.tsx`: find `@headlessui/react'` change the `{Menu}`.
+- 27/04/2024: move `TOC.astro` to page bottom, and create a "Header" bar to connect the toc link.
+- 26/04/2024: Toc problem maybe is come from `const { headings } = await post.render()`.
+- 25/04/2024: move Toc in `PostLayout.astro`, need setup `{...Astro.props}` on `[...slug].astro`, but when i move to `Header.astro`, still error `render()`
+- 24/04/2024: make Toc to a Menu
+- 23/04/2024: 'imageZoomIn' && 'Toc make it look like `DropdownMenu.tsx`' 
+- 22/04/2024: imageZoomIn: cant not click on mouse or click nothing happen.
+- 19/04/2024: add Image ZoomIn function.
+- 16/04/2024: CateCard new function: when mouse hover on the card, line 66~84 full the image. (use React: useState).
+- 15/04/2024: Link Cards new function: opacity(move on the card, lift the card). !!!! but 66~84 width not match Image.
+- 09/04/2024: something warn with `Cate...Layout.astro` Image style: `rounded-xl`  missing.
+- 08/04/2024: [check this](https://github.com/ega4432/egashira.dev/blob/main/scripts/new-post.ts) `package.json` update `pritytown`
 - 07/04/2024: maybe need stop now, running other project.
 - 02/04/2024: still realtime toc problem, maybe i can looking at `[id].astro` && `Cat...Layout.astro`.
 - 01/04/2024: follow and show the headings string in `Header.astro`. maybe look like `Location.astro`, look at `[...slug].astro` line 20, filter headings.
 - 28/03/2024: fix `formatterdate` && `tags` problem
 - 28/03/2024: fix `Categories.astro` problem.
-- 03/27/2024: rebuild `Categories` >> `tags`[tags](https://docs.astro.build/zh-cn/tutorial/5-astro-api/2/)
+- 27/03/2024: rebuild `Categories` >> `tags`[tags](https://docs.astro.build/zh-cn/tutorial/5-astro-api/2/)
 - 26/03/2024: find way to enable `overflow-hidden`.
 - 25/03/2024: add `PostListItem.astro` find way to enable `overflow-hidden`.
-- 03/23/2024: add image with link. showing up underline on image bottom
-- 03/22/2024: title on image. bagpack `index.astro` `<ul>`info
+- 23/03/2024: add image with link. showing up underline on image bottom
+- 22/03/2024: title on image. bagpack `index.astro` `<ul>`info
 - 20/03/2024: edit `post.data.*` to image(inside). look like "markdowner" blog
 - 15/03/2024: recheck code, delete long
 - 14/03/2024: check types and only in file. (delete `consts.ts` interface.)
 - 13/03/2024: add Tags function on `Post.astro`
-- 03/04/2024: rebuild `/Layouts/` & `/pages/`
+- 04/03/2024: rebuild `/Layouts/` & `/pages/`
 - 02/03/2024: `yarn add rehype-autolink-headings rehype-toc`
 - 01/03/2024: check `/layout/Post.astro` or `/components/Link.astro` or `/components/Toc.astro`
 - 27/02/2024: when you need to hide `Header.astro`, try `BackToTopButton.tsx`.
 - 27/02/2024: TOC package translation - `rehype-slug rehype-toc`. [reading](https://raahii.me/posts/add-toc-to-astro-blog/)
 - 18/02/2024: add TOC to `Post.astro` in bottom. by [Astro-Toc](https://dev.to/dailydevtips1/adding-a-toc-in-astro-4keh?comments_sort=top)
 - 18/02/2024: look it `TableToContents.astro`[TableToContents.astro](https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3)
-- 02/07/2024: comparison def version(craftzdog)
+- 07/02/2024: comparison def version(craftzdog)
 - 06/02/2024: 1. change `ThemeToggleMenu.tsx` to `ThemeToggleButton`. 2. why phone mode not effice
 - 05/02/2024: works `memo.astro` tags stone
 - 30/01/2024: check this page to learn Astro [link](https://docs.astro.build/en/guides/content-collections/).
 - 27/01/2024: when i 'running down' d page, header will be hidden.
 - 25/01/2024: `Header.astro` tags link highlight && Album Gallery
-- 01/23/2024: `Layouts/Posts.astro`-Line 72, mouse hightlight show copy icon
-- (01/17/2024): tags 上检索的卡片展示预览 markdown 中内容的前 30%
+- 23/01/2024: `Layouts/Posts.astro`-Line 72, mouse hightlight show copy icon
+- 17/01/2024: tags 上检索的卡片展示预览 markdown 中内容的前 30%
 - explain all code by gpt(to know what mean).
-- (16/01/2024): make a navigation bar about markdown title in the bottom of page
-- (15/01/2024): 1. page change theme "shining". 2. theme menu dark mode bakcground color 3. auto logo change to $theme(dark or light)
-- (02/09/2024): input all file **Types**
-- (09/01/2024): 底部添加非全屏内容**导航栏**
-- (01/02/2024): when header title more then screen, left right touch bar can move the title
+- 16/01/2024: make a navigation bar about markdown title in the bottom of page
+- 15/01/2024: 1. page change theme "shining". 2. theme menu dark mode bakcground color 3. auto logo change to $theme(dark or light)
+- 10/01/2024: input all file **Types**
+- 09/01/2024: 底部添加非全屏内容**导航栏**
+- 02/01/2024: when header title more then screen, left right touch bar can move the title
+
+## need 2 do
+- change project name to "day-to-day".
 - - Markdown 主题导航栏 -----> look for [astro](https://github.com/withastro/docs/blob/main/src/components/UIString.astro)
 - - connect markdown Footnotes on `<hr>`(look like tags)
 - create a TitleBar(Markdown) use package:['smooth-scroll', 'scrollama'] they same look like well for react.
@@ -83,6 +85,40 @@
 - 05/03/2024: learn jp version, like def version
 - 04/03/2024: `error Cannot find module '@lib/utils/dateSortDesc' imported from '/home/oho/gt/test/daybyday/src/lib/post.ts'`
 
+## Image: ZoomIn
+
+点击图片后，图片移动到页面居中位置，图片之外的位置透明50%背景黑。当再点击图片时，图片将进一步放大。再次点击已经放大后的图片将回到第一级的放大（居中位置，其余透明黑背景）。点击透明黑背景将回到页面原来状态的样子。
+
+使用Typescript来实现这个需求：
+“处理函数可以通过操作组件的状态或触发其他操作来实现点击后放大的效果，例如显示一个模态框或切换图像的尺寸。”
+
+将Ts在Astro上调用:
+
+```Astro
+<AstroImage
+  onClick={}
+/>
+
+```
+
+- check ```map > (id, alt)```
+
+## add Toc function
+
+- 27/04/2024: create a bar to use `TOC.astro`, show the page with top title msg, and this is a button, when click it, show up all TOC title msg. when move mouse to bottom, the bar is show up. when live the bar, bar is hidden.
+- 26/04/2024: add TOC to `Header.astro`, look it `PostLayout.astro` line 35~43
+- 25/04/2024: add Toc to `Header.astro`, need 2 fix `error: render()`
+- 24/04/2024: look the GemiPro1.5 in Poe code. it look like great, but still fix it.
+- 23/04/2024: look like `DropdownMent.tsx` side by `BackToTopButtom.tsx`
+- 13/04/2024: add `heading.text` to `Header.astro`. when click the `heading.text`, link up to `heading.slug`
+- 10/04/2024: 显示markdown内容标题时，有一个层级的效果。比如：标题H2比H1的多两个空格作为显示，标题H3则比上一级的H2多两个空格，以此类推。
+- 03/04/2024: check `/test/DavidRojoM` maybe it can fix "error :`ERROR] Cannot read properties of undefined (reading 'render') `"
+- 01/04/2024: when i add toc to other file(not `[...slug].astro`), error :`ERROR] Cannot read properties of undefined (reading 'render') `
+- 30/03/2024: move Toc to `Header.astro` 2. demo is not `"rehype-toc"`, think about that. why s here.
+- 13/03/2024: check Toc look like `TagsLink.tsx`.
+- 12/03/2024: check `@/components/Toc.astro & TocCard.astro` `@/layouts/TocLayout.astro`
+
+
 ## Table Of Contents
 
 - [demo1](https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3)
@@ -113,3 +149,30 @@ when page move to button, header bar still here, but hide 50%
 ## may change `interface` contrl or find more version 2 get 'tabs'
 
 hover:bg-gray-50 hover:dark:bg-gray-950 hover:ring-2 focus:ring-2 hover:ring-zinc-800 hover:dark:ring-zinc-200 hover:ring-offset-2 transition-all
+
+## about Link Cards new function: opacity
+style code:
+```Astro
+    <section>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {
+          latestPosts.map((post) => (
+            <Link
+              className="text-black hover:text-black dark:text-white dark:hover:text-white bg-white dark:bg-zinc-950 rounded-xl"
+              href={`/post/${post.slug}/`}
+            >
+              <li class="relative p-4 text-center opacity-50 hover:opacity-100 bg-white dark:bg-black border-2 border-black dark:border-white rounded-xl">
+                <h4 class="mt-3 text-xl font-bold">{post.data.title}</h4>
+                <div>{post.data.description}</div>
+                <p>
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </li>
+            </Link>
+          ))
+        }
+      </ul>
+    </section>
+```
+
+when opacity "<li>" you need to setup background in "<li>" father.
