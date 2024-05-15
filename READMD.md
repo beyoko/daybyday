@@ -1,5 +1,6 @@
 # day
 
+- 14/05/2024: update TOC
 - 29/04/2024: `Postlayout.astro` fix markdown style.
 - 28/04/2024: need 2 fix 'TimeDate.astro' problem. change `Header.astro` home icon "border" to "- - - - -". change `Categories.astro` function: when click d button, look like `DropdownMenu.tsx`: find `@headlessui/react'` change the `{Menu}`.
 - 27/04/2024: move `TOC.astro` to page bottom, and create a "Header" bar to connect the toc link.
@@ -105,6 +106,10 @@
 
 ## add Toc function
 
+- 14/05/2024: 1. hightlight Heading 2. current heading
+- 11/05/2024: [new demo](https://github.com/withastro/docs/blob/882e0b0a9d16d1c822cb8c230a62a4bfcd308605/src/util/generateToc.ts)
+- 10/05/2024: about headings h1~h6, check [this](https://docs.astro.build/zh-cn/guides/markdown-content/), title: [标题 ID 和插件]
+- 09/05/2024: add heading level. h1 = "-", h2 = "  -", h3 = "    -"
 - 27/04/2024: create a bar to use `TOC.astro`, show the page with top title msg, and this is a button, when click it, show up all TOC title msg. when move mouse to bottom, the bar is show up. when live the bar, bar is hidden.
 - 26/04/2024: add TOC to `Header.astro`, look it `PostLayout.astro` line 35~43
 - 25/04/2024: add Toc to `Header.astro`, need 2 fix `error: render()`

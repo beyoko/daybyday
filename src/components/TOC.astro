@@ -7,7 +7,26 @@ type Props = {
 }
 
 const { headings } = Astro.props
+
+headings.filter((heading) => heading.depth <= 3)
+
+const toc = headings.filter(
+  (heading) =>
+    heading.depth <= 3 &&
+    !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
+)
+
+function getIndentation(level: number): string {
+  return `${(level - 1) * 2}ch`
+}
 ---
+
+<style>
+  .toc-item {
+    display: flex;
+    align-items: center;
+  }
+</style>
 
 <div>
   <div
@@ -15,16 +34,20 @@ const { headings } = Astro.props
   >
     <ol class="list-none pl-0 my-0 ml-1 relative">
       {
-        headings.map((heading) => (
-          <li class="relative pl-2">
-            <Link
-              className="block text-zinc-600 hover:text-zinc-800 no-underline font-normal dark:text-zinc-200 dark:hover:text-zinc-100"
-              href={`#${heading.slug}`}
+        toc.length > 0 &&
+          headings.map((heading) => (
+            <li
+              class="toc-item"
+              style={`padding-left: ${getIndentation(heading.depth)}`}
             >
-              {heading.text}
-            </Link>
-          </li>
-        ))
+              <Link
+                className={`block text-zinc-600 hover:text-zinc-800 no-underline font-normal dark:text-zinc-200 dark:hover:text-zinc-100 ${getIndentation(heading.depth)}`}
+                href={`#${heading.slug}`}
+              >
+                {heading.text}
+              </Link>
+            </li>
+          ))
       }
     </ol>
   </div>

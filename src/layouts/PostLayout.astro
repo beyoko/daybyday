@@ -5,7 +5,6 @@ import Image from 'astro/components/Image.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import TagsLink from '@/components/TagsLink'
 import Content from '@/components/Content.astro'
-import UnderHeader from '@/components/UnderHeader.astro'
 import BackoTopButton from '@/components/BackToTopButtom'
 import { siteMeta } from '@/consts'
 
@@ -69,7 +68,10 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
       }
     }
   </style>
-  <Content className="pt-6 bg-white dark:bg-zinc-950 rounded-md markdown-body">
+  <div class="fixed top-0 w-full"></div>
+  <Content
+    className="border-2 border-zinc-950 dark:border-zinc-50 pt-6 bg-white dark:bg-zinc-950 rounded-md markdown-body"
+  >
     <div class="mb-8">
       {
         heroImage && (
