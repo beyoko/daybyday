@@ -1,0 +1,11 @@
+---
+import CurrentHeading from '@/lib/CurrentHeading'
+
+const { headings } = Astro.props
+
+const currentHeadingText =
+  headings.find((heading) => heading.slug === CurrentHeading)?.text || ''
+const shouldRenderCurrentHeading = currentHeadingText !== ''
+---
+
+{shouldRenderCurrentHeading && <CurrentHeading headings={headings} />}

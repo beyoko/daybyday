@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content'
+import { TagIcon } from '@heroicons/react/24/solid'
+import Image from 'astro/components/Image.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import TagsLink from '@/lib/TagsLink'
+import Content from '@/components/Content.astro'
+import { siteMeta } from '@/consts'
+
+// type Props = CollectionEntry<'post'>['data']
+
+const { title, description, heroImage, heroImageAlt, headings } = Astro.props
+const allPosts = await getCollection('post')
+const allTags = new Set<string>()
+
+allPosts.map((post) => {
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
+})
+const sortedTags = Array.from(allTags).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' }),
+)
+---
+
+<BaseLayout title={title + ` / ${siteMeta.title}`} description={description}>
+  <style global>
+    main article.markdown-body {
+      ul {
+        @apply list-disc list-inside pl-4 mb-4;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        @apply font-bold font-roto;
+      }
+      h1 {
+        @apply text-4xl;
+      }
+      h2 {
+        @apply text-2xl;
+      }
+      h3 {
+        @apply text-xl;
+      }
+      h4 {
+        @apply text-lg;
+      }
+      img {
+        @apply border border-slate-300 dark:border-zinc-700 rounded-xl mb-6;
+      }
+      p {
+        @apply mb-6;
+      }
+      a {
+        @apply underline underline-offset-2 hover:text-orange-500 decoration-orange-500;
+      }
+    }
+  </style>
+  <Content
+    className="border-2 border-zinc-950 dark:border-zinc-50 pt-6 bg-white dark:bg-zinc-950 rounded-md markdown-body"
+  >
+    <div class="mb-8">
+      {
+        heroImage && (
+          <Image
+            class="border border-state-300 dark:border-zinc-700 rounded-xl"
+            width={720}
+            height={360}
+            src={heroImage}
+            alt={heroImageAlt}
+          />
+        )
+      }
+    </div>
+    <h1 class="text-3xl my-1 font-roto">{title}</h1>
+    <div>{description}</div>
+    <div class="flex flex-wrap space-x-2 text-sm">
+      <TagIcon className="h-5 w-5 text-zinc-500" />
+      <TagsLink tags={sortedTags} includeComma={true} />
+    </div>
+    <hr class="border-top border-zinc-400 my-4" />
+    <slot />
+  </Content>
+</BaseLayout>

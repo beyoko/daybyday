@@ -1,5 +1,13 @@
 # day
 
+- 01/06/2024: mix `CurrentHeading` & `BacktoTopButton` & `TOC` to `MarkdownHeader`.  => import '@headlessui/react'
+- 29/05/2024: mix `CurrentHeading` and `BacktoTopButton`, and cut `BacktoTopButton` code `window.scrollY`...
+- 28/05/2024: move `CurrentHeading` to Top Bar - Center.
+- 27/05/2024: conform `CurrentHeading` and `BacktoTopButton` ==>> `MarkdownHeader`
+- 24/05/2024: try to make on `<...slug.astro>` to check "有内容时显示,无内容时不显示"
+- 18/05/2024: check `slug.astro`: `<CurrentHeading>` 有内容时显示,无内容时不显示
+- 17/05/2024: add a bottom bar. this bar display Heading N Toc.
+- 05/15/2024: move `*.tsx` to `@/lib/` to manager.
 - 14/05/2024: update TOC
 - 29/04/2024: `Postlayout.astro` fix markdown style.
 - 28/04/2024: need 2 fix 'TimeDate.astro' problem. change `Header.astro` home icon "border" to "- - - - -". change `Categories.astro` function: when click d button, look like `DropdownMenu.tsx`: find `@headlessui/react'` change the `{Menu}`.
@@ -52,8 +60,8 @@
 
 ## need 2 do
 - change project name to "day-to-day".
-- - Markdown 主题导航栏 -----> look for [astro](https://github.com/withastro/docs/blob/main/src/components/UIString.astro)
-- - connect markdown Footnotes on `<hr>`(look like tags)
+- Markdown 主题导航栏 -----> look for [astro](https://github.com/withastro/docs/blob/main/src/components/UIString.astro)
+- connect markdown Footnotes on `<hr>`(look like tags)
 - create a TitleBar(Markdown) use package:['smooth-scroll', 'scrollama'] they same look like well for react.
   - package: ["remark-directive", "remark"]
 - create a buttom with for back to top
@@ -106,6 +114,8 @@
 
 ## add Toc function
 
+- 29/05/2024: translted `TOC.astro` to `.tsx`, maybe we can code look like `CurrentHeading.tsx`
+- 25/05/2024: add ("- /  -/    -") title level model
 - 14/05/2024: 1. hightlight Heading 2. current heading
 - 11/05/2024: [new demo](https://github.com/withastro/docs/blob/882e0b0a9d16d1c822cb8c230a62a4bfcd308605/src/util/generateToc.ts)
 - 10/05/2024: about headings h1~h6, check [this](https://docs.astro.build/zh-cn/guides/markdown-content/), title: [标题 ID 和插件]

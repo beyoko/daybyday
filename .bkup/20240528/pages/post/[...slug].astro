@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import { excludeDrafts } from '@/lib/post'
+import TOC from '@/components/TOC.astro'
+import CurrentHeading from '@/lib/CurrentHeading'
+import PostLayout from '@/layouts/PostLayout.astro'
+import BackoTopButton from '@/lib/BackToTopButtom'
+import MarkdownHeader from '@/lib/MarkdownHeader'
+
+export const getStaticPaths = async () => {
+  const allPosts = await getCollection('post', excludeDrafts)
+
+  return allPosts.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      blog: post,
+    },
+  }))
+}
+const { blog } = Astro.props as { post: CollectionEntry<'post'> }
+
+if (blog === undefined) {
+  return Astro.redirect('/404')
+}
+
+const { Content, headings } = await blog.render()
+
+---
+
+<PostLayout {...blog.data}>
+  <div class="w-1/4 bg-zinc-50 p-4">
+    <aside class="xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6" >
+      <h2> Table Of Content </h2>
+      <TOC headings={headings} />
+    </aside>
+  </div>
+  <div class="flex-1">
+    <Content />
+  </div>
+  <MarkdownHeader client:load headings={headings} />
+</PostLayout>

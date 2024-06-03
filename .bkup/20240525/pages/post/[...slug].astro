@@ -1,0 +1,52 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import { excludeDrafts } from '@/lib/post'
+import TOC from '@/components/TOC.astro'
+import CurrentHeading from '@/lib/CurrentHeading'
+import PostLayout from '@/layouts/PostLayout.astro'
+import BackoTopButton from '@/lib/BackToTopButtom'
+
+export const getStaticPaths = async () => {
+  const allPosts = await getCollection('post', excludeDrafts)
+
+  return allPosts.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      blog: post,
+    },
+  }))
+}
+const { blog } = Astro.props as { post: CollectionEntry<'post'> }
+
+if (blog === undefined) {
+  return Astro.redirect('/404')
+}
+
+const { Content, headings } = await blog.render()
+
+---
+
+<PostLayout {...blog.data}>
+  <div class="w-1/4 bg-zinc-50 p-4">
+    <aside class="xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6" >
+      <h2> Table Of Content </h2>
+      <TOC headings={headings} />
+    </aside>
+  </div>
+  <div class="flex-1">
+    <Content />
+  </div>
+  <div class="fixed bottom-4 right-20">
+    <nav class="flex items-center justify-between gap-3 text-base">
+      <div
+        class="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50 md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950"
+      >
+        <CurrentHeading client:load headings={headings} />
+      </div>
+    </nav>
+  </div>
+  <BackoTopButton client:visible />
+</PostLayout>
