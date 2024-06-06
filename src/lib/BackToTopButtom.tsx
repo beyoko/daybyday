@@ -1,42 +1,15 @@
-import { useState, useEffect } from 'react'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
 
 export default function BackToTopButton() {
-  const [showButton, setShowButton] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowButton(true)
-      } else {
-        setShowButton(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
-    <div className="fixed bottom-4 right-10">
-      <div className="flex gap-4">
-        <button
-          className={`
-            p-2 md:flex rounded-3xl border border-zinc-300 dark:border-zinc-700 bg-zinc-200 dark:bg-zinc-800
-            ${showButton ? 'scale-100' : 'scale-0'}
-            ${showButton ? 'visible' : 'invisible'}`}
-          onClick={scrollToTop}
-        >
-          <ArrowUpIcon className="h-4 w-4" />
-        </button>
-      </div>
+    <div className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50  md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950">
+      <button onClick={scrollToTop}>
+        <ArrowUpIcon className="h-4 w-4" />
+      </button>
     </div>
   )
 }

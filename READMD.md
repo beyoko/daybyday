@@ -1,5 +1,7 @@
 # day
 
+- 05/06/2024: create a function: "Highlight Markdown page `<a/>` && opacity the other thinks". edit `MarkdownHeader` css, make some "muji".
+- 03/06/2024: dismantle `BackToButton` & `MarkdownHeader`. `MarkdownHeader` use `@headlessui/react`: check `@/lib/HeadingMenu`
 - 01/06/2024: mix `CurrentHeading` & `BacktoTopButton` & `TOC` to `MarkdownHeader`.  => import '@headlessui/react'
 - 29/05/2024: mix `CurrentHeading` and `BacktoTopButton`, and cut `BacktoTopButton` code `window.scrollY`...
 - 28/05/2024: move `CurrentHeading` to Top Bar - Center.

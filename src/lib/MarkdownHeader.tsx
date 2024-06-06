@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { ArrowUpIcon } from '@heroicons/react/24/solid'
+import { Menu, Transition } from '@headlessui/react'
+import BackToTopButtom from '@/lib/BackToTopButtom'
 
 interface Heading {
   depth: number
@@ -13,8 +14,7 @@ interface MarkdownHeaderProps {
 
 export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
   const [currentHeading, setCurrentHeading] = useState<string>('')
-  const [showPopover, setShowPopover] = useState(false)
-  const [anchorPosition, setAnchorPosition] = useState({ top: 0, left: 0 })
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,18 +40,8 @@ export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
     }
   }, [headings])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   const currentText =
     headings.find((heading) => heading.slug === currentHeading)?.text || ''
-
-  const handleTextClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    setAnchorPosition({ top: rect.top, left: rect.left })
-    setShowPopover(!showPopover)
-  }
 
   const toc = headings.filter(
     (heading) =>
@@ -59,51 +49,55 @@ export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
       !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
   )
 
-  function getIndentation(level: number): string {
-    return `${(level - 1) * 2}ch`
-  }
+  const toggleMenu = () => setMenuOpen((prev) => !prev)
 
   return (
     <div
       id="current-heading"
       className={`
       current-heading 
-      flex gap-4 rounded-3xl border border-zinc-300 dark:border-zinc-700 bg-zinc-200 dark:bg-zinc-800
+      flex gap-4 rounded-3xl border border-zinc-300 dark:border-zinc-700 bg-zinc-200 dark:bg-zinc-800 items-center
       ${currentHeading ? 'block' : 'hidden'}
       `}
     >
-      <button>
-        <div className="p-2" onClick={handleTextClick}>
+      <Menu as="div" className="relative inline-block text-left p-2">
+        <Menu.Button
+          onClick={toggleMenu}
+          className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 md:hover:dark:border-zinc-50 md:hover:bg-zinc-50 dark:dark:bg-zinc-950"
+          aria-label="menu"
+        >
           {currentText}
+        </Menu.Button>
+      </Menu>
+      <Transition
+        show={menuOpen}
+        enter="transition duration-100 ease-out"
+        enterFrom="transform scale-95 opacity-0"
+        enterTo="transform scale-100 opacity-100"
+        leave="transition duration-75 ease-out"
+        leaveFrom="transform scale-100 opacity-100"
+        leaveTo="transform scale-95 opacity-0"
+      >
+        <div className="py-1">
+          {toc.length > 0 &&
+            headings.map((heading) => (
+              <li
+                key={heading.slug}
+                className="flex"
+                style={{ paddingLeft: `${(heading.depth - 1) * 2}ch` }}
+              >
+                <a
+                  className="block text-zinc-600 hover:text-zinc-800 no-underline font-normal dark:text-zinc-200 dark:hover:text-zinc-400"
+                  href={`#${heading.slug}`}
+                >
+                  {heading.depth && '- '}
+                  {heading.text}
+                </a>
+              </li>
+            ))}
         </div>
-        {showPopover && (
-          <div>
-            <ol className="list-none pl-0 my-0 ml-1 relative">
-              {toc.length > 0 &&
-                headings.map((heading) => (
-                  <li
-                    key={heading.slug}
-                    className="flex"
-                    style={{ paddingLeft: getIndentation(heading.depth) }}
-                  >
-                    <a
-                      className={`block text-zinc-600 hover:text-zinc-800 no-underline font-normal dark:text-zinc-200 dark:hover:text-zinc-100 ${getIndentation(heading.depth)}`}
-                      href={`#${heading.slug}`}
-                    >
-                      {heading.depth && '- '}
-                      {heading.text}
-                    </a>
-                  </li>
-                ))}
-            </ol>
-          </div>
-        )}
-      </button>
-      <div>
-        <button className="p-2" onClick={scrollToTop}>
-          <ArrowUpIcon className="h-4 w-4" />
-        </button>
-      </div>
+      </Transition>
+      <BackToTopButtom />
     </div>
   )
 }
