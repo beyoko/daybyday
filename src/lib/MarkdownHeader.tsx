@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import BackToTopButtom from '@/lib/BackToTopButtom'
+import { ArrowUpIcon } from '@heroicons/react/24/solid'
+import { init } from 'astro/virtual-modules/prefetch.js'
 
 interface Heading {
   depth: number
@@ -10,11 +11,16 @@ interface Heading {
 
 interface MarkdownHeaderProps {
   headings: Heading[]
+  initialStatus: boolean
 }
 
-export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
+export default function MarkdownHeader({
+  headings,
+  initialStatus,
+}: MarkdownHeaderProps) {
   const [currentHeading, setCurrentHeading] = useState<string>('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [markdownStatus, setMarkdownStatus] = useState(initialStatus)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +46,22 @@ export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
     }
   }, [headings])
 
+  useEffect(() => {
+    setMarkdownStatus(initialStatus)
+  }, [initialStatus])
+
+  const scrollToTopButton = () => (
+    <button
+      className="p-4"
+      onClick={() => {
+        setMenuOpen(false)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }}
+    >
+      <ArrowUpIcon className="h-4 w-4" />
+    </button>
+  )
+
   const currentText =
     headings.find((heading) => heading.slug === currentHeading)?.text || ''
 
@@ -49,55 +71,64 @@ export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
       !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
   )
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev)
-
   return (
     <div
-      id="current-heading"
       className={`
-      current-heading 
-      flex gap-4 rounded-3xl border border-zinc-300 dark:border-zinc-700 bg-zinc-200 dark:bg-zinc-800 items-center
-      ${currentHeading ? 'block' : 'hidden'}
-      `}
+        flex rounded-md bg-white dark:bg-zinc-950 border border-zinc-950 dark:border-zinc-50
+        ${currentHeading ? 'block' : 'hidden'}
+        `}
     >
-      <Menu as="div" className="relative inline-block text-left p-2">
-        <Menu.Button
-          onClick={toggleMenu}
-          className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 md:hover:dark:border-zinc-50 md:hover:bg-zinc-50 dark:dark:bg-zinc-950"
-          aria-label="menu"
-        >
-          {currentText}
-        </Menu.Button>
-      </Menu>
-      <Transition
-        show={menuOpen}
-        enter="transition duration-100 ease-out"
-        enterFrom="transform scale-95 opacity-0"
-        enterTo="transform scale-100 opacity-100"
-        leave="transition duration-75 ease-out"
-        leaveFrom="transform scale-100 opacity-100"
-        leaveTo="transform scale-95 opacity-0"
-      >
-        <div className="py-1">
-          {toc.length > 0 &&
-            headings.map((heading) => (
-              <li
-                key={heading.slug}
-                className="flex"
-                style={{ paddingLeft: `${(heading.depth - 1) * 2}ch` }}
+      {markdownStatus && (
+        <div>
+          <div className="flex flex-col">
+            <Menu as="div" className="p-3 relative inline-block">
+              <Menu.Button
+                onClick={() => setMenuOpen((prev) => !prev)}
+                className="inline-flex justify-center pl-1 hover:border-l hover:border-zinc-950 dark:hover:border-zinc-50 transition-all"
+                aria-label="menu"
               >
-                <a
-                  className="block text-zinc-600 hover:text-zinc-800 no-underline font-normal dark:text-zinc-200 dark:hover:text-zinc-400"
-                  href={`#${heading.slug}`}
-                >
-                  {heading.depth && '- '}
-                  {heading.text}
-                </a>
-              </li>
-            ))}
+                {currentText}
+              </Menu.Button>
+            </Menu>
+            <Transition
+              show={menuOpen}
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <div className="py-1">
+                <aside className="xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6">
+                  {toc.length > 0 && (
+                    <ul className="overflow-y-auto max-h-96">
+                      {headings.map((heading) => (
+                        <li
+                          key={heading.slug}
+                          className="flex"
+                          style={{
+                            paddingLeft: `${(heading.depth - 1) * 2}ch`,
+                          }}
+                        >
+                          <a
+                            className="p-1 text-zinc-600 hover:text-zinc-800 no-underline dark:text-zinc-200"
+                            href={`#${heading.slug}`}
+                          >
+                            {heading.depth && '- '}
+                            {heading.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </aside>
+              </div>
+            </Transition>
+          </div>
         </div>
-      </Transition>
-      <BackToTopButtom />
+      )}
+      <div>{scrollToTopButton()}</div>
     </div>
   )
 }

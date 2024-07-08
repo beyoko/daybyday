@@ -1,21 +1,16 @@
 type Props = {
-  tags: string[]
+  tags?: string[]
   includeComma: boolean
 }
 
-export default function TagsLink({ tags, includeComma }: Props) {
+export default function TagsLink({ tags = [] }: Props) {
   const tagCount = tags.length
+  console.log('TagsLink props:', { tags })
+
   return tags.map((tag, index) => {
     return (
-      <a
-        className="border-4 border-transparent"
-        key={tag}
-        href={`/categories/${tag.toLowerCase()}`}
-      >
-        <p className="underline rounded-lg hover:no-underline">
-          {tag}
-          {includeComma && index < tagCount - 1 ? ',' : ''}
-        </p>
+      <a key={tag} href={`/categories/${tag.toLowerCase()}`}>
+        <p className="underline rounded-lg hover:no-underline">{tag}</p>
       </a>
     )
   })

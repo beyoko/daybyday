@@ -10,11 +10,15 @@ interface DropdownMenuProps {
 export default function DropdownMenu({ tags }: DropdownMenuProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={toggleMenu}
           className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 md:hover:dark:border-zinc-50 md:hover:bg-zinc-50 dark:dark:bg-zinc-950"
           aria-label="menu"
         >

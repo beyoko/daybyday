@@ -1,5 +1,16 @@
 # day
 
+- 08/07/2024: 1. when `hover` CIC, `MarkdownHeader` hide. 2. on moblie, hide Markdown header Msg. 3. Change `PostLayout` Css look like [antfu](https://antfu.me). 4. move "Markdown Post" tags to `Header` 5. check `Postlayout` "hightlight" HTML code to change Css.
+- 06/07/2024: create a h line for `MarkdownHeader` title and button when hover.
+- 04/07/2024: change `MarkdownHeader` UI. (find the demo)
+- 02/07/2024: check new `BackToTopButton.tsx`. click the `MarkdownHeader`
+- 01/07/2024: edit `MarkdownHeader`. use 'Line' to connect 'TOC' and 'BacktoTopButton'. why has double UI.
+- 29/06/2024: when the page move to top, then menu will back to 'first look' `MarkdownHeader.tsx => (onClick={scrollToTop})` .
+- 27/06/2024: `MarkdownHeader.tsx` Menu highlight `{currentText}` 
+- 25/06/2024: check 'postlayout' tags, sort the line.
+- 24/06/2024: add privacy mode from `egashira.dev`
+- 12/06/2024: add `getReadingTime` function. but still not working.
+- 08/06/2024: when page top, only show heading title(not heading msg), hide `BacktoTopButton`
 - 05/06/2024: create a function: "Highlight Markdown page `<a/>` && opacity the other thinks". edit `MarkdownHeader` css, make some "muji".
 - 03/06/2024: dismantle `BackToButton` & `MarkdownHeader`. `MarkdownHeader` use `@headlessui/react`: check `@/lib/HeadingMenu`
 - 01/06/2024: mix `CurrentHeading` & `BacktoTopButton` & `TOC` to `MarkdownHeader`.  => import '@headlessui/react'
@@ -81,17 +92,17 @@
 
 ## rebuild
 
-- 03/30/2024: fix <Image /> version update, `@astro/image` remove: image base in astro.
-- 03/28/2024: `<Image />` still not working
-- 03/27/2024: version 2.0 >>> 4.0 and mark cn notes.
+- 30/03/2024: fix <Image /> version update, `@astro/image` remove: image base in astro.
+- 28/03/2024: `<Image />` still not working
+- 27/03/2024: version 2.0 >>> 4.0 and mark cn notes.
 - 20/03/2024: fix `post.formatter.title/pubDate` >> `post.data.title/pubDate` || `const allPosts = await getCollection('post')`
 - 19/03/2024: look it that full info for rebuild [rebuild](https://docs.astro.build/zh-cn/guides/content-collections/) and ['pages/posts > content/posts'](https://github.com/withastro/blog-tutorial-demo)
-- 03/18/2024: edit `CategoryLayout.astro && [id].astro` look like `PostLayout.astro && [...slug.astro]`
+- 18/03/2024: edit `CategoryLayout.astro && [id].astro` look like `PostLayout.astro && [...slug.astro]`
 - 18/03/2024: rebuild `BaseLayout.astro` code
 - 16/03/2024: step to `@/content/` when click markdown file error: "content config failed to load.", i added `config.ts` in content folder. but still output this error.
 - 11/03/2024: `Toc.astro` and `[...slug].astro` add to `Post.astro`
 - 11/03/2024: `Toc.astro` and `[...slug].astro` add to `Post.astro`
-- 03/07/2024: 1. add Tags function to `Post.astro` when i click >> Cat 2. edit `Post.astro` && `<MarkdownLayout>`
+- 07/03/2024: 1. add Tags function to `Post.astro` when i click >> Cat 2. edit `Post.astro` && `<MarkdownLayout>`
 - 06/03/2024: `google*.astro` && `<div>Ad</div>` 是广告栏. Toc 位置在`[...slug].astro`, 重点查阅！
 - 05/03/2024: learn jp version, like def version
 - 04/03/2024: `error Cannot find module '@lib/utils/dateSortDesc' imported from '/home/oho/gt/test/daybyday/src/lib/post.ts'`

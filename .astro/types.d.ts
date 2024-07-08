@@ -140,9 +140,30 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"zh-cn/archDowngrade.md": {
+	id: "zh-cn/archDowngrade.md";
+  slug: "zh-cn/archdowngrade";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/batteryNcharger.md": {
+	id: "zh-cn/batteryNcharger.md";
+  slug: "zh-cn/batteryncharger";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "zh-cn/hotspot.md": {
 	id: "zh-cn/hotspot.md";
   slug: "zh-cn/hotspot";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/network-lost.md": {
+	id: "zh-cn/network-lost.md";
+  slug: "zh-cn/network-lost";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">

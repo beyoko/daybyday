@@ -1,48 +1,43 @@
 ---
-import type { MarkdownHeading } from 'astro'
 import { getCollection } from 'astro:content'
-import { TagIcon } from '@heroicons/react/24/solid'
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
 import Link from '@/components/Link.astro'
-import TagsLink from '@/lib/TagsLink'
+import MarkdownHeader from '@/lib/MarkdownHeader'
 
 export interface Props {
   content: {
     title: string
   }
-  headings: MarkdownHeading[]
-  tags: string[]
+  headings: {
+    slug: string
+    text: string
+    depth: number
+  }[]
 }
-
-const { tags = [] } = Astro.props
 
 const allPosts = await getCollection('post')
 const allTags = new Set<string>()
 allPosts.map((post) => {
   post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
 })
-
-console.log('Astro.props:', Astro.props)
-console.log('tags:', tags)
+const sortedTags = Array.from(allTags).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' }),
+)
 ---
 
-<header class="sticky w-full p-2 z-20">
+<header class="sticky fixed w-full p-2 z-20">
   <div class="mx-auto max-w-5xl">
     <nav class="flex items-center justify-between gap-3 text-base">
       <Link
         href="/"
-        className="group p-4 font-bold antialiased tracking-tighter inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-base text-black dark:text-white bg-white dark:bg-black hover:border-zinc-950 dark:hover:border-zinc-100 "
+        className="group p-4 font-semibold tracking-tighter inline-flex justify-center rounded-md border border-zinc-50 dark:border-zinc-950 px-2 py-2 text-base text-white dark:text-black shadow-sm bg-black dark:bg-zinc-50 hover:border-zinc-950 dark:hover:border-zinc-100"
         data-astro-prefetch="false"
       >
         C.I.C
       </Link>
 
       <div class="flex gap-4">
-        <div class="flex flex-wrap space-x-2 text-sm">
-          <TagIcon className="h-5 w-5 text-zinc-500" />
-          <TagsLink tags={tags} />
-        </div>
         <div class="items-center gap-6 hidden md:block">
           <Link
             href="/categories"

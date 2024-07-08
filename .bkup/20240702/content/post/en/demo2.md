@@ -4,6 +4,7 @@ pubDate: 'May 07 2024'
 draft: true
 tags:
   - 'Demo'
+  - 'Test'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
 heroImageAlt: 'build fish'
 heroImage: '@/assets/images/fish.png'
