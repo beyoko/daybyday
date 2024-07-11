@@ -1,0 +1,60 @@
+---
+import type { MarkdownHeading } from 'astro'
+import { getCollection } from 'astro:content'
+import { TagIcon } from '@heroicons/react/24/solid'
+import ThemeToggleButton from '@/lib/ThemeToggleButton'
+import DropdownMenu from '@/lib/DropdownMenu'
+import Link from '@/components/Link.astro'
+import TagsLink from '@/lib/TagsLink'
+
+export interface Props {
+  content: {
+    title: string
+  }
+  headings: MarkdownHeading[]
+  tags: string[]
+}
+
+const { tags = [] } = Astro.props
+
+const allPosts = await getCollection('post')
+const allTags = new Set<string>()
+allPosts.map((post) => {
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
+})
+
+console.log('Astro.props:', Astro.props)
+console.log('tags:', tags)
+---
+
+<header class="sticky w-full p-2 z-20">
+  <div class="mx-auto max-w-5xl">
+    <nav class="flex items-center justify-between gap-3">
+      <Link
+        href="/"
+        className="group p-4 font-bold antialiased tracking-tighter inline-flex justify-center rounded-md border-2 border-zinc-400 dark:border-zinc-700 px-2 py-2 text-base bg-zinc-50 dark:bg-zinc-950"
+        data-astro-prefetch="false"
+      >
+        C.I.C
+      </Link>
+
+      <div class="flex gap-4">
+        <div class="items-center gap-6 hidden md:block">
+          <Link
+            href="/categories"
+            className="hidden md:block justify-center rounded-md border border-zinc-400 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 px-2 py-2 "
+          >
+            Categories
+          </Link>
+        </div>
+        <div
+          class="block md:hidden border-2 border-zinc-950 dark:border-zinc-50"
+        >
+          <DropdownMenu client:visible tags={Array.from(allTags)} />
+        </div>
+        <div class="flex-1"></div>
+        <ThemeToggleButton client:visible />
+      </div>
+    </nav>
+  </div>
+</header>

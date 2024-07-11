@@ -20,9 +20,7 @@ const { title, description, headings } = Astro.props
 ---
 
 <BaseLayout title={title + ` / ${siteMeta.title}`} description={description}>
-  <Content
-    className="border border-zinc-black dark:border-white pt-6 bg-white dark:bg-zinc-950 rounded-md markdown-body"
-  >
+  <Content className="markdown-body">
     <h1 class="text-3xl my-1 font-roto">{title}</h1>
     <div>{description}</div>
     <hr class="border-top border-zinc-400 my-4" />
@@ -66,7 +64,7 @@ const { title, description, headings } = Astro.props
         @apply border border-slate-300 dark:border-zinc-700 rounded-xl mb-6;
       }
       p {
-        @apply mb-6 text-zinc-900;
+        @apply mb-6 text-zinc-700 dark:text-zinc-300;
       }
       a {
         @apply underline underline-offset-2 text-black font-semibold decoration-zinc-400 hover:decoration-zinc-950 transition-all;

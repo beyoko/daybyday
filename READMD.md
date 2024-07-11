@@ -1,5 +1,8 @@
 # day
 
+- 11/07/2024: add new page `Blog/index` `BlogYearLayout`. function: categories year page.
+- 10/07/2024: des the `Header.astro`.
+- 09/07/2024: UI change. missing `index.astro` `<Image />`
 - 08/07/2024: 1. when `hover` CIC, `MarkdownHeader` hide. 2. on moblie, hide Markdown header Msg. 3. Change `PostLayout` Css look like [antfu](https://antfu.me). 4. move "Markdown Post" tags to `Header` 5. check `Postlayout` "hightlight" HTML code to change Css.
 - 06/07/2024: create a h line for `MarkdownHeader` title and button when hover.
 - 04/07/2024: change `MarkdownHeader` UI. (find the demo)

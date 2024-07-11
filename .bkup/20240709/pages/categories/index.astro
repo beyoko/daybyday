@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Content from '@/components/Content.astro'
+import TagsLink from '@/lib/TagsLink'
+import { siteMeta } from '@/consts'
+
+const allPosts = await getCollection('post')
+const allTags = new Set<string>()
+allPosts.map((post) => {
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
+})
+const sortedTags = Array.from(allTags).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' }),
+)
+---
+
+<BaseLayout title={siteMeta.title} description={siteMeta.description}>
+  <Content>
+    <section>
+      <div
+        class="flex flex-wrap p-4 gap-5 bg-white dark:bg-zinc-950 border-2 border-zinc-950 dark:border-zinc-50 rounded-md"
+      >
+        <TagsLink tags={sortedTags} />
+      </div>
+    </section>
+  </Content>
+</BaseLayout>

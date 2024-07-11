@@ -52,9 +52,10 @@ export default function ThemeToggle() {
   }
 
   return (
-    <div className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 dark:md:hover:border-zinc-50  md:hover:bg-zinc-50 dark:md:hover:bg-zinc-950">
+    <div className="inline-flex justify-center">
       <button
-        className={`${theme === 'light'} cursor-pointer rounded-3xl`}
+        className={`${theme === 'light'} 
+          cursor-pointer p-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100`}
         onClick={toggleTheme}
         aria-label="Toggle theme"
       >

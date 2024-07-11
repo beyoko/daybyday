@@ -15,7 +15,7 @@ export default function DropdownMenu({ tags }: DropdownMenuProps) {
       <div>
         <Menu.Button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex justify-center rounded-md border border-zinc-400 dark:border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm bg-white dark:bg-zinc-950 md:hover:border-zinc-950 md:hover:dark:border-zinc-50 md:hover:bg-zinc-50 dark:dark:bg-zinc-950"
+          className="inline-flex justify-center p-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
           aria-label="menu"
         >
           {menuOpen ? (
@@ -36,8 +36,9 @@ export default function DropdownMenu({ tags }: DropdownMenuProps) {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md border border-zinc-400 dark:border-zinc-700 bg-white dark:bg-zinc-950 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none divide-zinc-400 dark:divide-zinc-700">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md border border-zinc-400 dark:border-zinc-700 bg-white dark:bg-zinc-950 shadow-l ring-1 ring-black ring-opacity-5 focus:outline-none divide-zinc-400 dark:divide-zinc-700">
           <div className="py-1">
+            <div className="px-3 py-2 font-bold text-xs">Categories</div>
             {tags.map((tag) => {
               return (
                 <DropdownMenuItem

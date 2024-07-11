@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Content from '@/components/Content.astro'
+import Link from '@/components/Link.astro'
+import { siteMeta } from '@/consts'
+
+const allPosts = (await getCollection('post')).sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+)
+
+// 根据年份分组，每个年份最多展示 6 个文章标题
+const postsByYear = allPosts.reduce((acc, post) => {
+  const year = new Date(post.data.pubDate).getFullYear()
+  if (!acc[year]) {
+    acc[year] = []
+  }
+  if (acc[year].length < 6) {
+    acc[year].push(post)
+  }
+  return acc
+}, {})
+---
+
+<BaseLayout title={siteMeta.title} description={siteMeta.description}>
+  <Content>
+    <section>
+    <div class="space-y-12"> <!-- 使用更宽的行距来区分不同年份 -->
+      {Object.keys(postsByYear).map(year => (
+        <div>
+          <h2 class="text-xl font-semibold mb-4">{year}</h2>
+          <ul class="space-y-2"> <!-- 标题之间的正常行距 -->
+            {postsByYear[year].map((post, index) => (
+              <li class="text-lg leading-relaxed">
+                <Link className='text-zinc-500 hover:text-zinc-800' href={`/post/${post.slug}/`}>
+                {post.data.title}
+                {index === postsByYear[year].length - 1 && (
+                  <Link href={`/layouts/BlogYearLayout`} className="flex text-blue-500 hover:underline ">See all</Link>
+                )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>    </section>
+  </Content>
+</BaseLayout>

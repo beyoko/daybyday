@@ -7,7 +7,7 @@ import { formattedDate } from '@/components/FormattedDate'
 const posts = (await Astro.glob('../content/post/*.md')).sort(
   (a, b) =>
     new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
+    new Date(a.frontmatter.pubDate).valueOf(),
 )
 ---
 
@@ -30,7 +30,7 @@ const posts = (await Astro.glob('../content/post/*.md')).sort(
     <section>
       <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {
-          posts.map(post => (
+          posts.map((post) => (
             <li
               class="
                     text-center

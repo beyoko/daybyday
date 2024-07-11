@@ -10,7 +10,7 @@ export default function TagsLink({ tags = [] }: Props) {
   return tags.map((tag, index) => {
     return (
       <a key={tag} href={`/categories/${tag.toLowerCase()}`}>
-        <p className="underline rounded-lg hover:no-underline">{tag}</p>
+        <p className="underline hover:no-underline">{tag}</p>
       </a>
     )
   })
