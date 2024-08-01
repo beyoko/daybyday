@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import BlogYearPosts from '@/lib/BlogYearPosts'
+
+const allPosts = await getCollection('post')
+const { year } = Astro.props
+
+const postsByYear = allPosts.reduce((acc, post) => {
+  const year = post.data.pubDate.getFullYear() // 假设你在 Markdown 文件中有日期字段
+  if (!acc[year]) {
+    acc[year] = []
+  }
+  acc[year].push(post)
+  return acc
+}, {})
+
+// 将年份排序，从新到旧
+const sortedYears = Object.keys(postsByYear).sort((a, b) => b - a)
+---
+
+<BaseLayout
+  title={`Posts from ${year}`}
+  description={`All posts from the year ${year}`}
+>
+  <section>
+    <ul class="max-w-2xl mx-auto">
+      <BlogYearPosts year={year} posts={postsByYear[year]} />
+    </ul>
+  </section>
+</BaseLayout>

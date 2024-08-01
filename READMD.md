@@ -1,5 +1,20 @@
 # day
 
+- 31/07/2024: finsh 'ReadTime' function to `/blog/index.astro`.
+- 29/07/2024: 1. add "ReadTime" 2. transalted '.tsx' code style.
+- 27/07/2024: add `Masthead.tsx` to `Postlayouts.astro`. flex code style.
+- 26/07/2024: add timedate toggle title.
+- 07/25/2024: add list timedate for blog layouts.
+- 07/24/2024: 模块化`blog/index.astro`使其可在`blogYearList.astro`中复用.
+- 07/23/2024: finsh `/blog/index.astro` and `[year].astro`, all most... still need change `{year}` UI.
+- 22/07/2024: problem like day20. we need to learn what is `getStaticPaths`
+- 20/07/2024: `blog/index.astro`& `blog/[year].astro`, 解决动态函数的获取问题。
+- 18/07/2024: - `MarkdownHeader` cut the `const [markdownStatus, setMarkdownStatus] = useState(initialStatus)`, - use `hidden md:block`, `categoriesLayout` add bg to Card. - change `<Blog>` year UI - `<MarkdownHeader>` mouse cut.
+- 17/07/2024: make css better.
+- 07/16/2024: Detects when the mouse disappears in standby on the login side, and triggers conditions, e.g., when the mouse disappears, the specific text disappears with it.
+- 15/07/2024: add `prism.css` to all in one replay color.
+- 07/15/2024: change color "zinc" >> "gray".
+- 07/12/2024:  css better.
 - 11/07/2024: add new page `Blog/index` `BlogYearLayout`. function: categories year page.
 - 10/07/2024: des the `Header.astro`.
 - 09/07/2024: UI change. missing `index.astro` `<Image />`

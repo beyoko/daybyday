@@ -1,6 +1,6 @@
 ---
 title: '重构Astro4.0'
-pubDate: 'Jul 01 2022'
+pubDate: '07/01/2024'
 draft: true
 tags:
   - 'Astro'

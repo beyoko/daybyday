@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Content from '@/components/Content.astro'
+import { siteMeta } from '@/consts'
 
 // 获取当前年份
 const { year } = Astro.params
@@ -40,6 +41,4 @@ const postsToShow = postsOfYear.slice(0, currentPage * pageSize)
       </div>
     </section>
   </Content>
-
-  /PostLayout>
 </BaseLayout>

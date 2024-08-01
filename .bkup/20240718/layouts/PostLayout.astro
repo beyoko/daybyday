@@ -1,0 +1,74 @@
+---
+import type { MarkdownHeading } from 'astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Content from '@/components/Content.astro'
+import MarkdownHeader from '@/lib/MarkdownHeader'
+import { siteMeta } from '@/consts'
+import '@/styles/prism.css'
+
+// type Props = CollectionEntry<'post'>['data']
+
+type Props = {
+  title: string
+  description: string
+  heroImage: string
+  heroImageAlt: string
+  headings: MarkdownHeading[]
+  initialStatus: boolean
+}
+
+const { title, description, headings } = Astro.props
+---
+
+<BaseLayout title={title + ` / ${siteMeta.title}`} description={description}>
+  <Content className="markdown-body">
+    <h1 class="text-3xl my-1 font-roto">{title}</h1>
+    <hr class="border-top border-gray-300 my-4" />
+    <slot />
+  </Content>
+
+  <header class="fixed bottom-4 right-4">
+    <div class="hidden md:block">
+      <MarkdownHeader client:load headings={headings} initialStatus={true} />
+    </div>
+    <div class="block md:hidden">
+      <MarkdownHeader client:load headings={headings} initialStatus={false} />
+    </div>
+  </header>
+
+  <style is:global>
+    main article.markdown-body {
+      ul {
+        @apply list-disc list-inside pl-4 mb-4;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        @apply font-bold font-roto text-black dark:text-white;
+      }
+      h1 {
+        @apply text-4xl;
+      }
+      h2 {
+        @apply text-2xl;
+      }
+      h3 {
+        @apply text-xl;
+      }
+      h4 {
+        @apply text-lg;
+      }
+      img {
+        @apply border border-slate-300 dark:border-gray-700 rounded-xl mb-6;
+      }
+      p {
+        @apply mb-6 text-gray-700 dark:text-gray-300;
+      }
+      a {
+        @apply underline underline-offset-4 text-black dark:text-white font-semibold decoration-gray-300 hover:decoration-black hover:dark:decoration-white transition-all;
+      }
+    }
+  </style>
+</BaseLayout>

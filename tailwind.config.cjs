@@ -6,6 +6,8 @@ module.exports = {
       fontFamily: {
         roto: ['Roboto', 'sans-serif', 'Helvetica', 'Arial'],
         nova: ["'proxima-soft'", 'Verdana', 'sans-serif'],
+        pacifico: ['Pacifico', 'cursive'],
+        dancing: ['Dancing Script', 'cursive'],
       },
       backgroundImage: {
         lightBgImg:

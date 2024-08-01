@@ -175,6 +175,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"zh-cn/power-security.md": {
+	id: "zh-cn/power-security.md";
+  slug: "zh-cn/power-security";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "zh-cn/rebuild-astro.md": {
 	id: "zh-cn/rebuild-astro.md";
   slug: "zh-cn/rebuild-astro";
