@@ -37,20 +37,18 @@ export default ({ tags }: DropdownMenuProps) => {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-l ring-1 ring-black ring-opacity-5 focus:outline-none bgCardColor">
-          <div className="py-1">
-            <div className="px-3 py-2 font-bold text-xs">Categories</div>
-            {tags.map((tag) => {
-              return (
-                <DropdownMenuItem
-                  key={tag}
-                  href={`/categories/${tag.toLowerCase()}`}
-                >
-                  {tag}
-                </DropdownMenuItem>
-              )
-            })}
-          </div>
+        <Menu.Items className="bgCardColor opacity-70 hover:opacity-100 absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-l ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="px-3 py-2 font-bold text-xs">Categories</div>
+          {tags.map((tag) => {
+            return (
+              <DropdownMenuItem
+                key={tag}
+                href={`/categories/${tag.toLowerCase()}`}
+              >
+                {tag}
+              </DropdownMenuItem>
+            )
+          })}
         </Menu.Items>
       </Transition>
     </Menu>

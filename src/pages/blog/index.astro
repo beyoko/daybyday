@@ -28,7 +28,7 @@ const sortedYears = Object.keys(postsByYear).sort((a, b) => b - a)
       {
         sortedYears.map((year) => (
           <>
-            <BlogYearPosts year={year} posts={postsByYear[year].slice(0, 6)}  />
+            <BlogYearPosts year={year} posts={postsByYear[year].slice(0, 6)} />
             <BlogYearMorePosts year={year} />
           </>
         ))

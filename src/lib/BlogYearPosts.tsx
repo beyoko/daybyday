@@ -23,7 +23,8 @@ export default ({ year, posts }: YearPostsProps) => (
       {posts.map((post) => (
         <span className="flex mb-6 mt-2" key={post.slug}>
           <a
-            className="linkColor block font-normal no-underline" // Assuming this is a valid class
+            className="linkColor block font-normal no-underline"
+            // Assuming this is a valid class
             href={`/post/${post.slug}`}
           >
             {post.data.title}

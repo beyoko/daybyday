@@ -19,8 +19,8 @@ heroImageAlt: 'build fish'
 
 # 解决方法
 本来想要等几日，出相关包的更新，就可以解决了。但等了一个星期，有新的包就更新，还是没有解决问题。只好冒险"回滚": 
-- `cat /var/log/pacman.log | grep upgrade`找到出现问题的那次更新的包。
-- `cd /var/cache/pacman/pkg`找到相关的包的版本进行降级，`pacman -U *.tar.zst`。
+- ```cat /var/log/pacman.log | grep upgrade```找到出现问题的那次更新的包。
+- ```cd /var/cache/pacman/pkg```找到相关的包的版本进行降级，```pacman -U *.tar.zst```。
 顺利地将两次更新的逐次倒序降级后，终于可以重新连接上WIFI了。
 
 

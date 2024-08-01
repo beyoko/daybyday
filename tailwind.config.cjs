@@ -8,6 +8,7 @@ module.exports = {
         nova: ["'proxima-soft'", 'Verdana', 'sans-serif'],
         pacifico: ['Pacifico', 'cursive'],
         dancing: ['Dancing Script', 'cursive'],
+        mono: ['DM Mono', 'Input Mono', 'Fira Code', 'monospace'],
       },
       backgroundImage: {
         lightBgImg:

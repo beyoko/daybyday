@@ -1,5 +1,6 @@
 # day
 
+- 01/08/2024: `postlayout.astro` change code css output style.
 - 31/07/2024: finsh 'ReadTime' function to `/blog/index.astro`.
 - 29/07/2024: 1. add "ReadTime" 2. transalted '.tsx' code style.
 - 27/07/2024: add `Masthead.tsx` to `Postlayouts.astro`. flex code style.

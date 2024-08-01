@@ -21,9 +21,13 @@ const { title, description, headings } = Astro.props
 
 <BaseLayout title={title + ` / ${siteMeta.title}`} description={description}>
   <Content className="markdown-body">
-    <h1 class="text-3xl my-1 font-roto">{title}</h1>
+    <h1 class="text-3xl my-1 font-roto flex items-center justify-center">
+      {title}
+    </h1>
+
     <hr class="border-top border-gray-300 my-4" />
     <slot />
+    <hr class="border-top border-gray-300 my-4" />
   </Content>
 
   <header class="fixed bottom-4 right-4">
@@ -62,6 +66,10 @@ const { title, description, headings } = Astro.props
       }
       a {
         @apply underline underline-offset-4 text-black dark:text-white font-semibold decoration-gray-300 dark:decoration-gray-700 hover:decoration-black hover:dark:decoration-white transition-all;
+      }
+
+      code {
+        @apply font-mono text-sm leading-relaxed my-2 p-1 rounded-md bg-gray-100 dark:bg-gray-900;
       }
     }
   </style>
