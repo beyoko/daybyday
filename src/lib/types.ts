@@ -26,3 +26,8 @@ export type Post = {
 
   readingTime?: number
 }
+
+export interface DropdownMenuItemProps {
+  href: string
+  children: React.ReactNode
+}

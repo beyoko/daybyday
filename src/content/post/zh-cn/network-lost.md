@@ -1,6 +1,6 @@
 ---
 title: 'DNS的配置失误: 流量无法输出输入'
-pubDate: '07/02/2024'
+pubDate: '02/07/2024'
 draft: true
 tags:
   - 'systemd'

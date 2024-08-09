@@ -1,6 +1,6 @@
 ---
-import BlogYearPosts from '@/lib/BlogYearPosts'
-import BlogYearMorePosts from '@/lib/BlogYearMorePosts'
+import BlogsLink from '@/lib/BlogsLink'
+import BlogsLinkMore from '@/lib/BlogsLinkMore'
 import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { siteMeta } from '@/consts'
@@ -10,13 +10,11 @@ const allPosts = await getCollection('post')
 
 // 按年份分类和排序
 const postsByYear = allPosts.reduce((acc, post) => {
-  const year = post.data.pubDate.getFullYear() // 假设你在 Markdown 文件中有日期字段
-  if (!acc[year]) {
-    acc[year] = []
-  }
-  acc[year].push(post)
-  return acc
-}, {})
+  const year = post.data.pubDate.getFullYear();
+  acc[year] = acc[year] || [];
+  acc[year].push(post);
+  return acc;
+}, {});
 
 // 将年份排序，从新到旧
 const sortedYears = Object.keys(postsByYear).sort((a, b) => b - a)
@@ -27,10 +25,10 @@ const sortedYears = Object.keys(postsByYear).sort((a, b) => b - a)
     <ul class="max-w-2xl mx-auto">
       {
         sortedYears.map((year) => (
-          <>
-            <BlogYearPosts year={year} posts={postsByYear[year].slice(0, 6)} />
-            <BlogYearMorePosts year={year} />
-          </>
+          <li class="relative p-6">
+            <BlogsLink years={year} posts={postsByYear[year].slice(0, 6)} />
+            <BlogsLinkMore yearMore={year} />
+          </li>
         ))
       }
     </ul>

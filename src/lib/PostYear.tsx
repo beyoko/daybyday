@@ -1,7 +1,17 @@
 import '@/styles/prism.css'
 
-export default ({ year }) => {
-  const date = new Date(year.data.pubDate)
+interface YearDate {
+  data: {
+    pubDate: string
+  }
+}
+
+interface PostYearProps {
+  yearDate: YearDate
+}
+
+export default ({ yearDate }: PostYearProps) => {
+  const date = new Date(yearDate.data.pubDate)
   const formattedDate = date.toLocaleDateString('en-US', {
     month: 'short',
     day: '2-digit',

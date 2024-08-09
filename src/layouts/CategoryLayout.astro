@@ -1,11 +1,11 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Location from '@/components/Location.astro'
 import Content from '@/components/Content.astro'
 import Link from '@/components/Link.astro'
-import { Image } from 'astro:assets'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 
@@ -61,7 +61,7 @@ const posts = (await getCollection('post'))
               : post.data.heroImage
 
             return (
-              <li class="relative p-4 text-center rounded-md bg-gray-100 dark:bg-gray-900 opacity-80 hover:opacity-100">
+              <li class="relative p-4 text-center rounded-xl bg-gray-100 dark:bg-gray-900 opacity-80 hover:opacity-100">
                 <Link href={`/post/${post.slug}/`}>
                   <Image
                     class="rounded-xl"

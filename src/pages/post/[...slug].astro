@@ -3,7 +3,6 @@ import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import { excludeDrafts } from '@/lib/post'
 import PostLayout from '@/layouts/PostLayout.astro'
-import MarkdownHeader from '@/lib/MarkdownHeader'
 
 type Props = {
   blog: CollectionEntry<'post'>

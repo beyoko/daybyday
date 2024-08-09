@@ -1,11 +1,36 @@
 import { useState, Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
-import { DropdownMenuItem } from '@/lib/DropdownMenuItem'
 import '@/styles/prism.css'
 
 interface DropdownMenuProps {
   tags: string[]
+}
+
+interface DropdownMenuItemProps {
+  href: string
+  children: React.ReactNode
+}
+
+const DropdownMenuItem = ({ href, children }: DropdownMenuItemProps) => {
+  const DropdownMenuItemClassNames = (...classes: string[]) => {
+    return classes.filter(Boolean).join(' ')
+  }
+  return (
+    <Menu.Item>
+      {({ active }) => (
+        <a
+          href={href}
+          className={DropdownMenuItemClassNames(
+            active ? 'borderLeftColor' : '',
+            'block px-4 py-2 text-sm',
+          )}
+        >
+          {children}
+        </a>
+      )}
+    </Menu.Item>
+  )
 }
 
 export default ({ tags }: DropdownMenuProps) => {
@@ -13,19 +38,17 @@ export default ({ tags }: DropdownMenuProps) => {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex justify-center p-2 text-sm"
-          aria-label="menu"
-        >
-          {menuOpen ? (
-            <XMarkIcon className="h-5 w-5" />
-          ) : (
-            <Bars3Icon className="h-5 w-5" />
-          )}
-        </Menu.Button>
-      </div>
+      <Menu.Button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="inline-flex justify-center p-2 text-sm"
+        aria-label="menu"
+      >
+        {menuOpen ? (
+          <XMarkIcon className="h-5 w-5" />
+        ) : (
+          <Bars3Icon className="h-5 w-5" />
+        )}
+      </Menu.Button>
 
       <Transition
         show={menuOpen}

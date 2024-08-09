@@ -1,3 +1,8 @@
+footer {
+  padding: 25px;
+  text-align: center;
+}
+
 .textColor {
   @apply text-gray-700 dark:text-gray-300;
 }
@@ -24,4 +29,9 @@
 
 .iconColor {
   @apply text-gray-300 dark:text-gray-700;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
 }

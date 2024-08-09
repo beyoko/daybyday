@@ -11,7 +11,7 @@ interface MastheadProps {
   posts: Post[]
 }
 
-const Masthead: React.FC = ({ posts }: MastheadProps) => {
+export default ({ posts }: MastheadProps) => {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -70,5 +70,3 @@ const Masthead: React.FC = ({ posts }: MastheadProps) => {
     </section>
   )
 }
-
-export default Masthead

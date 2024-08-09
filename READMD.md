@@ -1,5 +1,9 @@
 # day
 
+- 09/08/2024: flash code `BlogYearPost` to `BlogsLink`, and make it better to read.
+- 08/08/2024: flash code `dropdownMenu.tsx`.
+- 05/08/2024: 1. add 'postlayout' title Icon (when i hover); 2. when i "hover key" show title `heroImage` and at the title end show Image Icon(when it has image).
+- 08/02/2024: change var style. still `blogyearpost.astro`
 - 01/08/2024: `postlayout.astro` change code css output style.
 - 31/07/2024: finsh 'ReadTime' function to `/blog/index.astro`.
 - 29/07/2024: 1. add "ReadTime" 2. transalted '.tsx' code style.
