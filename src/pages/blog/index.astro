@@ -1,36 +1,27 @@
 ---
-import BlogsLink from '@/lib/BlogsLink'
-import BlogsLinkMore from '@/lib/BlogsLinkMore'
-import { getCollection } from 'astro:content'
+import BlogLink from '@/lib/BlogLink'
+import BlogLinkMore from '@/lib/BlogLinkMore'
+import PostYear from '@/lib/PostYear'
+import Content from '@/components/Content.astro'
+import Masthead from '@/components/Masthead.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { siteMeta } from '@/consts'
-
-// 获取所有 Markdown 文件
-const allPosts = await getCollection('post')
-
-// 按年份分类和排序
-const postsByYear = allPosts.reduce((acc, post) => {
-  const year = post.data.pubDate.getFullYear();
-  acc[year] = acc[year] || [];
-  acc[year].push(post);
-  return acc;
-}, {});
-
-// 将年份排序，从新到旧
-const sortedYears = Object.keys(postsByYear).sort((a, b) => b - a)
+import { postsByYear, sortedYears } from '@/lib/post'
 ---
 
 <BaseLayout title={siteMeta.title} description={siteMeta.description}>
-  <section>
-    <ul class="max-w-2xl mx-auto">
+  <Masthead />
+  <Content>
+    <section>
       {
         sortedYears.map((year) => (
-          <li class="relative p-6">
-            <BlogsLink years={year} posts={postsByYear[year].slice(0, 6)} />
-            <BlogsLinkMore yearMore={year} />
-          </li>
+          <ul key={year}>
+            <PostYear postYear={year} />
+            <BlogLink posts={postsByYear[year].slice(0, 6)} />
+            <BlogLinkMore yearMore={year} />
+          </ul>
         ))
       }
-    </ul>
-  </section>
+    </section>
+  </Content>
 </BaseLayout>

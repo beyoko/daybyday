@@ -1,5 +1,20 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 
+const allPosts = await getCollection('post')
+
+// 按年份分类和排序
+const postsByYear = allPosts.reduce((acc, post) => {
+  const year = post.data.pubDate.getFullYear()
+  acc[year] = acc[year] || []
+  acc[year].push(post)
+  return acc
+}, {})
+
+// 将年份排序，从新到旧
+const sortedYears = Object.keys(postsByYear).sort(
+  (a, b) => parseInt(b) - parseInt(a),
+)
+
 // get `/content/post/*.md`
 const getPosts = async (): Promise<CollectionEntry<'post'>[]> => {
   const dateSortDesc = (a: string, b: string) => {
@@ -11,6 +26,11 @@ const getPosts = async (): Promise<CollectionEntry<'post'>[]> => {
     dateSortDesc(a.data.date, b.data.date),
   )
 }
+
+const allTags = new Set<string>()
+allPosts.map((post) => {
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
+})
 
 const getTags = async () => {
   const tagsCount: Record<string, number> = {}
@@ -79,6 +99,9 @@ const readingTime = (text) => {
 }
 
 export {
+  allPosts,
+  postsByYear,
+  sortedYears,
   getPosts,
   getTags,
   capitalize,

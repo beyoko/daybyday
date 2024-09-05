@@ -5,7 +5,7 @@ tags:
   - 'Security'
   - 'Dayily'
 description: '共用插座是否能产生数据流量'
-heroImage: '/public/cat01.png'
+heroImage: '@/assets/images/cat01.png'
 heroImageAlt: 'Q and A'
 ---
 

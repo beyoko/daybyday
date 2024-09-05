@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 
-export default () => {
+const ThemeToggleButton = () => {
   const [isMounted, setIsMounted] = useState(false)
   const [theme, setTheme] = useState(() => {
     if (import.meta.env.SSR) {
@@ -68,3 +68,5 @@ export default () => {
     </div>
   )
 }
+
+export default ThemeToggleButton

@@ -13,7 +13,7 @@ interface MarkdownHeaderProps {
   headings: Heading[]
 }
 
-export default ({ headings }: MarkdownHeaderProps) => {
+const MarkdownHeader = ({ headings }: MarkdownHeaderProps) => {
   const [currentHeading, setCurrentHeading] = useState<string>('')
   const [menuOpen, setMenuOpen] = useState(false)
   const [isMouseVisible, setIsMouseVisible] = useState(true)
@@ -95,7 +95,7 @@ export default ({ headings }: MarkdownHeaderProps) => {
       className={`
         flex rounded-md bg-gray-100 dark:bg-gray-900  opacity-70 hover:opacity-100
         ${currentHeading ? 'block' : 'hidden'}
-        `}
+      `}
     >
       {isMouseVisible ? (
         <div className="hidden md:block">
@@ -148,3 +148,4 @@ export default ({ headings }: MarkdownHeaderProps) => {
     </div>
   )
 }
+export default MarkdownHeader

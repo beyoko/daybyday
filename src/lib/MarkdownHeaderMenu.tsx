@@ -9,11 +9,11 @@ interface Heading {
   text: string
 }
 
-interface MarkdownHeaderProps {
+interface MarkdownHeaderMenuProps {
   headings: Heading[]
 }
 
-export default ({ headings }: MarkdownHeaderProps) => {
+const MarkdownHeaderMenu = ({ headings }: MarkdownHeaderMenuProps) => {
   const [currentHeading, setCurrentHeading] = useState<string>('')
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -116,3 +116,4 @@ export default ({ headings }: MarkdownHeaderProps) => {
     </div>
   )
 }
+export default MarkdownHeaderMenu

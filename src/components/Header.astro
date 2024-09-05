@@ -1,9 +1,11 @@
 ---
 import type { MarkdownHeading } from 'astro'
-import { getCollection } from 'astro:content'
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
+import { postsByYear, sortedYears } from '@/lib/post'
 import Link from '@/components/Link.astro'
+import BlogLinkMore from '@/lib/BlogLinkMore'
+import { allPosts } from '@/lib/post'
 import '@/styles/prism.css'
 
 export interface Props {
@@ -15,31 +17,30 @@ export interface Props {
   tags: string[]
 }
 
-const { tags = [] } = Astro.props
-
-const allPosts = await getCollection('post')
 const allTags = new Set<string>()
 allPosts.map((post) => {
   post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
 })
-
-console.log('Astro.props:', Astro.props)
-console.log('tags:', tags)
 ---
 
 <header class="sticky w-full p-2 z-20">
   <div class="mx-auto max-w-5xl">
     <nav class="flex items-center text-base gap-3 space-between">
       <Link href="/" data-astro-prefetch="false" className="group">
-        <h2 class="p-2 font-semibold antialiased" title="@JoYo">JoYo</h2>
+        <h2 class="pl-5 font-semibold antialiased" title="@JoYo">JoYo</h2>
       </Link>
 
       <div class="flex-1"></div>
 
-      <Link className="p-2" href="/blog">Blog</Link>
+      <Link className="hidden md:block p-2" href="/blog">Blog</Link>
       <Link className="hidden md:block p-2" href="/categories">Categories</Link>
       <div class="block md:hidden linkColor" title="Category">
-        <DropdownMenu client:visible tags={Array.from(allTags)} />
+        <DropdownMenu
+          client:visible
+          a1={Array.from(allTags)}
+          a2="categories"
+          a3="Categories"
+        />
       </div>
       <div class="linkColor" title="Theme">
         <ThemeToggleButton client:visible />

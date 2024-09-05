@@ -1,0 +1,45 @@
+---
+import type { MarkdownHeading } from 'astro'
+import Link from '@/components/Link.astro'
+import '@/styles/prism.css'
+
+type Props = {
+  headings: MarkdownHeading[]
+}
+
+const { headings } = Astro.props
+
+headings.filter((heading) => heading.depth <= 3)
+
+const toc = headings.filter(
+  (heading) =>
+    heading.depth <= 3 &&
+    !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
+)
+
+function getIndentation(level: number): string {
+  return `${(level - 1) * 2}ch`
+}
+---
+
+<div class="overflow-y-auto overscroll-contain rounded-md p-3">
+  <ol class="list-none pl-0 my-0 ml-1 relative">
+    {
+      toc.length > 0 &&
+        headings.map((heading) => (
+          <li
+            class="toc-item"
+            style={`padding-left: ${getIndentation(heading.depth)}`}
+          >
+            <Link
+              className={`block no-underline font-normal ${getIndentation(heading.depth)}`}
+              href={`#${heading.slug}`}
+            >
+              {heading.depth && '- '}
+              {heading.text}
+            </Link>
+          </li>
+        ))
+    }
+  </ol>
+</div>

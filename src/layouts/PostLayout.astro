@@ -16,14 +16,28 @@ type Props = {
   headings: MarkdownHeading[]
 }
 
-const { title, description, headings } = Astro.props
+const { title, description, headings, heroImage, heroImageAlt } = Astro.props
 ---
 
 <BaseLayout title={title + ` / ${siteMeta.title}`} description={description}>
   <Content className="markdown-body">
-    <h1 class="text-3xl my-1 font-roto flex">
+    <h1 class="text-3xl justify-center my-1 font-roto flex">
       {title}
     </h1>
+
+    <div class="mb-8">
+      {
+        heroImage && (
+          <img
+            class="border border-slate-300 dark:border-zinc-700 rounded-xl"
+            width={720}
+            height={360}
+            src={heroImage}
+            alt={heroImageAlt}
+          />
+        )
+      }
+    </div>
 
     <div class="border-top my-10"></div>
     <slot />
@@ -66,6 +80,9 @@ const { title, description, headings } = Astro.props
       }
       a {
         @apply underline underline-offset-4 text-black dark:text-white font-semibold decoration-gray-300 dark:decoration-gray-700 hover:decoration-black hover:dark:decoration-white transition-all;
+      }
+      .astro-code {
+        @apply p-3 border-2 border-gray-500 rounded-xl;
       }
     }
   </style>

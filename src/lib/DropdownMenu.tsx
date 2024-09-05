@@ -4,7 +4,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import '@/styles/prism.css'
 
 interface DropdownMenuProps {
-  tags: string[]
+  a1: string[]
+  a2: string
+  a3: string
 }
 
 interface DropdownMenuItemProps {
@@ -33,7 +35,7 @@ const DropdownMenuItem = ({ href, children }: DropdownMenuItemProps) => {
   )
 }
 
-export default ({ tags }: DropdownMenuProps) => {
+const DropdownMenu = ({ a1, a2, a3 }: DropdownMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -61,14 +63,14 @@ export default ({ tags }: DropdownMenuProps) => {
         leaveTo="opacity-0"
       >
         <Menu.Items className="bgCardColor opacity-70 hover:opacity-100 absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-l ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-3 py-2 font-bold text-xs">Categories</div>
-          {tags.map((tag) => {
+          <div className="px-3 py-2 font-bold text-xs">{a3}</div>
+          {a1.map((toggle) => {
             return (
               <DropdownMenuItem
-                key={tag}
-                href={`/categories/${tag.toLowerCase()}`}
+                key={toggle}
+                href={`/${a2}/${toggle.toLowerCase()}`}
               >
-                {tag}
+                {toggle}
               </DropdownMenuItem>
             )
           })}
@@ -77,3 +79,4 @@ export default ({ tags }: DropdownMenuProps) => {
     </Menu>
   )
 }
+export default DropdownMenu

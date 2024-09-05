@@ -1,11 +1,11 @@
 ---
 title: 'Markdown Style Guide'
-pubDate: '01/01/1900'
+pubDate: '01/02/1900'
 draft: false
 tags:
   - 'Demo'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-heroImage: '@/assets/images/fish.png'
+heroImage: '@/assets/images/cat01.png'
 heroImageAlt: 'build fish'
 ---
 

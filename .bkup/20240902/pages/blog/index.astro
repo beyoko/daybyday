@@ -1,0 +1,25 @@
+---
+import BlogLink from '@/lib/BlogLink'
+import BlogLinkMore from '@/lib/BlogLinkMore'
+import PostYear from '@/lib/PostYear'
+import Content from '@/components/Content.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { siteMeta } from '@/consts'
+import { postsByYear, sortedYears } from '@/lib/post'
+---
+
+<BaseLayout title={siteMeta.title} description={siteMeta.description}>
+  <Content>
+    <section>
+      {
+        sortedYears.map((year) => (
+        <ul key={year}>
+            <PostYear postYear={year} />
+            <BlogLink posts={postsByYear[year].slice(0, 6)} />
+            <BlogLinkMore yearMore={year} />
+          </ul>
+        ))
+      }
+    </section>
+  </Content>
+</BaseLayout>

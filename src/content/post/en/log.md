@@ -1,0 +1,135 @@
+---
+title: 'date-log'
+pubDate: '01/01/1900'
+draft: true
+tags:
+  - 'Demo'
+description: 'day to day, what im doing.'
+heroImageAlt: 'log'
+heroImage: '@/assets/images/fish.png'
+---
+
+# day
+- 04/09/2024: new function: `Masthead.astro` play video on first page.
+- 03/09/2024: add new function on `Header.astro`, use `DropdownMenu` output "Blog Year's"
+- 02/09/2024: "categories" problem is from `TagsLink` and `import { postsByYear, sortedYears } from '@/lib/post'` 
+- 31/08/2024: "categories" cant map `{tags}`
+- 30/08/2024: make code better to read and quick to edit `@/lib/post.ts`.
+- 28/08/2024: new roles to make a 'image-gallery'.
+- 27/08/2024: make a 'image-gallery', [for it sample]('https://juejin.cn/post/7365152703830638630'). and remove folder`/pubblic/`
+- 24/08/2024: add new function "React: {lazy, suspense} use `{suspense}` take `{useEffect}`" --> `themeButton`, `MarkdownHeader`, `MarkdownHeaderMenu`.
+- 23/08/2024: "[WARN] [router] A `getStaticPaths()` route pattern was matched, but no matching static path was found for requested path `/post/en/zh-cn/power-security`." dynamic routes being matched: `src/pages/post/[...slug].astro`.
+- 19/08/2024: add `Project.astro` to show new list for Project.
+- 17/08/2024: mix `BlogLink` ---> delete `PostDate` and `ReadTime`.
+- 16/08/2024: fix `BlogLink` timedate sort "b - a" problem.
+- 15/08/2024: (rebuild)`CategoryLayout.astro` finsh.
+- 14/08/2024: rebuild the `CategoryLayout.astro`. 2 version, 1. `Project.astro` new web. 2. `CategoryLayout.astro`, output look like `Blog.astro`: change `TagsLink.tsx`. has more about `BlogLink` need to fix it.
+- 13/08/2024: add `border-2` to `postlayout.astro` code style.
+- 10/08/2024: change `postlayout.astro` code style.
+- 09/08/2024: flash code `BlogYearPost` to `BlogsLink`, and make it better to read.
+- 08/08/2024: flash code `dropdownMenu.tsx`.
+- 05/08/2024: 1. add 'postlayout' title Icon (when i hover); 2. when i "hover key" show title `heroImage` and at the title end show Image Icon(when it has image).
+- 08/02/2024: change var style. still `blogyearpost.astro`
+- 01/08/2024: `postlayout.astro` change code css output style.
+- 31/07/2024: finsh 'ReadTime' function to `/blog/index.astro`.
+- 29/07/2024: 1. add "ReadTime" 2. transalted '.tsx' code style.
+- 27/07/2024: add `Masthead.tsx` to `Postlayouts.astro`. flex code style.
+- 26/07/2024: add timedate toggle title.
+- 07/25/2024: add list timedate for blog layouts.
+- 07/24/2024: 模块化`blog/index.astro`使其可在`blogYearList.astro`中复用.
+- 07/23/2024: finsh `/blog/index.astro` and `[year].astro`, all most... still need change `{year}` UI.
+- 22/07/2024: problem like day20. we need to learn what is `getStaticPaths`
+- 20/07/2024: `blog/index.astro`& `blog/[year].astro`, 解决动态函数的获取问题。
+- 18/07/2024: - `MarkdownHeader` cut the `const [markdownStatus, setMarkdownStatus] = useState(initialStatus)`, - use `hidden md:block`, `categoriesLayout` add bg to Card. - change `<Blog>` year UI - `<MarkdownHeader>` mouse cut.
+- 17/07/2024: make css better.
+- 07/16/2024: Detects when the mouse disappears in standby on the login side, and triggers conditions, e.g., when the mouse disappears, the specific text disappears with it.
+- 15/07/2024: add `prism.css` to all in one replay color.
+- 07/15/2024: change color "zinc" >> "gray".
+- 07/12/2024:  css better.
+- 11/07/2024: add new page `Blog/index` `BlogYearLayout`. function: categories year page.
+- 10/07/2024: des the `Header.astro`.
+- 09/07/2024: UI change. missing `index.astro` `<Image />`
+- 08/07/2024: 1. when `hover` CIC, `MarkdownHeader` hide. 2. on moblie, hide Markdown header Msg. 3. Change `PostLayout` Css look like [antfu](https://antfu.me). 4. move "Markdown Post" tags to `Header` 5. check `Postlayout` "hightlight" HTML code to change Css.
+- 06/07/2024: create a h line for `MarkdownHeader` title and button when hover.
+- 04/07/2024: change `MarkdownHeader` UI. (find the demo)
+- 02/07/2024: check new `BackToTopButton.tsx`. click the `MarkdownHeader`
+- 01/07/2024: edit `MarkdownHeader`. use 'Line' to connect 'TOC' and 'BacktoTopButton'. why has double UI.
+- 29/06/2024: when the page move to top, then menu will back to 'first look' `MarkdownHeader.tsx => (onClick={scrollToTop})` .
+- 27/06/2024: `MarkdownHeader.tsx` Menu highlight `{currentText}` 
+- 25/06/2024: check 'postlayout' tags, sort the line.
+- 24/06/2024: add privacy mode from `egashira.dev`
+- 12/06/2024: add `getReadingTime` function. but still not working.
+- 08/06/2024: when page top, only show heading title(not heading msg), hide `BacktoTopButton`
+- 05/06/2024: create a function: "Highlight Markdown page `<a/>` && opacity the other thinks". edit `MarkdownHeader` css, make some "muji".
+- 03/06/2024: dismantle `BackToButton` & `MarkdownHeader`. `MarkdownHeader` use `@headlessui/react`: check `@/lib/HeadingMenu`
+- 01/06/2024: mix `CurrentHeading` & `BacktoTopButton` & `TOC` to `MarkdownHeader`.  => import '@headlessui/react'
+- 29/05/2024: mix `CurrentHeading` and `BacktoTopButton`, and cut `BacktoTopButton` code `window.scrollY`...
+- 28/05/2024: move `CurrentHeading` to Top Bar - Center.
+- 27/05/2024: conform `CurrentHeading` and `BacktoTopButton` ==>> `MarkdownHeader`
+- 24/05/2024: try to make on `<...slug.astro>` to check "有内容时显示,无内容时不显示"
+- 18/05/2024: check `slug.astro`: `<CurrentHeading>` 有内容时显示,无内容时不显示
+- 17/05/2024: add a bottom bar. this bar display Heading N Toc.
+- 05/15/2024: move `*.tsx` to `@/lib/` to manager.
+- 14/05/2024: update TOC
+- 29/04/2024: `Postlayout.astro` fix markdown style.
+- 28/04/2024: need 2 fix 'TimeDate.astro' problem. change `Header.astro` home icon "border" to "- - - - -". change `Categories.astro` function: when click d button, look like `DropdownMenu.tsx`: find `@headlessui/react'` change the `{Menu}`.
+- 27/04/2024: move `TOC.astro` to page bottom, and create a "Header" bar to connect the toc link.
+- 26/04/2024: Toc problem maybe is come from `const { headings } = await post.render()`.
+- 25/04/2024: move Toc in `PostLayout.astro`, need setup `{...Astro.props}` on `[...slug].astro`, but when i move to `Header.astro`, still error `render()`
+- 24/04/2024: make Toc to a Menu
+- 23/04/2024: 'imageZoomIn' && 'Toc make it look like `DropdownMenu.tsx`' 
+- 22/04/2024: imageZoomIn: cant not click on mouse or click nothing happen.
+- 19/04/2024: add Image ZoomIn function.
+- 16/04/2024: CateCard new function: when mouse hover on the card, line 66~84 full the image. (use React: useState).
+- 15/04/2024: Link Cards new function: opacity(move on the card, lift the card). !!!! but 66~84 width not match Image.
+- 09/04/2024: something warn with `Cate...Layout.astro` Image style: `rounded-xl`  missing.
+- 08/04/2024: [check this](https://github.com/ega4432/egashira.dev/blob/main/scripts/new-post.ts) `package.json` update `pritytown`
+- 07/04/2024: maybe need stop now, running other project.
+- 02/04/2024: still realtime toc problem, maybe i can looking at `[id].astro` && `Cat...Layout.astro`.
+- 01/04/2024: follow and show the headings string in `Header.astro`. maybe look like `Location.astro`, look at `[...slug].astro` line 20, filter headings.
+- 30/03/2024: fix <Image /> version update, `@astro/image` remove: image base in astro.
+- 28/03/2024: `<Image />` still not working
+- 27/03/2024: version 2.0 >>> 4.0 and mark cn notes.
+- 20/03/2024: fix `post.formatter.title/pubDate` >> `post.data.title/pubDate` || `const allPosts = await getCollection('post')`
+- 19/03/2024: look it that full info for rebuild [rebuild](https://docs.astro.build/zh-cn/guides/content-collections/) and ['pages/posts > content/posts'](https://github.com/withastro/blog-tutorial-demo)
+- 18/03/2024: edit `CategoryLayout.astro && [id].astro` look like `PostLayout.astro && [...slug.astro]`
+- 18/03/2024: rebuild `BaseLayout.astro` code
+- 16/03/2024: step to `@/content/` when click markdown file error: "content config failed to load.", i added `config.ts` in content folder. but still output this error.
+- 11/03/2024: `Toc.astro` and `[...slug].astro` add to `Post.astro`
+- 11/03/2024: `Toc.astro` and `[...slug].astro` add to `Post.astro`
+- 07/03/2024: 1. add Tags function to `Post.astro` when i click >> Cat 2. edit `Post.astro` && `<MarkdownLayout>`
+- 06/03/2024: `google*.astro` && `<div>Ad</div>` 是广告栏. Toc 位置在`[...slug].astro`, 重点查阅！
+- 05/03/2024: learn jp version, like def version
+- 04/03/2024: `error Cannot find module '@lib/utils/dateSortDesc' imported from '/home/oho/gt/test/daybyday/src/lib/post.ts'`
+- 28/03/2024: fix `formatterdate` && `tags` problem
+- 28/03/2024: fix `Categories.astro` problem.
+- 27/03/2024: rebuild `Categories` >> `tags`[tags](https://docs.astro.build/zh-cn/tutorial/5-astro-api/2/)
+- 26/03/2024: find way to enable `overflow-hidden`.
+- 25/03/2024: add `PostListItem.astro` find way to enable `overflow-hidden`.
+- 23/03/2024: add image with link. showing up underline on image bottom
+- 22/03/2024: title on image. bagpack `index.astro` `<ul>`info
+- 20/03/2024: edit `post.data.*` to image(inside). look like "markdowner" blog
+- 15/03/2024: recheck code, delete long
+- 14/03/2024: check types and only in file. (delete `consts.ts` interface.)
+- 13/03/2024: add Tags function on `Post.astro`
+- 04/03/2024: rebuild `/Layouts/` & `/pages/`
+- 02/03/2024: `yarn add rehype-autolink-headings rehype-toc`
+- 01/03/2024: check `/layout/Post.astro` or `/components/Link.astro` or `/components/Toc.astro`
+- 27/02/2024: when you need to hide `Header.astro`, try `BackToTopButton.tsx`.
+- 27/02/2024: TOC package translation - `rehype-slug rehype-toc`. [reading](https://raahii.me/posts/add-toc-to-astro-blog/)
+- 18/02/2024: add TOC to `Post.astro` in bottom. by [Astro-Toc](https://dev.to/dailydevtips1/adding-a-toc-in-astro-4keh?comments_sort=top)
+- 18/02/2024: look it `TableToContents.astro`[TableToContents.astro](https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3)
+- 07/02/2024: comparison def version(craftzdog)
+- 06/02/2024: 1. change `ThemeToggleMenu.tsx` to `ThemeToggleButton`. 2. why phone mode not effice
+- 05/02/2024: works `memo.astro` tags stone
+- 30/01/2024: check this page to learn Astro [link](https://docs.astro.build/en/guides/content-collections/).
+- 27/01/2024: when i 'running down' d page, header will be hidden.
+- 25/01/2024: `Header.astro` tags link highlight && Album Gallery
+- 23/01/2024: `Layouts/Posts.astro`-Line 72, mouse hightlight show copy icon
+- 17/01/2024: tags 上检索的卡片展示预览 markdown 中内容的前 30%
+- explain all code by gpt(to know what mean).
+- 16/01/2024: make a navigation bar about markdown title in the bottom of page
+- 15/01/2024: 1. page change theme "shining". 2. theme menu dark mode bakcground color 3. auto logo change to $theme(dark or light)
+- 10/01/2024: input all file **Types**
+- 09/01/2024: 底部添加非全屏内容**导航栏**
+- 02/01/2024: when header title more then screen, left right touch bar can move the title

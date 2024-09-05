@@ -6,7 +6,7 @@ tags:
   - 'systemd'
   - 'DNS'
 description: 'DNS 导致网页无法连通，配置文件修正。'
-heroImage: '/public/cat02.png'
+heroImage: '@/assets/images/cat02.png'
 heroImageAlt: 'build fish'
 ---
 

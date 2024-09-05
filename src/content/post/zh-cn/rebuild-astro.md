@@ -5,7 +5,7 @@ draft: true
 tags:
   - 'Astro'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-heroImage: '/public/cat02.png'
+heroImage: '@/assets/images/cat02.png'
 heroImageAlt: 'build fish'
 ---
 

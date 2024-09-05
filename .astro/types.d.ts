@@ -140,6 +140,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"en/log.md": {
+	id: "en/log.md";
+  slug: "en/log";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "zh-cn/archDowngrade.md": {
 	id: "zh-cn/archDowngrade.md";
   slug: "zh-cn/archdowngrade";

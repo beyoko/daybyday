@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Content from '@/components/Content.astro'
+import Masthead from '@/components/Masthead.astro'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 ---
 
 <BaseLayout title={siteMeta.title} description={siteMeta.description}>
+  <Masthead />
   <Content>
     <section>
       <p class="textColor mb-8 indent-4 p-4">
