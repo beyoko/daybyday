@@ -32,7 +32,7 @@ allPosts.map((post) => {
 
       <div class="flex-1"></div>
 
-      <Link className="hidden md:block p-2" href="/blog">Blog</Link>
+      <Link className="p-2" href="/blog">Blog</Link>
       <Link className="hidden md:block p-2" href="/categories">Categories</Link>
       <div class="block md:hidden linkColor" title="Category">
         <DropdownMenu
@@ -42,7 +42,7 @@ allPosts.map((post) => {
           a3="Categories"
         />
       </div>
-      <div class="linkColor" title="Theme">
+      <div class="linkColor p-2" title="Theme">
         <ThemeToggleButton client:visible />
       </div>
     </nav>
