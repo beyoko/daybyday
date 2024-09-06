@@ -10,6 +10,7 @@ heroImage: '@/assets/images/fish.png'
 ---
 
 # day
+- 05/09/2024: new log "12:27:08 [WARN] [router] A `getStaticPaths()` route pattern was matched, but no matching static path was found for requested path `/post/en/[object%20Object]`."
 - 04/09/2024: new function: `Masthead.astro` play video on first page.
 - 03/09/2024: add new function on `Header.astro`, use `DropdownMenu` output "Blog Year's"
 - 02/09/2024: "categories" problem is from `TagsLink` and `import { postsByYear, sortedYears } from '@/lib/post'` 

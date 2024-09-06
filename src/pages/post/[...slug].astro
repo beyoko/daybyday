@@ -11,7 +11,7 @@ type Props = {
 export const getStaticPaths = async () => {
   const allPosts = await getCollection('post', excludeDrafts)
 
-  return allPosts.map((post) => ({
+  return Array.from(allPosts).map((post) => ({
     params: {
       slug: post.slug,
     },
@@ -20,7 +20,7 @@ export const getStaticPaths = async () => {
     },
   }))
 }
-const { blog } = Astro.props
+  const { blog } = Astro.props
 
 if (blog === undefined) {
   return Astro.redirect('/404')
