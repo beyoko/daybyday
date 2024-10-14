@@ -31,6 +31,10 @@ footer {
   @apply text-gray-300 dark:text-gray-700;
 }
 
+.mastheadTextColor {
+  color: #ff8c00;
+}
+
 .toc-item {
   display: flex;
   align-items: center;

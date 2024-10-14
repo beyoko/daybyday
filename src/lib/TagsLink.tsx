@@ -1,17 +1,15 @@
+import { TagsLinkProps } from '@/lib/types'
 import '@/styles/prism.css'
 
-type Props = {
-  tags: string[]
-  includeComma: boolean
-}
-
-export default ({ tags = [] }: Props) =>
+const TagsLink = ({ tags = [], classNames = [] }: TagsLinkProps) =>
   tags.map((tag) => {
     return (
-      <a key={tag} href={`/categories/${tag.toLowerCase()}`}>
-        <p className="linkColor underline underline-offset-4 decoration-gray-300 dark:decoration-gray-700 hover:decoration-black dark:hover:decoration-white transition-all">
+      <a className={classNames} href={`/categories/${tag.toLowerCase()}`}>
+        <p className="linkColor decoration-gray-300 dark:decoration-gray-700 hover:decoration-black dark:hover:decoration-white transition-all">
           {tag}
         </p>
       </a>
     )
   })
+
+export default TagsLink

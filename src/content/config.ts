@@ -17,10 +17,12 @@ const postCollection = defineCollection({
         .optional()
         .transform((str) => (str ? new Date(str) : undefined)),
       // heroImage: z.string().optional()
-      heroImage: image().refine((img) => img.width >= 720, {
-        message: 'Your cover image must be at least 1080 pixels wide!',
-      }),
-      heroImageAlt: z.string(),
+      heroImage: image()
+        .refine((img) => img.width >= 720, {
+          message: 'Your cover image must be at least 1080 pixels wide!',
+        })
+        .optional(),
+      heroImageAlt: z.string().optional(),
       tags: z.array(z.string()).optional(),
     }),
 })

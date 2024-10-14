@@ -3,11 +3,8 @@ title: 'DNS的配置失误: 流量无法输出输入'
 pubDate: '02/07/2024'
 draft: true
 tags:
-  - 'systemd'
-  - 'DNS'
+  - 'Record'
 description: 'DNS 导致网页无法连通，配置文件修正。'
-heroImage: '@/assets/images/cat02.png'
-heroImageAlt: 'build fish'
 ---
 
 # 无法连接网页

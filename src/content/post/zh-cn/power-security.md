@@ -2,11 +2,8 @@
 title: '公用插座产生的数据疑虑'
 pubDate: '07/15/2024'
 tags:
-  - 'Security'
-  - 'Dayily'
+  - 'Record'
 description: '共用插座是否能产生数据流量'
-heroImage: '@/assets/images/cat01.png'
-heroImageAlt: 'Q and A'
 ---
 
 ## 缘由

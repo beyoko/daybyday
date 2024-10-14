@@ -1,18 +1,8 @@
 import { useState, Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import { DropdownMenuItemProps } from '@/lib/types'
 import '@/styles/prism.css'
-
-interface DropdownMenuProps {
-  a1: string[]
-  a2: string
-  a3: string
-}
-
-interface DropdownMenuItemProps {
-  href: string
-  children: React.ReactNode
-}
 
 const DropdownMenuItem = ({ href, children }: DropdownMenuItemProps) => {
   const DropdownMenuItemClassNames = (...classes: string[]) => {
@@ -35,7 +25,7 @@ const DropdownMenuItem = ({ href, children }: DropdownMenuItemProps) => {
   )
 }
 
-const DropdownMenu = ({ a1, a2, a3 }: DropdownMenuProps) => {
+const DropdownMenu = ({ tags }: DropdownMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -62,13 +52,12 @@ const DropdownMenu = ({ a1, a2, a3 }: DropdownMenuProps) => {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Menu.Items className="bgCardColor opacity-70 hover:opacity-100 absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-l ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-3 py-2 font-bold text-xs">{a3}</div>
-          {a1.map((toggle) => {
+        <Menu.Items className="bgCardColor absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-l ring-1 ring-black ring-opacity-5 focus:outline-none">
+          {tags.map((toggle) => {
             return (
               <DropdownMenuItem
                 key={toggle}
-                href={`/${a2}/${toggle.toLowerCase()}`}
+                href={`/categories/${toggle.toLowerCase()}`}
               >
                 {toggle}
               </DropdownMenuItem>

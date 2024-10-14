@@ -72,13 +72,14 @@ const sortBlogPosts = (
   })
 }
 
-const buildHierarchy = (headings: any) => {
-  const toc: any[] = []
+// *:any (before)
+const buildHierarchy = (headings: string) => {
+  const toc: string[] = []
   const parentHeadings = new Map()
 
   if (!headings) return toc
 
-  headings.forEach((h: any) => {
+  headings.forEach((h: string) => {
     const heading = { ...h, subheadings: [] }
     parentHeadings.set(heading.depth, heading)
     // Change 2 to 1 if your markdown includes your <h1>
@@ -91,9 +92,9 @@ const buildHierarchy = (headings: any) => {
   return toc
 }
 
-const readingTime = (text) => {
+const readingTime = (word): number => {
   const wordsPerMinute = 200 // 平均阅读速度
-  const words = text.split(/\s+/).length // 计算单词总数
+  const words = word.split(/\s+/).length // 计算单词总数
   const minutes = Math.ceil(words / wordsPerMinute) // 向上取整计算阅读时间
   return minutes
 }
@@ -106,6 +107,5 @@ export {
   getTags,
   capitalize,
   excludeDrafts,
-  buildHierarchy,
   readingTime,
 }

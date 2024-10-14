@@ -1,4 +1,11 @@
 ## need 2 do
+- every year more 5 list. click "more" to see all list.
+- find the way fix `CategoryLayout.astro` link up lazy problem.
+- short `.tsx` file. back to astro style. make it fast.
+- new function: `PostLayout.astro` connet local `.md`, look like IOS, windows up.
+- change <a> `href` = `{post.url}` look like "craftdog", make it fast. is to low. 
+- code fast and clean. del the "opacity". all clear it.
+- fix 'imageHero' cant output.
 - `BlogLink` phone version.
 - add `imageGally`.
 - add new Website to show Project. (fix `/content/project` output markdown style error)

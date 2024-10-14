@@ -1,12 +1,10 @@
 ---
-title: '记一次滚坏后回滚修复'
+title: '系统升级后的回滚修复'
 pubDate: '06/23/2024'
 draft: true
 tags:
-  - 'Archlinux'
+  - 'Record'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-heroImage: '@/assets/images/fish.png'
-heroImageAlt: 'build fish'
 ---
 
 # 升级后无法进行WIFI链接

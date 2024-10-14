@@ -3,10 +3,8 @@ title: '电源记录'
 pubDate: '07/08/2024'
 draft: false
 tags:
-  - 'Laptop_battery'
+  - 'Record'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-heroImage: '@/assets/images/cat01.png'
-heroImageAlt: 'battery'
 ---
 
 # time: 2024/07/08

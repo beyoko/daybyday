@@ -140,16 +140,16 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"en/log.md": {
-	id: "en/log.md";
-  slug: "en/log";
+"zh-cn/archDowngrade.md": {
+	id: "zh-cn/archDowngrade.md";
+  slug: "zh-cn/archdowngrade";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/archDowngrade.md": {
-	id: "zh-cn/archDowngrade.md";
-  slug: "zh-cn/archdowngrade";
+"zh-cn/archlinux-install-kvm.md": {
+	id: "zh-cn/archlinux-install-kvm.md";
+  slug: "zh-cn/archlinux-install-kvm";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
@@ -168,6 +168,34 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"zh-cn/kvm-nas-file-share.md": {
+	id: "zh-cn/kvm-nas-file-share.md";
+  slug: "zh-cn/kvm-nas-file-share";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/kvm-nat-port-forwarding.md": {
+	id: "zh-cn/kvm-nat-port-forwarding.md";
+  slug: "zh-cn/kvm-nat-port-forwarding";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/kvm-security.md": {
+	id: "zh-cn/kvm-security.md";
+  slug: "zh-cn/kvm-security";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/log.md": {
+	id: "zh-cn/log.md";
+  slug: "zh-cn/log";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "zh-cn/network-lost.md": {
 	id: "zh-cn/network-lost.md";
   slug: "zh-cn/network-lost";
@@ -175,9 +203,16 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/podman.md": {
-	id: "zh-cn/podman.md";
-  slug: "zh-cn/podman";
+"zh-cn/niri_windows_manager.md": {
+	id: "zh-cn/niri_windows_manager.md";
+  slug: "zh-cn/niri_windows_manager";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/omv_file_name_2_long.md": {
+	id: "zh-cn/omv_file_name_2_long.md";
+  slug: "zh-cn/omv_file_name_2_long";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
@@ -189,16 +224,23 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/rebuild-astro.md": {
-	id: "zh-cn/rebuild-astro.md";
-  slug: "zh-cn/rebuild-astro";
+"zh-cn/raspberryPi_home_cam.md": {
+	id: "zh-cn/raspberryPi_home_cam.md";
+  slug: "zh-cn/raspberrypi_home_cam";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/rebuild-nextjs.md": {
-	id: "zh-cn/rebuild-nextjs.md";
-  slug: "zh-cn/rebuild-nextjs";
+"zh-cn/ufw-kvm-qemu-network.md": {
+	id: "zh-cn/ufw-kvm-qemu-network.md";
+  slug: "zh-cn/ufw-kvm-qemu-network";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"zh-cn/zellij.md": {
+	id: "zh-cn/zellij.md";
+  slug: "zh-cn/zellij";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">

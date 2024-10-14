@@ -2,11 +2,8 @@
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Location from '@/components/Location.astro'
-import Masthead from '@/components/Masthead.astro'
 import Content from '@/components/Content.astro'
-import BlogLink from '@/lib/BlogLink'
-import PostYear from '@/lib/PostYear'
-import { allPosts } from '@/lib/post'
+import { allPosts, readingTime } from '@/lib/post'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 
@@ -15,53 +12,69 @@ interface Props {
     title: string
     description: string
     pubDate: Date
-    heroImage: {
-      src: string
-      height: number
-      width: number
-    }
-    heroImageAlt: string
   }
-  updatedDate?: Date | undefined
   tags?: string[] | undefined
   category: CollectionEntry<'post'>
   date: string
 }
 
+// 从 Astro.props 中解构出 category
 const { category } = Astro.props
 
+// 筛选符合指定类别的文章
 const categoryPosts = allPosts
   .filter(
     (item) =>
       Array.isArray(item.data.tags) && item.data.tags.includes(category),
   )
-  .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate))
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+  )
 
-const postsByYear = categoryPosts.reduce((acc, post) => {
-  const year = post.data.pubDate.getFullYear()
-  acc[year] = acc[year] || []
-  if (acc[year].length < 6) acc[year].push(post)
-  return acc
-}, {})
-
-const sortedYears = Object.keys(postsByYear).sort(
-  (a, b) => parseInt(b) - parseInt(a),
-)
+// 将文章按年份分组，每年最多展示6篇
+const postsByYear = Object.entries(
+  categoryPosts.reduce((acc: Record<number, typeof categoryPosts>, post) => {
+    const year = new Date(post.data.pubDate).getFullYear()
+    if (!acc[year]) acc[year] = []
+    if (acc[year].length < 6) acc[year].push(post)
+    return acc
+  }, {}),
+).sort(([yearA], [yearB]) => Number(yearB) - Number(yearA)) // 按年份排序
 ---
 
 <BaseLayout
-  title={category + ` / ${siteMeta.title}`}
+  title={`${category} / ${siteMeta.title}`}
   description={siteMeta.description}
 >
-  <Masthead />
   <Content>
     <Location>[ {category} ]</Location>
     <section>
       {
-        sortedYears.map((year) => (
-          <ul class="relative p-6">
-            <PostYear postYear={year} />
-            <BlogLink posts={postsByYear[year]} />
+        postsByYear.map(([year, posts]) => (
+          <ul class="relative p-6" key={year}>
+            <span class="secColor absolute right-5 top-2 text-6xl md:text-8xl stroke-[2px]">
+              {year}
+            </span>
+            {posts.map((post) => (
+              <li class="flex flex-col md:flex-row mb-6 mt-2" key={post.slug}>
+                <a
+                  class="linkColor block font-normal no-underline md:mr-3 z-10"
+                  href={`/post/${post.slug}`}
+                >
+                  {post.data.title}
+                </a>
+                <div class="secColor flex flex-row mt-2 md:mt-0">
+                  <span>
+                    {new Date(post.data.pubDate).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: '2-digit',
+                    })}
+                  </span>
+                  <span> · {readingTime(post.body)} Min</span>
+                </div>
+              </li>
+            ))}
           </ul>
         ))
       }

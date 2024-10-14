@@ -1,17 +1,6 @@
 import { readingTime } from '@/lib/post'
+import { BlogLinkProps } from '@/lib/types'
 import '@/styles/prism.css'
-
-interface Post {
-  slug: string
-  data: {
-    title: string
-    pubDate: string
-  }
-}
-
-interface BlogLinkProps {
-  posts: Post[]
-}
 
 const BlogLink = ({ years, posts }: BlogLinkProps) => {
   const sortedPosts = posts.sort((a, b) => {
@@ -21,7 +10,7 @@ const BlogLink = ({ years, posts }: BlogLinkProps) => {
   })
 
   return sortedPosts.map((post) => (
-    <div className="flex flex-col md:flex-row mb-6 mt-2">
+    <li className="flex flex-col md:flex-row mb-6 mt-2">
       <a
         className="linkColor block font-normal no-underline md:mr-3 z-10"
         href={`/post/${post.slug}`}
@@ -37,7 +26,7 @@ const BlogLink = ({ years, posts }: BlogLinkProps) => {
         </span>
         <span> ·{readingTime(post.body)} Min</span>
       </div>
-    </div>
+    </li>
   ))
 }
 export default BlogLink

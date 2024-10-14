@@ -3,13 +3,19 @@ title: 'date-log'
 pubDate: '01/01/1900'
 draft: true
 tags:
-  - 'Demo'
+  - 'Update'
 description: 'day to day, what im doing.'
 heroImageAlt: 'log'
-heroImage: '@/assets/images/fish.png'
+heroImage: '/src/assets/images/log.png'
 ---
 
 # day
+- 23/09/2024: add `optional()` to `@/src/content/config.ts` --- `heroImageAlt` and `heroImage`. even though not "heroImage" and "heroImageAlt" in markdown file, server still working.
+- 20/09/2024: remove `import Masthead from '@/components/Masthead.astro'` from `CategoryLayout.astro`. only live on `index.astro`.
+- 14/09/2024: update Note `ufw-kvm-qemu-network.md`
+- 10/09/2024: 1. change `blog/[year].astro` "parms" >> "props" 2. remove `MarkdownHeader` "opacity".
+- 08/09/2024: 1. remove `Blog.astro`. 2. move `TagsLink.tsx` to `Header.astro`. 3. `PostLayout.astro` "map.(h12345) => underline" 4. `DropdownMenu.tsx` remove "opacity".
+- 07/09/2024: make the code fast and clean.
 - 05/09/2024: new log "12:27:08 [WARN] [router] A `getStaticPaths()` route pattern was matched, but no matching static path was found for requested path `/post/en/[object%20Object]`."
 - 04/09/2024: new function: `Masthead.astro` play video on first page.
 - 03/09/2024: add new function on `Header.astro`, use `DropdownMenu` output "Blog Year's"

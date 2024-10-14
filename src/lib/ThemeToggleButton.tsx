@@ -2,21 +2,17 @@ import { useEffect, useState } from 'react'
 import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 
 const ThemeToggleButton = () => {
-  const [isMounted, setIsMounted] = useState(false)
   const [theme, setTheme] = useState(() => {
-    if (import.meta.env.SSR) {
-      return undefined
-    }
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+    if (typeof window !== 'undefined' && localStorage.getItem('theme')) {
       return localStorage.getItem('theme')
     }
-    return 'light'
+    return 'light' // Default to 'light'
   })
 
   const toggleTheme = () => {
-    const t = theme === 'light' ? 'dark' : 'light'
-    localStorage.setItem('theme', t)
-    setTheme(t)
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    localStorage.setItem('theme', newTheme)
+    setTheme(newTheme)
   }
 
   useEffect(() => {
@@ -26,13 +22,7 @@ const ThemeToggleButton = () => {
     } else {
       root.classList.add('dark')
     }
-  }, [theme])
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  useEffect(() => {
     const handleStorageChange = () => {
       const storedTheme = localStorage.getItem('theme')
       if (storedTheme && storedTheme !== theme) {
@@ -41,21 +31,13 @@ const ThemeToggleButton = () => {
     }
 
     window.addEventListener('storage', handleStorageChange)
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-    }
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [theme])
-
-  if (!isMounted) {
-    return <div />
-  }
 
   return (
     <div className="inline-flex">
       <button
-        className={`${theme === 'light'} 
-          cursor-pointer p-2 `}
+        className="cursor-pointer p-2 linkColor"
         onClick={toggleTheme}
         aria-label="Toggle theme"
       >
