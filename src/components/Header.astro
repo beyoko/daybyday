@@ -4,7 +4,7 @@ import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
 import Link from '@/components/Link.astro'
 import TagsLink from '@/lib/TagsLink'
-import { allPosts } from '@/lib/post'
+import { allPosts, allTags } from '@/lib/post'
 import '@/styles/prism.css'
 
 export interface Props {
@@ -15,11 +15,6 @@ export interface Props {
   description: string
   tags: string[]
 }
-
-const allTags = new Set<string>()
-allPosts.map((post) => {
-  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
-})
 
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' }),
@@ -36,7 +31,20 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
       <div class="flex-1"></div>
 
       <div class="flex flex-wrap gap-2">
-        <TagsLink classNames="hidden md:block p-2" tags={sortedTags} />
+      {
+        sortedTags.map((tag): string[] => {
+          return (
+            <a
+              class="hidden md:block p-2"
+              href={`/categories/${tag.toLowerCase()}`}
+            >
+              <p class="linkColor decoration-gray-300 dark:decoration-gray-700 hover:decoration-black dark:hover:decoration-white transition-all">
+                {tag}
+              </p>
+            </a>
+          )
+        })
+      }
       </div>
       <div class="block md:hidden linkColor" title="Category">
         <DropdownMenu client:visible tags={Array.from(allTags)} />

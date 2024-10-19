@@ -1,19 +1,10 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
+import { MarkdownHeaderProps, HeadingProps } from '@/lib/types'
 import '@/styles/prism.css'
 
-interface Heading {
-  depth: number
-  slug: string
-  text: string
-}
-
-interface MarkdownHeaderProps {
-  headings: Heading[]
-}
-
-const MarkdownHeader = ({ headings }: MarkdownHeaderProps) => {
+export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
   const [currentHeading, setCurrentHeading] = useState<string>('')
   const [menuOpen, setMenuOpen] = useState(false)
   const [isMouseVisible, setIsMouseVisible] = useState(true)
@@ -119,20 +110,24 @@ const MarkdownHeader = ({ headings }: MarkdownHeaderProps) => {
               <aside className="xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6">
                 {toc.length > 0 && (
                   <ul className="overflow-y-auto max-h-96">
-                    {toc.map((heading) => (
-                      <li
-                        key={heading.slug}
-                        className="flex"
-                        style={{ paddingLeft: `${(heading.depth - 1) * 2}ch` }}
-                      >
-                        <a
-                          className="p-1 textHeaderColor opacity-50 hover:opacity-100"
-                          href={`#${heading.slug}`}
+                    {toc.map(
+                      (heading): HeadingProps => (
+                        <li
+                          key={heading.slug}
+                          className="flex"
+                          style={{
+                            paddingLeft: `${(heading.depth - 1) * 2}ch`,
+                          }}
                         >
-                          {heading.text}
-                        </a>
-                      </li>
-                    ))}
+                          <a
+                            className="p-1 textHeaderColor opacity-50 hover:opacity-100"
+                            href={`#${heading.slug}`}
+                          >
+                            {heading.text}
+                          </a>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 )}
               </aside>
@@ -144,5 +139,3 @@ const MarkdownHeader = ({ headings }: MarkdownHeaderProps) => {
     </div>
   )
 }
-
-export default MarkdownHeader

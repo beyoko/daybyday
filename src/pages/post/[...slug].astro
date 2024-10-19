@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
-import { excludeDrafts } from '@/lib/post'
 import PostLayout from '@/layouts/PostLayout.astro'
 
 type Props = {
@@ -9,9 +8,13 @@ type Props = {
 }
 
 export const getStaticPaths = async () => {
+  const excludeDrafts = ({ data }: CollectionEntry<'post'>): boolean => {
+    // Usually this should be like this - import.meta.env.PROD ? !data.draft : true; but for the purpose of the demo, we are displaying drafts as well
+    return import.meta.env.PROD ? true : true
+  }
   const allPosts = await getCollection('post', excludeDrafts)
 
-  return Array.from(allPosts).map((post) => ({
+  return Array.from(allPosts).map((post): string => ({
     params: {
       slug: post.slug,
     },

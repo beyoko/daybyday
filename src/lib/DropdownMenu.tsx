@@ -1,50 +1,34 @@
 import { useState, Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
-import { DropdownMenuItemProps } from '@/lib/types'
+import { DropdownMenuProps } from '@/lib/types'
+import DropdownMenuItem from '@/lib/DropdownMenuItem'
 import '@/styles/prism.css'
 
-const DropdownMenuItem = ({ href, children }: DropdownMenuItemProps) => {
-  const DropdownMenuItemClassNames = (...classes: string[]) => {
-    return classes.filter(Boolean).join(' ')
-  }
-  return (
-    <Menu.Item>
-      {({ active }) => (
-        <a
-          href={href}
-          className={DropdownMenuItemClassNames(
-            active ? 'borderLeftColor' : '',
-            'block px-4 py-2 text-sm',
-          )}
-        >
-          {children}
-        </a>
-      )}
-    </Menu.Item>
-  )
-}
-
-const DropdownMenu = ({ tags }: DropdownMenuProps) => {
+export default function DropdownMenu({ tags }: DropdownMenuProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggle = () => setMenuOpen(!menuOpen)
 
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="inline-flex justify-center p-2 text-sm"
-        aria-label="menu"
-      >
-        {menuOpen ? (
-          <XMarkIcon className="h-5 w-5" />
-        ) : (
-          <Bars3Icon className="h-5 w-5" />
-        )}
-      </Menu.Button>
+      <div>
+        <Menu.Button
+          onClick={toggle}
+          className="inline-flex justify-center p-2 text-sm"
+          aria-label="menu"
+        >
+          {menuOpen ? (
+            <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+          ) : (
+            <Bars3Icon className="h-5 w-5" aria-hidden="true" />
+          )}
+        </Menu.Button>
+      </div>
 
       <Transition
-        show={menuOpen}
         as={Fragment}
+        show={menuOpen}
         enter="transition-opacity duration-75"
         enterFrom="opacity-0"
         enterTo="opacity-100"
@@ -52,20 +36,28 @@ const DropdownMenu = ({ tags }: DropdownMenuProps) => {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Menu.Items className="bgCardColor absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-l ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {tags.map((toggle) => {
-            return (
-              <DropdownMenuItem
-                key={toggle}
-                href={`/categories/${toggle.toLowerCase()}`}
-              >
-                {toggle}
-              </DropdownMenuItem>
-            )
-          })}
+        <Menu.Items
+          static
+          className="bgCardColor absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        >
+          <div className="py-1">
+            {tags.map((tag) => (
+              <Menu.Item key={tag}>
+                {({ active }) => (
+                  <a
+                    href={`/categories/${tag.toLowerCase()}`}
+                    className={`${
+                      active ? 'bg-gray-100' : ''
+                    } block px-4 py-2 text-sm text-gray-700`}
+                  >
+                    {tag}
+                  </a>
+                )}
+              </Menu.Item>
+            ))}
+          </div>
         </Menu.Items>
       </Transition>
     </Menu>
   )
 }
-export default DropdownMenu

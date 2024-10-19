@@ -2,8 +2,9 @@
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Location from '@/components/Location.astro'
+import Link from '@/components/Link.astro'
 import Content from '@/components/Content.astro'
-import { allPosts, readingTime } from '@/lib/post'
+import { allPosts } from '@/lib/post'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 
@@ -32,7 +33,7 @@ const categoryPosts = allPosts
       new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
   )
 
-// 将文章按年份分组，每年最多展示6篇
+// 文章按年份分组，每年最多展示6篇
 const postsByYear = Object.entries(
   categoryPosts.reduce((acc: Record<number, typeof categoryPosts>, post) => {
     const year = new Date(post.data.pubDate).getFullYear()
@@ -41,6 +42,14 @@ const postsByYear = Object.entries(
     return acc
   }, {}),
 ).sort(([yearA], [yearB]) => Number(yearB) - Number(yearA)) // 按年份排序
+
+// 阅读时间
+const readingTime = (word): number => {
+  const wordsPerMinute = 200 // 平均阅读速度
+  const words = word.split(/\s+/).length // 计算单词总数
+  const minutes = Math.ceil(words / wordsPerMinute) // 向上取整计算阅读时间
+  return minutes
+}
 ---
 
 <BaseLayout
@@ -51,19 +60,16 @@ const postsByYear = Object.entries(
     <Location>[ {category} ]</Location>
     <section>
       {
-        postsByYear.map(([year, posts]) => (
+        postsByYear.map(([year, posts]: number, string) => (
           <ul class="relative p-6" key={year}>
             <span class="secColor absolute right-5 top-2 text-6xl md:text-8xl stroke-[2px]">
               {year}
             </span>
             {posts.map((post) => (
-              <li class="flex flex-col md:flex-row mb-6 mt-2" key={post.slug}>
-                <a
-                  class="linkColor block font-normal no-underline md:mr-3 z-10"
-                  href={`/post/${post.slug}`}
-                >
+              <li class="flex flex-col md:flex-row mb-6 mt-2">
+                <Link href={`/post/${post.slug}`}>
                   {post.data.title}
-                </a>
+                </Link>
                 <div class="secColor flex flex-row mt-2 md:mt-0">
                   <span>
                     {new Date(post.data.pubDate).toLocaleDateString('en-US', {

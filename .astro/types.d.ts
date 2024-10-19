@@ -126,121 +126,121 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"post": {
-"en/demo.md": {
-	id: "en/demo.md";
-  slug: "en/demo";
+"archDowngrade.md": {
+	id: "archDowngrade.md";
+  slug: "archdowngrade";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"en/demo2.md": {
-	id: "en/demo2.md";
-  slug: "en/demo2";
+"archlinux-install-kvm.md": {
+	id: "archlinux-install-kvm.md";
+  slug: "archlinux-install-kvm";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/archDowngrade.md": {
-	id: "zh-cn/archDowngrade.md";
-  slug: "zh-cn/archdowngrade";
+"batteryNcharger.md": {
+	id: "batteryNcharger.md";
+  slug: "batteryncharger";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/archlinux-install-kvm.md": {
-	id: "zh-cn/archlinux-install-kvm.md";
-  slug: "zh-cn/archlinux-install-kvm";
+"demo.md": {
+	id: "demo.md";
+  slug: "demo";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/batteryNcharger.md": {
-	id: "zh-cn/batteryNcharger.md";
-  slug: "zh-cn/batteryncharger";
+"demo2.md": {
+	id: "demo2.md";
+  slug: "demo2";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/hotspot.md": {
-	id: "zh-cn/hotspot.md";
-  slug: "zh-cn/hotspot";
+"hotspot.md": {
+	id: "hotspot.md";
+  slug: "hotspot";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/kvm-nas-file-share.md": {
-	id: "zh-cn/kvm-nas-file-share.md";
-  slug: "zh-cn/kvm-nas-file-share";
+"kvm-nas-file-share.md": {
+	id: "kvm-nas-file-share.md";
+  slug: "kvm-nas-file-share";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/kvm-nat-port-forwarding.md": {
-	id: "zh-cn/kvm-nat-port-forwarding.md";
-  slug: "zh-cn/kvm-nat-port-forwarding";
+"kvm-nat-port-forwarding.md": {
+	id: "kvm-nat-port-forwarding.md";
+  slug: "kvm-nat-port-forwarding";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/kvm-security.md": {
-	id: "zh-cn/kvm-security.md";
-  slug: "zh-cn/kvm-security";
+"kvm-security.md": {
+	id: "kvm-security.md";
+  slug: "kvm-security";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/log.md": {
-	id: "zh-cn/log.md";
-  slug: "zh-cn/log";
+"log.md": {
+	id: "log.md";
+  slug: "log";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/network-lost.md": {
-	id: "zh-cn/network-lost.md";
-  slug: "zh-cn/network-lost";
+"network-lost.md": {
+	id: "network-lost.md";
+  slug: "network-lost";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/niri_windows_manager.md": {
-	id: "zh-cn/niri_windows_manager.md";
-  slug: "zh-cn/niri_windows_manager";
+"niri_windows_manager.md": {
+	id: "niri_windows_manager.md";
+  slug: "niri_windows_manager";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/omv_file_name_2_long.md": {
-	id: "zh-cn/omv_file_name_2_long.md";
-  slug: "zh-cn/omv_file_name_2_long";
+"omv_file_name_2_long.md": {
+	id: "omv_file_name_2_long.md";
+  slug: "omv_file_name_2_long";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/power-security.md": {
-	id: "zh-cn/power-security.md";
-  slug: "zh-cn/power-security";
+"power-security.md": {
+	id: "power-security.md";
+  slug: "power-security";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/raspberryPi_home_cam.md": {
-	id: "zh-cn/raspberryPi_home_cam.md";
-  slug: "zh-cn/raspberrypi_home_cam";
+"raspberryPi_home_cam.md": {
+	id: "raspberryPi_home_cam.md";
+  slug: "raspberrypi_home_cam";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/ufw-kvm-qemu-network.md": {
-	id: "zh-cn/ufw-kvm-qemu-network.md";
-  slug: "zh-cn/ufw-kvm-qemu-network";
+"ufw-kvm-qemu-network.md": {
+	id: "ufw-kvm-qemu-network.md";
+  slug: "ufw-kvm-qemu-network";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"zh-cn/zellij.md": {
-	id: "zh-cn/zellij.md";
-  slug: "zh-cn/zellij";
+"zellij.md": {
+	id: "zellij.md";
+  slug: "zellij";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">

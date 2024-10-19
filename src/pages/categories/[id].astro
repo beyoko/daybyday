@@ -1,10 +1,9 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import CategoryLayout from '@/layouts/CategoryLayout.astro'
-import { allPosts } from '@/lib/post'
+import { allPosts, allTags } from '@/lib/post'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allTags: Set<string> = new Set<string>()
   allPosts.map((post) => {
     post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
   })

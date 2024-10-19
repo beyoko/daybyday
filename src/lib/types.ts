@@ -38,27 +38,13 @@ interface Post {
   }
 }
 
-interface Heading {
+interface HeadingProps {
   depth: number
   slug: string
   text: string
 }
 
 // var
-
-interface TagsLinkProps {
-  tags: string[]
-  classNames: string[]
-  includeComma: boolean
-}
-
-interface PostYearProps {
-  postYear: string
-}
-
-interface BlogLinkProps {
-  posts: Post[]
-}
 
 interface DropdownMenuProps {
   tags: string[]
@@ -73,14 +59,6 @@ interface MarkdownHeaderProps {
   headings: Heading[]
 }
 
-interface MarkdownHeaderMenuProps {
-  headings: Heading[]
-}
-
-interface MoreLinkProps {
-  yearMore: string
-}
-
 export {
   DropdownMenuProps,
   DropdownMenuItemProps,
@@ -88,4 +66,5 @@ export {
   PostYearProps,
   BlogLinkProps,
   MoreLinkProps,
+  HeadingProps,
 }

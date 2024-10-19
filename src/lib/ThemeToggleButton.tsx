@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 
-const ThemeToggleButton = () => {
+export default function ThemeToggleButton() {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined' && localStorage.getItem('theme')) {
       return localStorage.getItem('theme')
@@ -50,5 +50,3 @@ const ThemeToggleButton = () => {
     </div>
   )
 }
-
-export default ThemeToggleButton

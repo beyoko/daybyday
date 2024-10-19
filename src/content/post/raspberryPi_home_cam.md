@@ -35,7 +35,6 @@ Cli工具，仅限HTTP接口进行配置。
 - JPG
 - PPM
 - 视频:mpeg4, msmpeg4, swf, flv, ffv1, mov, mp4, mkv, hevc (例子:     `ffmpeg_video_codec mp4`)
-
 #### 安装
 ```
 sudo apt install motion -y     
