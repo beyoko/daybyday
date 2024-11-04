@@ -1,4 +1,7 @@
-import { DropdownMenuItemProps } from '@/lib/types'
+interface DropdownMenuItemProps {
+  href: string
+  children: React.ReactNode
+}
 
 function DropdownMenuItemClassNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -7,7 +10,7 @@ function DropdownMenuItemClassNames(...classes: string[]) {
 function DropdownMenuItem({ href, children }: DropdownMenuItemProps) {
   return (
     <Menu.Item>
-      {({ active }) => (
+      {({ active }: { active: boolean }) => (
         <a
           href={href}
           className={DropdownMenuItemClassNames(

@@ -1,11 +1,10 @@
 import { useState, Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
-import { DropdownMenuProps } from '@/lib/types'
 import DropdownMenuItem from '@/lib/DropdownMenuItem'
 import '@/styles/prism.css'
 
-export default function DropdownMenu({ tags }: DropdownMenuProps) {
+export default function DropdownMenu({ tags }: string[]) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggle = () => setMenuOpen(!menuOpen)
@@ -41,14 +40,16 @@ export default function DropdownMenu({ tags }: DropdownMenuProps) {
           className="bgCardColor absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div className="py-1">
-            {tags.map((tag) => (
+            {tags.map((tag): string => (
               <Menu.Item key={tag}>
                 {({ active }) => (
                   <a
                     href={`/categories/${tag.toLowerCase()}`}
-                    className={`${
-                      active ? '' : ''
-                    } block px-4 py-2 text-sm text-gray-700`}
+                    className={`
+                      block px-4 py-2 text-sm
+                      ${active ? 'bg-gray-100 dark:bg-gray-700' : ''}
+                      block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
+                      `}
                   >
                     {tag}
                   </a>

@@ -1,4 +1,14 @@
 ## need 2 do
+- fix `BaseLayout` title error.
+- 把`<Header/>`的`{tags}`移到`Postlist.astro`的`<Years/>`下方,填满可视页面.
+- `{category}` when on `CategoryLayout.astro` hightlight `Header.astro` string `{tags}`
+- fix `Years.astro` phone degin.
+- `Years.astro` link to `YearMore`. && 'Years.astro' back button.
+- rebuild `CategoryLayout.astro`.
+- re-back `BlogLink` add to seris.
+- rebuild `PostList`. first page is all Post. hold `Header` Tags.
+- add `Tags` page, add `TimeLine` page. `Home` is About me. to `Header`.
+- `DropdownMenu` hover text color look like `MarkdownMenu`.
 - every year more 5 list. click "more" to see all list.
 - find the way fix `CategoryLayout.astro` link up lazy problem.
 - short `.tsx` file. back to astro style. make it fast.

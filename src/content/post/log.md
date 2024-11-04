@@ -10,6 +10,10 @@ heroImage: '/src/assets/images/log.png'
 ---
 
 # day
+- 01/11/2024: `{category}` when on `CategoryLayout.astro` hightlight `Header.astro` string `{tags}`
+- 30/10/2024: `year.astro` function: when i click on `index.astro`, then go 2 "YearLists". when i click on 'YearLists', then back 2 `index.astro`.
+- 10/29/2024: remove `Years.astro`. `PostList` change grafx 'items-center'.
+- 26/10/2024: section `PostList.astro`, looks like better.
 - 23/09/2024: add `optional()` to `@/src/content/config.ts` --- `heroImageAlt` and `heroImage`. even though not "heroImage" and "heroImageAlt" in markdown file, server still working.
 - 20/09/2024: remove `import Masthead from '@/components/Masthead.astro'` from `CategoryLayout.astro`. only live on `index.astro`.
 - 14/09/2024: update Note `ufw-kvm-qemu-network.md`

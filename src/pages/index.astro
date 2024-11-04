@@ -1,24 +1,41 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import Masthead from '@/components/Masthead.astro'
 import Content from '@/components/Content.astro'
+import Location from '@/components/Location.astro'
+import PostList from '@/components/PostList.astro'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
+
+const allPosts = await getCollection('post')
+
+const postsByYear = Object.keys(
+  allPosts.reduce((acc, post) => {
+    const year = new Date(post.data.pubDate).getFullYear() // 提取年份
+
+    // 如果该年份不存在，则初始化为空数组
+    if (!acc[year]) acc[year] = []
+
+    // 将文章添加到相应年份的数组中
+    acc[year].push(post)
+
+    return acc // 返回累积器
+  }, {}),
+).sort((a, b) => parseInt(b) - parseInt(a))
 ---
 
 <BaseLayout title={siteMeta.title} description={siteMeta.description}>
-  <Masthead />
   <Content>
     <section>
-      <p class="textColor mb-8 indent-4 p-4">
-        As an indie developer, I&apos;ve been spending hours and hours at my
-        desk every day. So, I&apos;ve been continuously improving my workspace
-        in order to boost my productivity. Whenever I upload new content, people
-        ask me what tools I use. So, here is a living snapshot and a place to
-        point curious developers to when I get asked. Most of the links are
-        amazon affiliate links, so I&apos;ll get filthy rich if you click them
-        and buy something.
-      </p>
+      {
+        postsByYear.map((year) => (
+          <PostList
+            update={year}
+            yearLinkLocation={`/section/${year}`}
+            limit={false}
+          />
+        ))
+      }
     </section>
   </Content>
 </BaseLayout>

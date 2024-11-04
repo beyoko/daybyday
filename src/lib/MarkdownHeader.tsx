@@ -1,27 +1,39 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
-import { MarkdownHeaderProps, HeadingProps } from '@/lib/types'
 import '@/styles/prism.css'
+
+interface HeadingProps {
+  depth: number
+  slug: string
+  text: string
+}
+
+interface MarkdownHeaderProps {
+  headings: Heading[]
+}
 
 export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
   const [currentHeading, setCurrentHeading] = useState<string>('')
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [isMouseVisible, setIsMouseVisible] = useState(true)
+  const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const [isMouseVisible, setIsMouseVisible] = useState<boolean>(true)
 
   // Scroll handler
   const handleScroll = useCallback(() => {
     const offset = 10
-    const current = headings.reduce((closest, heading) => {
-      const element = document.getElementById(heading.slug)
-      if (
-        element &&
-        element.getBoundingClientRect().top < window.innerHeight / 2 + offset
-      ) {
-        return heading.slug
-      }
-      return closest
-    }, '')
+    const current = headings.reduce(
+      (closest: string, heading: HeadingProps): string => {
+        const element = document.getElementById(heading.slug)
+        if (
+          element &&
+          element.getBoundingClientRect().top < window.innerHeight / 2 + offset
+        ) {
+          return heading.slug
+        }
+        return closest
+      },
+      '',
+    )
     setCurrentHeading(current)
   }, [headings])
 
@@ -68,14 +80,15 @@ export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
 
   const currentText = useMemo(
     () =>
-      headings.find((heading) => heading.slug === currentHeading)?.text || '',
+      headings.find((heading: HeadingProps) => heading.slug === currentHeading)
+        ?.text || '',
     [currentHeading, headings],
   )
 
   const toc = useMemo(
-    () =>
+    (): HeadingProps[] =>
       headings.filter(
-        (heading) =>
+        (heading: HeadingProps): boolean =>
           heading.depth <= 3 &&
           !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
       ),
@@ -120,7 +133,7 @@ export default function MarkdownHeader({ headings }: MarkdownHeaderProps) {
                           }}
                         >
                           <a
-                            className="p-1 textHeaderColor opacity-50 hover:opacity-100"
+                            className="p-1 opacity-50 hover:opacity-100"
                             href={`#${heading.slug}`}
                           >
                             {heading.text}

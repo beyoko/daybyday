@@ -1,10 +1,9 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content'
 import type { MarkdownHeading } from 'astro'
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
 import Link from '@/components/Link.astro'
-import TagsLink from '@/lib/TagsLink'
-import { allPosts, allTags } from '@/lib/post'
 import '@/styles/prism.css'
 
 export interface Props {
@@ -14,37 +13,43 @@ export interface Props {
   headings: MarkdownHeading[]
   description: string
   tags: string[]
+  categoryLocation: string
 }
+
+const allPosts = await getCollection('post')
+
+const allTags = new Set<string>()
+allPosts.map((post) => {
+  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
+})
 
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' }),
 )
+
+const { categoryLocation } = Astro.props
 ---
 
 <header class="sticky w-full p-2 z-20">
   <div class="mx-auto max-w-5xl">
     <nav class="flex items-center text-base gap-3 space-between">
-      <Link href="/" data-astro-prefetch="false" className="group">
-        <h2 class="pl-5 font-semibold antialiased" title="@JoYo">JoYo</h2>
+      <Link href="/about" data-astro-prefetch="false" className="group">
+        <h2 class="p-5 font-semibold antialiased" title="@JoYo">JoYo</h2>
       </Link>
 
       <div class="flex-1"></div>
 
       <div class="flex flex-wrap gap-2">
-      {
-        sortedTags.map((tag): string[] => {
-          return (
-            <a
-              class="hidden md:block p-2"
+        {
+          sortedTags.map((tag): string[] => (
+            <Link
+              className="hidden md:block hover:decoration-black dark:hover:decoration-white transition-all"
               href={`/categories/${tag.toLowerCase()}`}
             >
-              <p class="linkColor decoration-gray-300 dark:decoration-gray-700 hover:decoration-black dark:hover:decoration-white transition-all">
-                {tag}
-              </p>
-            </a>
-          )
-        })
-      }
+              {String(tag) === categoryLocation ? `[ ${tag} ]` : `${tag}`}
+            </Link>
+          ))
+        }
       </div>
       <div class="block md:hidden linkColor" title="Category">
         <DropdownMenu client:visible tags={Array.from(allTags)} />
