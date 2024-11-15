@@ -1,0 +1,41 @@
+footer {
+  padding: 25px;
+  text-align: center;
+}
+
+.textColor {
+  @apply text-gray-700 dark:text-gray-300;
+}
+
+.linkColor {
+  @apply text-gray-500 hover:text-black dark:hover:text-white transition-all;
+}
+
+.secColor {
+  @apply text-gray-300 dark:text-gray-700;
+}
+
+.borderColor {
+  @apply border border-gray-300 dark:border-gray-700;
+}
+
+.borderLeftColor {
+  @apply border-l hover:border-gray-700 dark:border-gray-300;
+}
+
+.bgCardColor {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+.iconColor {
+  @apply text-gray-300 dark:text-gray-700;
+}
+
+.mastheadTextColor {
+  color: #ff8c00;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+}

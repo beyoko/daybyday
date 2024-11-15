@@ -1,0 +1,26 @@
+---
+import type { GetStaticPaths } from 'astro'
+import CategoryLayout from '@/layouts/CategoryLayout.astro'
+import { allPosts, allTags } from '@/lib/post'
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  allPosts.map((post) => {
+    post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
+  })
+
+  return Array.from(allTags).map((tag: string) => {
+    return {
+      params: {
+        id: tag.toLowerCase(),
+      },
+      props: {
+        tagName: tag,
+      },
+    }
+  })
+}
+
+const { tagName } = Astro.props
+---
+
+<CategoryLayout category={tagName} />

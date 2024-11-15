@@ -1,12 +1,11 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'
 import Link from '@/components/Link.astro'
+import { allPosts } from '@/lib/utils'
 
 import '@/styles/prism.css'
 
 const { update, limit = true, categoryList, yearLinkLocation } = Astro.props
 
-const allPosts = await getCollection('post')
 // 平均阅读速度
 const wordsPerMinute = 200
 
@@ -18,10 +17,8 @@ const readingTime = (word: string): number => {
 
 const postsByYear = allPosts.reduce((acc, post) => {
   const year = new Date(post.data.pubDate).getFullYear() // 提取年份
-
   // 如果该年份不存在，则初始化为空数组
   if (!acc[year]) acc[year] = []
-
   // 将文章添加到相应年份的数组中
   acc[year].push(post)
 
@@ -29,7 +26,7 @@ const postsByYear = allPosts.reduce((acc, post) => {
 }, {})
 
 const postsToShow = postsByYear[update].sort((a, b) => {
-  return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  return b.data.pubDate.getTime() - a.data.pubDate.getTime()
 })
 
 const sortedPosts =

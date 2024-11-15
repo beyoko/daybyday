@@ -1,0 +1,26 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import Content from '@/components/Content.astro'
+import PostLayout from '@/layouts/PostLayout.astro'
+import '@/styles/prism.css'
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog'))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
+}
+type Props = CollectionEntry<'blog'>
+
+const post = Astro.props
+const { Content, headings } = await post.render()
+---
+
+<PostLayout headings={headings} {...post.data}>
+  <div class="flex-1">
+    <Content />
+  </div>
+</PostLayout>

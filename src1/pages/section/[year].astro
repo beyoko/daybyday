@@ -1,0 +1,23 @@
+---
+// 导入内容集合
+import { getCollection } from 'astro:content';
+import MorePostLayout from '@/layouts/MorePostLayout.astro';
+import { allPosts } from '@/lib/post'
+
+// 获取静态路径
+export const getStaticPaths = async () => {
+  // 提取年份并去重，确保 `pubDate` 是 Date 类型
+  const years = new Set(allPosts.map((post) => new Date(post.data.pubDate).getFullYear()));
+
+  // 生成路径数组
+  return Array.from(years).map((year: number) => ({
+    params: { year: year.toString() }, // 确保年份是字符串
+  }));
+};
+
+// 提取年份参数
+const { year } = Astro.params;
+---
+
+<MorePostLayout year={year} />
+

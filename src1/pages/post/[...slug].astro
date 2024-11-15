@@ -3,9 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import PostLayout from '@/layouts/PostLayout.astro'
 
-type Props = {
-  blog: CollectionEntry<'post'>
-}
+type Props = CollectionEntry<'post'>
 
 export const getStaticPaths = async () => {
   const excludeDrafts = ({ data }: CollectionEntry<'post'>): boolean => {
@@ -18,12 +16,10 @@ export const getStaticPaths = async () => {
     params: {
       slug: post.slug,
     },
-    props: {
-      blog: post,
-    },
+    props: { blog: post },
   }))
 }
-  const { blog } = Astro.props
+const { blog } = Astro.props
 
 if (blog === undefined) {
   return Astro.redirect('/404')

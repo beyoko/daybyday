@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Masthead from '@/components/Masthead.astro'
+import Content from '@/components/Content.astro'
+import { siteMeta } from '@/consts'
+import '@/styles/prism.css'
+---
+
+<BaseLayout title={siteMeta.title} description={siteMeta.description}>
+  <Masthead />
+  <Content>
+    <section>
+      <p class="textColor mb-8 indent-4 p-4">
+        As an indie developer, I&apos;ve been spending hours and hours at my
+        desk every day. So, I&apos;ve been continuously improving my workspace
+        in order to boost my productivity. Whenever I upload new content, people
+        ask me what tools I use. So, here is a living snapshot and a place to
+        point curious developers to when I get asked. Most of the links are
+        amazon affiliate links, so I&apos;ll get filthy rich if you click them
+        and buy something.
+      </p>
+    </section>
+  </Content>
+</BaseLayout>

@@ -125,125 +125,125 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"post": {
+		"blog": {
 "archDowngrade.md": {
 	id: "archDowngrade.md";
   slug: "archdowngrade";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "archlinux-install-kvm.md": {
 	id: "archlinux-install-kvm.md";
   slug: "archlinux-install-kvm";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "batteryNcharger.md": {
 	id: "batteryNcharger.md";
   slug: "batteryncharger";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "demo.md": {
 	id: "demo.md";
   slug: "demo";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "demo2.md": {
 	id: "demo2.md";
   slug: "demo2";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "hotspot.md": {
 	id: "hotspot.md";
   slug: "hotspot";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "kvm-nas-file-share.md": {
 	id: "kvm-nas-file-share.md";
   slug: "kvm-nas-file-share";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "kvm-nat-port-forwarding.md": {
 	id: "kvm-nat-port-forwarding.md";
   slug: "kvm-nat-port-forwarding";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "kvm-security.md": {
 	id: "kvm-security.md";
   slug: "kvm-security";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "log.md": {
 	id: "log.md";
   slug: "log";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "network-lost.md": {
 	id: "network-lost.md";
   slug: "network-lost";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "niri_windows_manager.md": {
 	id: "niri_windows_manager.md";
   slug: "niri_windows_manager";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "omv_file_name_2_long.md": {
 	id: "omv_file_name_2_long.md";
   slug: "omv_file_name_2_long";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "power-security.md": {
 	id: "power-security.md";
   slug: "power-security";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "raspberryPi_home_cam.md": {
 	id: "raspberryPi_home_cam.md";
   slug: "raspberrypi_home_cam";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "ufw-kvm-qemu-network.md": {
 	id: "ufw-kvm-qemu-network.md";
   slug: "ufw-kvm-qemu-network";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "zellij.md": {
 	id: "zellij.md";
   slug: "zellij";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 };
 

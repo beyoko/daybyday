@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Link from '@/components/Link.astro'
+
+type Props = {
+  entry: CollectionEntry<'blog'>
+}
+
+// 平均阅读速度
+const wordsPerMinute = 200
+
+// 阅读时间计算
+const readingTime = (word: string): number => {
+  const words = word.split(/\s+/).length
+  return Math.ceil(words / wordsPerMinute)
+}
+
+const { entry } = Astro.props
+---
+
+<Link href={`/${entry.collection}/${entry.slug}`}>
+  {entry.data.title}
+  <div class="flex flex-col flex-1 truncate">
+    <div class="secColor flex flex-row mt-2 md:mt-0">
+      <span>
+        {
+          new Date(entry.data.pubDate).toLocaleDateString('en-US', {
+            month: 'short',
+            day: '2-digit',
+          })
+        }
+      </span>
+      <span> ·{readingTime(entry.body)} Min</span>
+    </div>
+  </div>
+</Link>

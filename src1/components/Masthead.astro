@@ -1,0 +1,30 @@
+---
+import '@/styles/prism.css'
+
+const isProd = import.meta.env.PROD
+const baseAssetUrl = isProd ? '/blog' : ''
+---
+
+<section class="relative mb-6 h-80 flex justify-center items-center">
+  <div class="absolute w-full h-full overflow-hidden">
+    <video
+      class="absolute inset-0 min-w-full min-h-full object-cover opacity-30"
+      poster="/src/assets/fish.png"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source
+        src={baseAssetUrl + '/src/assets/video/8706348-hd_2560_1440_25fps.mp4'}
+        type="video/mp4"
+      />
+    </video>
+  </div>
+  <div class="z-10 text-center px-8 drop-shadow-lg shadow-black">
+    <div class="uppercase text-sm mb-4">Welcome to</div>
+    <div class="text-4xl font-mono font-medium">
+      A curated list of the tech I <span class="mastheadTextColor">use</span>
+    </div>
+  </div>
+</section>

@@ -1,9 +1,10 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'
 import type { MarkdownHeading } from 'astro'
+import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
 import Link from '@/components/Link.astro'
+import { allTags } from '@/lib/utils'
 import '@/styles/prism.css'
 
 export interface Props {
@@ -15,13 +16,6 @@ export interface Props {
   tags: string[]
   categoryLocation: string
 }
-
-const allPosts = await getCollection('post')
-
-const allTags = new Set<string>()
-allPosts.map((post) => {
-  post.data.tags && post.data.tags.map((tag: string) => allTags.add(tag))
-})
 
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' }),
@@ -41,7 +35,7 @@ const { categoryLocation } = Astro.props
 
       <div class="flex flex-wrap gap-2">
         {
-          sortedTags.map((tag): string[] => (
+          sortedTags.map((tag) => (
             <Link
               className="hidden md:block hover:decoration-black dark:hover:decoration-white transition-all"
               href={`/categories/${tag.toLowerCase()}`}

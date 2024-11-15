@@ -1,4 +1,12 @@
 ## need 2 do
+- `Header.astro`.
+- `/blog/index.astro`  > `index.astro`.
+- allPosts 中某些 post.data 对象没有 date 属性，而代码尝试直接访问 post.data.date.valueOf()，因此导致了 Cannot read properties of undefined (reading 'valueOf') 的错误。
+- rebuild all code.
+- check '[slug].astro'.
+- rebuild `[...slug].astro` open 'ledy' problem. (look demo: it look like new version.)
+- remix demo. my code first option.
+- rebuild `PostList.astro` and `index.astro` & `CategoryLayout`(like demo).
 - fix `BaseLayout` title error.
 - 把`<Header/>`的`{tags}`移到`Postlist.astro`的`<Years/>`下方,填满可视页面.
 - `{category}` when on `CategoryLayout.astro` hightlight `Header.astro` string `{tags}`
