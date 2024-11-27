@@ -1,7 +1,7 @@
 ---
 title: 'date-log'
 pubDate: '01/01/1900'
-draft: false
+draft: true
 tags:
   - 'Update'
 description: 'day to day, what im doing.'

@@ -1,56 +1,24 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import Content from '@/components/Content.astro'
-import ArrowCard from '@/components/ArrowCard.astro'
-import Link from '@/components/Link.astro'
-import { allPosts } from '@/lib/utils'
+import Masthead from '@/components/Masthead.astro'
+import Container from '@/components/Container.astro'
 import { siteMeta } from '@/consts'
-
-type Acc = {
-  [year: string]: CollectionEntry<'blog'>[]
-}
-
-const data = allPosts
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-
-// 文章按年份分组，展示全部文章
-const posts = data.reduce((acc: Acc, post) => {
-  const year = post.data.pubDate.getFullYear().toString()
-  if (!acc[year]) {
-    acc[year] = []
-  }
-  acc[year].push(post)
-  return acc
-}, {})
-
-const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a))
+import '@/styles/prism.css'
 ---
 
 <BaseLayout title={siteMeta.title} description={siteMeta.description}>
-  <Content>
-    <div class="space-y-10">
-      <div class="space-y-4">
-        {
-          years.map((year) => (
-            <section class="space-y-4">
-              <Link className="text-4xl md:text-6xl" href={`/section/${year}`}>
-                {year}
-              </Link>
-              <div>
-                <ul class="flex flex-col gap-4">
-                  {posts[year].slice(0, 5).map((post) => (
-                    <li>
-                      <ArrowCard entry={post} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          ))
-        }
-      </div>
-    </div>
-  </Content>
+  <Masthead />
+  <Container>
+    <section>
+      <p class="animate textColor mb-8 indent-4 p-4">
+        As an indie developer, I&apos;ve been spending hours and hours at my
+        desk every day. So, I&apos;ve been continuously improving my workspace
+        in order to boost my productivity. Whenever I upload new content, people
+        ask me what tools I use. So, here is a living snapshot and a place to
+        point curious developers to when I get asked. Most of the links are
+        amazon affiliate links, so I&apos;ll get filthy rich if you click them
+        and buy something.
+      </p>
+    </section>
+  </Container>
 </BaseLayout>

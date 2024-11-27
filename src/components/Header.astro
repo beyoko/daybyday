@@ -1,56 +1,51 @@
 ---
-import type { MarkdownHeading } from 'astro'
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
 import Link from '@/components/Link.astro'
 import { allTags } from '@/lib/utils'
 import '@/styles/prism.css'
 
-export interface Props {
-  content: {
-    title: string
-  }
-  headings: MarkdownHeading[]
-  description: string
-  tags: string[]
-  categoryLocation: string
-}
-
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' }),
 )
-
-const { categoryLocation } = Astro.props
 ---
 
-<header class="sticky w-full p-2 z-20">
-  <div class="mx-auto max-w-5xl">
-    <nav class="flex items-center text-base gap-3 space-between">
-      <Link href="/about" data-astro-prefetch="false" className="group">
-        <h2 class="p-5 font-semibold antialiased" title="@JoYo">JoYo</h2>
+<header class="w-full p-2 z-20 sticky">
+  <div class="mx-auto max-w-3xl">
+    <div class="flex items-center justify-between gap-3 text-base">
+      <Link href="/" data-astro-prefetch="false">
+        <div
+          class="font-semibold tracking-tighter p-2 font-mono text-lg text-black dark:text-white"
+          title="@JoYo"
+        >
+          JoYo
+        </div>
       </Link>
 
-      <div class="flex-1"></div>
+      <nav class="hidden md:flex items-center gap-6">
+        <div class="flex gap-4">
+          {
+            sortedTags.map((tag) => (
+              <Link
+                className="hover:decoration-black dark:hover:decoration-white transition-all text-gray-700 dark:text-gray-300"
+                href={`/categories/${tag.toLowerCase()}`}
+              >
+                {tag}
+              </Link>
+            ))
+          }
+        </div>
+      </nav>
 
-      <div class="flex flex-wrap gap-2">
-        {
-          sortedTags.map((tag) => (
-            <Link
-              className="hidden md:block hover:decoration-black dark:hover:decoration-white transition-all"
-              href={`/categories/${tag.toLowerCase()}`}
-            >
-              {String(tag) === categoryLocation ? `[ ${tag} ]` : `${tag}`}
-            </Link>
-          ))
-        }
+      <div class="flex items-center gap-4">
+        <div class="block md:hidden" title="Category">
+          <DropdownMenu client:visible tags={Array.from(allTags)} />
+        </div>
+
+        <div class="p-2" title="Theme">
+          <ThemeToggleButton client:visible />
+        </div>
       </div>
-      <div class="block md:hidden linkColor" title="Category">
-        <DropdownMenu client:visible tags={Array.from(allTags)} />
-      </div>
-      <div class="p-2" title="Theme">
-        <ThemeToggleButton client:visible />
-      </div>
-    </nav>
+    </div>
   </div>
 </header>

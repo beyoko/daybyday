@@ -1,4 +1,15 @@
 ## need 2 do
+> watch `Head.astro` -- `<script is:inline>`
+
+- `TOC` if mouse leave the arrow, then menu close.
+- `Categorlayout` list item center.
+- change `{year}` location. use `style`.
+- hightlight `CategoryLayout.astro` tags link(page on).
+- remove 'animate' > `utils.ts`
+- `tags link` move to `blog.astro`. remove by `Header.astro`.
+- watch `utils.ts` --- `const data = () =>` ---> mix to other function.
+- find `class: 'animate'` missing and work for.
+- rebuild `DropdownMenu.tsx` > `.astro` version.
 - `Header.astro`.
 - `/blog/index.astro`  > `index.astro`.
 - allPosts 中某些 post.data 对象没有 date 属性，而代码尝试直接访问 post.data.date.valueOf()，因此导致了 Cannot read properties of undefined (reading 'valueOf') 的错误。

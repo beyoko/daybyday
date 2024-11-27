@@ -1,10 +1,17 @@
 ---
 import type { GetStaticPaths } from 'astro'
-import CategoryLayout from '@/layouts/CategoryLayout.astro'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Container from '@/components/Container.astro'
+import ArrowCard from '@/components/ArrowCard.astro'
 import { allPosts, allTags } from '@/lib/utils'
+import { siteMeta } from '@/consts'
+import '@/styles/prism.css'
 
 type Props = {
   tags: string
+  tagName: string & CollectionEntry<'blog'>
+  date: string
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -17,12 +24,58 @@ export const getStaticPaths: GetStaticPaths = async () => {
       params: {
         id: tag.toLowerCase(),
       },
-      props: { tagName: tag },
+      props: {
+        tagName: tag,
+      },
     }
   })
 }
 
 const { tagName } = Astro.props
+
+// 筛选符合指定类别的文章
+const categoryPosts = allPosts
+  .filter((item) => item.data.tags && item.data.tags.includes(tagName))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+
+// 文章按年份分组，展示全部文章
+const posts = categoryPosts.reduce((acc: Acc, post) => {
+  const year = post.data.pubDate.getFullYear() // 提取年份
+
+  if (!acc[year]) {
+    acc[year] = []
+  }
+  acc[year].push(post)
+  return acc
+}, {})
+
+const sortedTagsYear = Object.entries(posts).sort(
+  ([yearA], [yearB]) => Number(yearB) - Number(yearA),
+) // 按年份排序
 ---
 
-<CategoryLayout category={tagName} />
+<BaseLayout
+  title={`${tagName} / ${siteMeta.title}`}
+  description={siteMeta.description}
+>
+  <Container>
+    {
+      sortedTagsYear.map(([year]) => (
+        <section class="space-y-4">
+          <div class="text-4xl md:text-6xl font-bold whitespace-nowrap">
+            {year}
+          </div>
+          <div>
+            <ul class="flex flex-col gap-4">
+              {posts[year].map((post) => (
+                <li>
+                  <ArrowCard entry={post} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ))
+    }
+  </Container>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+type Props = {
+  className?: string
+}
+
+const { className = '' } = Astro.props
+---
+
+<article class={`mx-auto max-w-3xl px-8 ${className}`}>
+  <slot />
+</article>

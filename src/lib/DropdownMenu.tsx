@@ -40,7 +40,7 @@ export default function DropdownMenu({ tags }: string[]) {
           className="bgCardColor absolute right-0 z-10 mt-2 w-56 max-h-80 overflow-y-auto origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div className="py-1">
-            {tags.map((tag): string => (
+            {tags.map((tag) => (
               <Menu.Item key={tag}>
                 {({ active }) => (
                   <a

@@ -17,6 +17,8 @@ module.exports = {
           'url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="0.5" fill="white" fill-opacity="0.5"/></svg>\')',
         ulBgImg:
           'url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="2" fill="black"/></svg>\')',
+        homeBgImg:
+          'url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="2" fill="grey" fill-opacity="0.5" stroke="green" stroke-width="0.5"/></svg>\')',
         FourOFourBgImg:
           'url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="2" fill="red" fill-opacity="0.5"/></svg>\')',
       },
