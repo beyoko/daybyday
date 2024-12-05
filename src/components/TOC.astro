@@ -1,0 +1,30 @@
+---
+import type { MarkdownHeading } from 'astro'
+import Link from '@/components/Link.astro'
+import '@/styles/prism.css'
+
+type Props = {
+  headings: MarkdownHeading[]
+}
+
+const { headings } = Astro.props
+---
+
+<!--  <TocMenu client:visible headings={headings} />-->
+<aside class="fixed hidden sm:block">
+  <ul class="overflow-y-auto max-h-96">
+    {
+      headings.map((heading) => (
+        <li class="border-l border-gray-300">
+          <Link
+            className={`${heading.depth < 3 && 'font-semibold'} p-1 text-sm underline`}
+            href={`#${heading.slug}`}
+          >
+            {heading.text}
+          </Link>
+        </li>
+      ))
+    }
+    <slot />
+  </ul>
+</aside>

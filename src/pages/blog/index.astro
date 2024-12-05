@@ -1,50 +1,37 @@
 ---
-import type { GetStaticPaths } from 'astro'
-import type { CollectionEntry } from 'astro:content'
+import type { MarkdownHeading } from 'astro'
+import { type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Container from '@/components/Container.astro'
+import Header from '@/components/Header.astro'
 import HeaderLink from '@/components/HeaderLink.astro'
 import ArrowCard from '@/components/ArrowCard.astro'
-import Header from '@/components/Header.astro'
 import DropdownMenu from '@/lib/DropdownMenu'
+import BottomTagsHeader from '@/components/BottomTagsHeader.astro'
 import { allPosts, allTags } from '@/lib/utils'
 import { siteMeta } from '@/consts'
-import '@/styles/prism.css'
-
-type Props = {
-  tags: string
-  tagName: string & CollectionEntry<'blog'>
-  date: string
-}
 
 type Acc = {
   [year: string]: CollectionEntry<'blog'>[]
 }
 
-export const getStaticPaths = async () => {
-  return Array.from(allTags).map((tag: string) => {
-    return {
-      params: {
-        id: tag.toLowerCase(),
-      },
-      props: {
-        tagName: tag,
-      },
-    }
-  })
+type Props = {
+  content: {
+    title: string
+  }
+  headings: MarkdownHeading[]
+  description: string
+  tags: string[]
+  tagName: string
 }
 
-const { tagName } = Astro.props
-
-// 筛选符合指定类别的文章
-const categoryPosts = allPosts
-  .filter((item) => item.data.tags && item.data.tags.includes(tagName))
+const data = allPosts
+  .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
 
 // 文章按年份分组，展示全部文章
-const posts = categoryPosts.reduce((acc: Acc, post) => {
-  const year = post.data.pubDate.getFullYear() // 提取年份
-
+const posts = data.reduce((acc: Acc, post) => {
+  const year = post.data.pubDate.getFullYear().toString()
   if (!acc[year]) {
     acc[year] = []
   }
@@ -52,19 +39,14 @@ const posts = categoryPosts.reduce((acc: Acc, post) => {
   return acc
 }, {})
 
-const sortedTagsYear = Object.entries(posts).sort(
-  ([yearA], [yearB]) => Number(yearB) - Number(yearA),
-) // 按年份排序
+const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a))
 
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' }),
 )
 ---
 
-<BaseLayout
-  title={`${tagName} / ${siteMeta.title}`}
-  description={siteMeta.description}
->
+<BaseLayout title={siteMeta.title} description={siteMeta.description}>
   <Header>
     <div class="flex items-center gap-4">
       <div class="hidden md:block">
@@ -83,10 +65,10 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
   </Header>
   <main class="pt-[56px]">
     <Container className="px-5 flex flex-col md:flex-row">
-      <div class="w-4/6 space-y-4 p-4">
+      <div class="md:w-4/6 space-y-4 p-4">
         {
-          sortedTagsYear.map(([year]) => (
-            <section class="space-y-4">
+          years.map((year) => (
+            <section class="space-y-4 p-4">
               <div class="text-4xl md:text-6xl font-bold whitespace-nowrap">
                 {year}
               </div>
@@ -103,6 +85,7 @@ const sortedTags = Array.from(allTags).sort((a, b) =>
           ))
         }
       </div>
+      <div class="md:w-2/6 p-4"></div>
     </Container>
   </main>
 </BaseLayout>

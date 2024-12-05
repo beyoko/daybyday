@@ -1,0 +1,13 @@
+---
+import Link from '@/components/Link.astro'
+---
+
+<!--  className="w-12 h-12  xl:fixed m-5 select-none outline-none"-->
+<div class="fixed p-4">
+  <div class="font-semibold tracking-tighter font-mono" title="@JOYO">
+    <Link href="/" data-astro-prefetch="false">JOYO</Link>
+  </div>
+  <div class="flex">
+    <slot />
+  </div>
+</div>

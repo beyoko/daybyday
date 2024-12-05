@@ -3,107 +3,97 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Container from '@/components/Container.astro'
 import Header from '@/components/Header.astro'
+import TOC from '@/components/TOC.astro'
+import BackToTop from '@/lib/BackToTop'
 import { siteMeta } from '@/consts'
-import TocCard from '@/lib/TocCard'
 import '@/styles/prism.css'
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const posts = (await getCollection('blog'))
     .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
   return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: post,
+    params: {
+      slug: post.slug,
+    },
+    props: { blog: post },
   }))
 }
 
-type Props = CollectionEntry<'blog'>
+type Props = {
+  blog: CollectionEntry<'blog'>
+  category: string
+}
 
-const post = Astro.props
-const { Content, headings } = await post.render()
+const { blog } = Astro.props
+const { Content, headings } = await blog.render()
 ---
 
 <BaseLayout
-  title={post.data.title + ` / ${siteMeta.title}`}
-  description={post.data.description}
+  title={blog + ` / ${siteMeta.title}`}
+  description={blog.data.description}
 >
   <Header />
-  <div id="toc-wrapper">
-    <TocCard client:load headings={headings} />
-  </div>
   <main class="pt-[56px]">
-    <Container>
-      <div class="space-y-1 my-10">
-        <div class="text-4xl font-roto font-bold">
-          {post.data.title}
-        </div>
-        <hr class="border-top border-gray-300 my-4" />
+    <style is:global>
+      main article.markdown-body {
+        ul {
+          @apply list-disc list-inside pl-4 mb-4;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+          @apply font-bold font-roto text-gray-800 dark:text-gray-300 mb-6;
+        }
+        h1 {
+          @apply text-3xl;
+        }
+        h2 {
+          @apply text-2xl;
+        }
+        h3 {
+          @apply text-xl;
+        }
+        h4 {
+          @apply text-lg;
+        }
+        img {
+          @apply border border-gray-300 dark:border-gray-700 rounded-xl mb-6;
+        }
+        p {
+          @apply text-gray-700 dark:text-gray-300 mb-6;
+        }
+        a {
+          @apply underline underline-offset-2 text-black dark:text-white font-semibold decoration-gray-300 dark:decoration-gray-700 hover:decoration-black hover:dark:decoration-white transition-all;
+        }
+        code {
+          font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+            monospace;
+        }
+        .astro-code {
+          @apply p-3 border-2 border-gray-500 rounded-xl mb-6;
+        }
+      }
+    </style>
+
+    <Container className="px-5 flex flex-col md:flex-row">
+      <div class="md:w-4/6 space-y-4 p-4">
         <article class="markdown-body">
+          <h1 class="text-3xl font-roto font-bold my-1">
+            {blog.data.title}
+          </h1>
+          <hr class="border-top border-gray-300 my-4" />
           <Content />
         </article>
+      </div>
+      <div class="md:w-2/6 p-4">
+        <TOC headings={headings}>
+          <BackToTop />
+        </TOC>
       </div>
     </Container>
   </main>
 </BaseLayout>
-
-<script>
-  const tocWrapper = document.getElementById('toc-wrapper')
-
-  const handleScroll = () => {
-    if (window.scrollY > 0) {
-      tocWrapper.classList.add('fixed') // 滚动时固定 TOC
-    } else {
-      tocWrapper.classList.remove('fixed') // 回到顶部取消固定
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll)
-
-  // 清理事件监听器（在 Astro 的客户端加载时推荐）
-  window.addEventListener('unload', () => {
-    window.removeEventListener('scroll', handleScroll)
-  })
-</script>
-
-<style is:global>
-  main article.markdown-body {
-    ul {
-      @apply list-disc list-inside pl-4 mb-4;
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      @apply font-bold font-roto text-gray-800 dark:text-gray-300 mb-6;
-    }
-    h1 {
-      @apply text-3xl;
-    }
-    h2 {
-      @apply text-2xl;
-    }
-    h3 {
-      @apply text-xl;
-    }
-    h4 {
-      @apply text-lg;
-    }
-    img {
-      @apply border border-gray-300 dark:border-gray-700 rounded-xl mb-6;
-    }
-    p {
-      @apply text-gray-700 dark:text-gray-300 mb-6;
-    }
-    a {
-      @apply underline underline-offset-2 text-black dark:text-white font-semibold decoration-gray-300 dark:decoration-gray-700 hover:decoration-black hover:dark:decoration-white transition-all;
-    }
-    code {
-      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
-    }
-    .astro-code {
-      @apply p-3 border-2 border-gray-500 rounded-xl mb-6;
-    }
-  }
-</style>

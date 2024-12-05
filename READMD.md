@@ -1,6 +1,17 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- `TocMenu` & `BackToTop`(right).
+- `Header` fix it the gfx.
+- `DropdownMenu` style.
+- setup `BottomTagsHeader` && `BottomHeadingHeader`.
+- on `PostLayout`, show tags underline.
+- move `tagsLink` to bottom bar.
+- 尝试使用`import { Disclosure } from '@headlessui/react';`来设计TOC。
+- find title problem
+- Icon和Toc为独立与所有组件的纵向Header。
+- setup `Icon.astro`.
+- cut `Header.astro`, "Icon" and "tags link".
 - `TOC` if mouse leave the arrow, then menu close.
 - `Categorlayout` list item center.
 - change `{year}` location. use `style`.

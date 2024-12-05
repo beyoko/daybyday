@@ -10,6 +10,7 @@ heroImage: '/src/assets/images/log.png'
 ---
 
 # day
+- 04/12/2024: cut page size "w-4/6"(L) and "w-2/6"(R).
 - 14/11/2024: finish `PostList.astro` new version(cut out).
 - 01/11/2024: `{category}` when on `CategoryLayout.astro` hightlight `Header.astro` string `{tags}`
 - 30/10/2024: `year.astro` function: when i click on `index.astro`, then go 2 "YearLists". when i click on 'YearLists', then back 2 `index.astro`.

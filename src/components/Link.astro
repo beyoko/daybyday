@@ -12,7 +12,7 @@ const isExternal = pattern.test(href)
 ---
 
 <a
-  class={`linkColor block font-normal no-underline md:mr-3 z-10 ${className ?? ''}`}
+  class={`linkColor block font-normal md:mr-3 z-10 ${className ?? ''}`}
   href={href}
   target={isExternal ? '_blank' : undefined}
   rel={isExternal ? 'noreferrer noopener' : undefined}

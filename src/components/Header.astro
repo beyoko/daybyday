@@ -1,51 +1,26 @@
 ---
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
-import DropdownMenu from '@/lib/DropdownMenu'
 import Link from '@/components/Link.astro'
-import { allTags } from '@/lib/utils'
+import HeaderLink from '@/components/HeaderLink.astro'
 import '@/styles/prism.css'
-
-const sortedTags = Array.from(allTags).sort((a, b) =>
-  a.localeCompare(b, 'en', { sensitivity: 'base' }),
-)
 ---
 
-<header class="w-full p-2 z-20 sticky">
-  <div class="mx-auto max-w-3xl">
-    <div class="flex items-center justify-between gap-3 text-base">
-      <Link href="/" data-astro-prefetch="false">
-        <div
-          class="font-semibold tracking-tighter p-2 font-mono text-lg text-black dark:text-white"
-          title="@JoYo"
-        >
-          JoYo
-        </div>
+<header class="w-full z-20">
+  <div class="mx-auto max-w-5xl">
+    <nav class="flex items-center gap-3 text-base">
+      <Link className="group " href="/" data-astro-prefetch="false">
+        <h2 class="font-semibold tracking-tighter p-2 font-mplus text-lg">
+          JOYO
+        </h2>
       </Link>
-
-      <nav class="hidden md:flex items-center gap-6">
-        <div class="flex gap-4">
-          {
-            sortedTags.map((tag) => (
-              <Link
-                className="hover:decoration-black dark:hover:decoration-white transition-all text-gray-700 dark:text-gray-300"
-                href={`/categories/${tag.toLowerCase()}`}
-              >
-                {tag}
-              </Link>
-            ))
-          }
-        </div>
-      </nav>
-
+      <div class="flex-1"></div>
+      <slot />
       <div class="flex items-center gap-4">
-        <div class="block md:hidden" title="Category">
-          <DropdownMenu client:visible tags={Array.from(allTags)} />
-        </div>
-
+        <HeaderLink href="/blog">Blog</HeaderLink>
         <div class="p-2" title="Theme">
           <ThemeToggleButton client:visible />
         </div>
       </div>
-    </div>
+    </nav>
   </div>
 </header>

@@ -115,36 +115,28 @@ export default function TocCard({ headings }): Headings[] {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <div className="p-2">
-              <aside className="xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6">
-                {toc.length > 0 && (
-                  <ul className="overflow-y-auto max-h-96">
-                    {toc.map(
-                      (heading): TocProps => (
-                        <li
-                          key={heading.slug}
-                          className="flex"
-                          style={{
-                            paddingLeft: `${(heading.depth - 1) * 2}ch`,
-                          }}
+            <aside className="xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6">
+              {toc.length > 0 && (
+                <ul className="overflow-y-auto max-h-96">
+                  {toc.map(
+                    (heading): TocProps => (
+                      <li key={heading.slug} className="flex">
+                        <a
+                          className="p-1 opacity-50 hover:opacity-100"
+                          href={`#${heading.slug}`}
                         >
-                          <a
-                            className="p-1 opacity-50 hover:opacity-100"
-                            href={`#${heading.slug}`}
-                          >
-                            {heading.text}
-                          </a>
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                )}
-              </aside>
-            </div>
+                          {heading.text}
+                        </a>
+                      </li>
+                    ),
+                  )}
+                </ul>
+              )}
+            </aside>
           </Transition>
+          <div className="text-black dark:text-white">{scrollToTopButton}</div>
         </div>
       )}
-      <div className="text-black dark:text-white">{scrollToTopButton}</div>
     </div>
   )
 }

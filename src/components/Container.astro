@@ -1,11 +1,7 @@
 ---
-type Props = {
-  className?: string
-}
-
-const { className = '' } = Astro.props
+const { className = '' }: Record<string, string> = Astro.props
 ---
 
-<article class={`mx-auto max-w-3xl px-8 ${className}`}>
+<article class={`mx-auto max-w-5xl px-5 ${className}`}>
   <slot />
 </article>
