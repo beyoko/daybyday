@@ -11,15 +11,21 @@ type Props = {
   children: ReactNode
 }
 
-export default function TocMenuItem({ href, children }) {
+export default function TocMenuItem({ href, children, onClick }) {
   return (
-    <li key={heading.slug} className="flex">
-      <a
-        className={`${heading.depth < 3 && 'font-semibold'} p-1 opacity-50 hover:opacity-100`}
-        href={`#${heading.slug}`}
-      >
-        {heading.text}
-      </a>
-    </li>
+    <>
+      {({ active }) => (
+        <a
+          href={href}
+          className={classNames(
+            active ? 'bg-orange-200 dark:bg-zinc-700' : '',
+            'block px-4 py-2 text-sm',
+          )}
+          onClick={onClick}
+        >
+          {children}
+        </a>
+      )}
+    </>
   )
 }

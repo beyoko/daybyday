@@ -31,6 +31,10 @@ footer {
   @apply text-gray-300 dark:text-gray-700;
 }
 
+.lineColor {
+  @apply border-gray-300 hover:border-gray-700 dark:border-gray-700 dark:hover:border-gray-300;
+}
+
 .mastheadTextColor {
   color: #ff8c00;
 }

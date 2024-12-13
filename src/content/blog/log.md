@@ -10,6 +10,8 @@ heroImage: '/src/assets/images/log.png'
 ---
 
 # day
+- 12/12/2024: add moblie TOC function.
+- 06/12/2024: add [TOC, BackToTopButton]. fix `DropdownMenu` tags sorted different.
 - 04/12/2024: cut page size "w-4/6"(L) and "w-2/6"(R).
 - 14/11/2024: finish `PostList.astro` new version(cut out).
 - 01/11/2024: `{category}` when on `CategoryLayout.astro` hightlight `Header.astro` string `{tags}`

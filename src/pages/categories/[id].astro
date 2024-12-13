@@ -3,10 +3,8 @@ import type { GetStaticPaths } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Container from '@/components/Container.astro'
-import HeaderLink from '@/components/HeaderLink.astro'
 import ArrowCard from '@/components/ArrowCard.astro'
 import Header from '@/components/Header.astro'
-import DropdownMenu from '@/lib/DropdownMenu'
 import { allPosts, allTags } from '@/lib/utils'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
@@ -55,32 +53,13 @@ const posts = categoryPosts.reduce((acc: Acc, post) => {
 const sortedTagsYear = Object.entries(posts).sort(
   ([yearA], [yearB]) => Number(yearB) - Number(yearA),
 ) // 按年份排序
-
-const sortedTags = Array.from(allTags).sort((a, b) =>
-  a.localeCompare(b, 'en', { sensitivity: 'base' }),
-)
 ---
 
 <BaseLayout
   title={`${tagName} / ${siteMeta.title}`}
   description={siteMeta.description}
 >
-  <Header>
-    <div class="flex items-center gap-4">
-      <div class="hidden md:block">
-        {
-          sortedTags.map((tag) => (
-            <HeaderLink href={`/categories/${tag.toLowerCase()}`}>
-              {tag}
-            </HeaderLink>
-          ))
-        }/
-      </div>
-    </div>
-    <div class="block md:hidden" title="Category">
-      <DropdownMenu client:visible tags={Array.from(allTags)} />
-    </div>
-  </Header>
+  <Header />
   <main class="pt-[56px]">
     <Container className="px-5 flex flex-col md:flex-row">
       <div class="w-4/6 space-y-4 p-4">

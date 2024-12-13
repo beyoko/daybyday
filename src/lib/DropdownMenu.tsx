@@ -46,7 +46,6 @@ export default function DropdownMenu({ tags }: string[]) {
                   <a
                     href={`/categories/${tag.toLowerCase()}`}
                     className={`
-                      block px-4 py-2 text-sm
                       ${active ? 'bg-gray-100 dark:bg-gray-700' : ''}
                       block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white
                       `}

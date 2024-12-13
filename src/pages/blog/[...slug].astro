@@ -4,7 +4,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import Container from '@/components/Container.astro'
 import Header from '@/components/Header.astro'
 import TOC from '@/components/TOC.astro'
-import BackToTop from '@/lib/BackToTop'
+import BackToTopButton from '@/components/BackToTopButton.astro'
+import TocMenu from '@/lib/TocMenu'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 
@@ -79,20 +80,26 @@ const { Content, headings } = await blog.render()
       }
     </style>
 
-    <Container className="px-5 flex flex-col md:flex-row">
+    <Container className="flex px-5 markdown-body">
       <div class="md:w-4/6 space-y-4 p-4">
-        <article class="markdown-body">
-          <h1 class="text-3xl font-roto font-bold my-1">
-            {blog.data.title}
-          </h1>
-          <hr class="border-top border-gray-300 my-4" />
-          <Content />
-        </article>
+        <h1 class="flex text-3xl font-roto font-bold my-1 items-center">
+          {blog.data.title}
+          <div class="block md:hidden">
+            <div class="inline-flex transform -translate-y-4 ml-2">
+              <TocMenu client:visible headings={headings} />
+            </div>
+          </div>
+        </h1>
+
+        <hr class="border-top border-gray-300 my-4" />
+        <Content />
+        <hr class="border-top border-gray-300 my-4" />
+        <BackToTopButton />
       </div>
-      <div class="md:w-2/6 p-4">
-        <TOC headings={headings}>
-          <BackToTop />
-        </TOC>
+      <div class="md:w-2/6 space-y-4 p-4">
+        <div class="hidden sm:block">
+          <TOC headings={headings} />
+        </div>
       </div>
     </Container>
   </main>

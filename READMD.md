@@ -1,6 +1,12 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- fix `TOC.astro` line .
+- cut the `TocMenu` like `DropdownMenuItem`(hold)
+- `TocDisclosure.tsx` mobile mode for TOC.
+- when i hold title on Blog list, show `heroImage` on right side .
+- add `TocMenu` on Phone Mode.
+- add `lightBgImg`to `[slug].astro` title img background.
 - `TocMenu` & `BackToTop`(right).
 - `Header` fix it the gfx.
 - `DropdownMenu` style.

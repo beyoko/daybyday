@@ -11,13 +11,13 @@ const { headings } = Astro.props
 ---
 
 <!--  <TocMenu client:visible headings={headings} />-->
-<aside class="fixed hidden sm:block">
-  <ul class="overflow-y-auto max-h-96">
+<aside class="fixed p-4">
+  <ul class="border-l overflow-y-auto max-h-96 space-y-4">
     {
       headings.map((heading) => (
-        <li class="border-l border-gray-300">
+        <li class="lineColor flex">
           <Link
-            className={`${heading.depth < 3 && 'font-semibold'} p-1 text-sm underline`}
+            className={`${heading.depth < 3 && 'font-semibold'}  p-1 text-sm `}
             href={`#${heading.slug}`}
           >
             {heading.text}
@@ -25,6 +25,5 @@ const { headings } = Astro.props
         </li>
       ))
     }
-    <slot />
   </ul>
 </aside>
