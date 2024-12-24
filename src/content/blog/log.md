@@ -10,6 +10,8 @@ heroImage: '/src/assets/images/log.png'
 ---
 
 # day
+- 23/12/2024: rebuild `Header`, `TOC`, `TocMenu`, `Container`(type problem).
+- 19/12/2024: `TocMenu` setup.
 - 12/12/2024: add moblie TOC function.
 - 06/12/2024: add [TOC, BackToTopButton]. fix `DropdownMenu` tags sorted different.
 - 04/12/2024: cut page size "w-4/6"(L) and "w-2/6"(R).

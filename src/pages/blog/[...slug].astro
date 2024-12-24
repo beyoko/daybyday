@@ -1,12 +1,10 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
-import BaseLayout from '@/layouts/BaseLayout.astro'
+import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
 import Container from '@/components/Container.astro'
-import Header from '@/components/Header.astro'
 import TOC from '@/components/TOC.astro'
 import BackToTopButton from '@/components/BackToTopButton.astro'
-import TocMenu from '@/lib/TocMenu'
-import { siteMeta } from '@/consts'
+import TocMenu from '@/components/TocMenu.astro'
 import '@/styles/prism.css'
 
 export const getStaticPaths = async () => {
@@ -29,78 +27,44 @@ type Props = {
 
 const { blog } = Astro.props
 const { Content, headings } = await blog.render()
+
+const description =
+  blog.data.description || blog.body.slice(0, 30).replace(/\n/g, '')
+
+const toc = headings.filter(
+  (heading) =>
+    heading.depth <= 3 &&
+    !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
+)
 ---
 
-<BaseLayout
-  title={blog + ` / ${siteMeta.title}`}
-  description={blog.data.description}
->
-  <Header />
-  <main class="pt-[56px]">
-    <style is:global>
-      main article.markdown-body {
-        ul {
-          @apply list-disc list-inside pl-4 mb-4;
-        }
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-          @apply font-bold font-roto text-gray-800 dark:text-gray-300 mb-6;
-        }
-        h1 {
-          @apply text-3xl;
-        }
-        h2 {
-          @apply text-2xl;
-        }
-        h3 {
-          @apply text-xl;
-        }
-        h4 {
-          @apply text-lg;
-        }
-        img {
-          @apply border border-gray-300 dark:border-gray-700 rounded-xl mb-6;
-        }
-        p {
-          @apply text-gray-700 dark:text-gray-300 mb-6;
-        }
-        a {
-          @apply underline underline-offset-2 text-black dark:text-white font-semibold decoration-gray-300 dark:decoration-gray-700 hover:decoration-black hover:dark:decoration-white transition-all;
-        }
-        code {
-          font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-            monospace;
-        }
-        .astro-code {
-          @apply p-3 border-2 border-gray-500 rounded-xl mb-6;
-        }
-      }
-    </style>
-
-    <Container className="flex px-5 markdown-body">
-      <div class="md:w-4/6 space-y-4 p-4">
-        <h1 class="flex text-3xl font-roto font-bold my-1 items-center">
-          {blog.data.title}
-          <div class="block md:hidden">
-            <div class="inline-flex transform -translate-y-4 ml-2">
-              <TocMenu client:visible headings={headings} />
-            </div>
+<MarkdownLayout title={blog} description={description}>
+  <Container className="flex px-5 markdown-body">
+    <div class="md:w-4/6 space-y-4 p-4">
+      <h1 class="flex text-3xl font-roto font-bold my-1 items-center">
+        {blog.data.title}
+        <div class="block md:hidden">
+          <div class="inline-flex transform -translate-y-4 ml-2">
+            {toc.length > 0 && <TocMenu headings={headings} />}
           </div>
-        </h1>
-
-        <hr class="border-top border-gray-300 my-4" />
-        <Content />
-        <hr class="border-top border-gray-300 my-4" />
-        <BackToTopButton />
-      </div>
-      <div class="md:w-2/6 space-y-4 p-4">
-        <div class="hidden sm:block">
-          <TOC headings={headings} />
         </div>
+      </h1>
+
+      <hr class="border-top lineColor my-4" />
+      <Content />
+      <hr class="border-top lineColor my-4" />
+      <BackToTopButton />
+    </div>
+    <div class="md:w-2/6 space-y-4 p-4">
+      <div class="hidden sm:block">
+        <aside
+          class="fixed xl:col-span-3 xl:flex xl:flex-col xl:sticky xl:top-28 gap-y-6 overflow-y-auto max-h-96"
+        >
+          <ol class="list-none pl-0 my-0 ml-1 relative bg-transparent">
+            {toc.length > 0 && <TOC headings={headings} />}
+          </ol>
+        </aside>
       </div>
-    </Container>
-  </main>
-</BaseLayout>
+    </div>
+  </Container>
+</MarkdownLayout>

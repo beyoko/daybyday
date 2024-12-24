@@ -2,13 +2,11 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Masthead from '@/components/Masthead.astro'
 import Container from '@/components/Container.astro'
-import Header from '@/components/Header.astro'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 ---
 
 <BaseLayout title={siteMeta.title} description={siteMeta.description}>
-  <Header />
   <main class="pt-[56px]">
     <Masthead />
     <Container>

@@ -42,7 +42,7 @@ export default function ThemeToggleButton() {
   return (
     <div className="inline-flex">
       <button
-        className="cursor-pointer p-2 linkColor"
+        className="linkColor cursor-pointer p-2"
         onClick={toggleTheme}
         aria-label="Toggle theme"
       >

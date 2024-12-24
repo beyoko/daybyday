@@ -1,87 +1,17 @@
 ---
-import type { GetStaticPaths } from 'astro'
 import type { CollectionEntry } from 'astro:content'
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import Container from '@/components/Container.astro'
-import ArrowCard from '@/components/ArrowCard.astro'
-import Header from '@/components/Header.astro'
-import { allPosts, allTags } from '@/lib/utils'
-import { siteMeta } from '@/consts'
+import { allTags } from '@/lib/utils'
+import CategoryLayout from '@/layouts/CategoryLayout.astro'
 import '@/styles/prism.css'
 
-type Props = {
-  tags: string
-  tagName: string & CollectionEntry<'blog'>
-  date: string
-}
-
-type Acc = {
-  [year: string]: CollectionEntry<'blog'>[]
-}
-
-export const getStaticPaths = async () => {
-  return Array.from(allTags).map((tag: string) => {
-    return {
-      params: {
-        id: tag.toLowerCase(),
-      },
-      props: {
-        tagName: tag,
-      },
-    }
-  })
-}
+// 动态生成路径
+export const getStaticPaths = async () =>
+  Array.from(allTags).map((tag) => ({
+    params: { id: tag.toLowerCase() },
+    props: { tagName: tag },
+  }))
 
 const { tagName } = Astro.props
-
-// 筛选符合指定类别的文章
-const categoryPosts = allPosts
-  .filter((item) => item.data.tags && item.data.tags.includes(tagName))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-
-// 文章按年份分组，展示全部文章
-const posts = categoryPosts.reduce((acc: Acc, post) => {
-  const year = post.data.pubDate.getFullYear() // 提取年份
-
-  if (!acc[year]) {
-    acc[year] = []
-  }
-  acc[year].push(post)
-  return acc
-}, {})
-
-const sortedTagsYear = Object.entries(posts).sort(
-  ([yearA], [yearB]) => Number(yearB) - Number(yearA),
-) // 按年份排序
 ---
 
-<BaseLayout
-  title={`${tagName} / ${siteMeta.title}`}
-  description={siteMeta.description}
->
-  <Header />
-  <main class="pt-[56px]">
-    <Container className="px-5 flex flex-col md:flex-row">
-      <div class="w-4/6 space-y-4 p-4">
-        {
-          sortedTagsYear.map(([year]) => (
-            <section class="space-y-4">
-              <div class="text-4xl md:text-6xl font-bold whitespace-nowrap">
-                {year}
-              </div>
-              <div>
-                <ul class="flex flex-col gap-4">
-                  {posts[year].map((post) => (
-                    <li>
-                      <ArrowCard entry={post} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          ))
-        }
-      </div>
-    </Container>
-  </main>
-</BaseLayout>
+<CategoryLayout tagName={tagName} />

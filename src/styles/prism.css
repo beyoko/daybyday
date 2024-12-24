@@ -7,10 +7,6 @@ footer {
   @apply text-gray-700 dark:text-gray-300;
 }
 
-.linkColor {
-  @apply text-gray-500 hover:text-black dark:hover:text-white transition-all;
-}
-
 .secColor {
   @apply text-gray-300 dark:text-gray-700;
 }
@@ -29,6 +25,10 @@ footer {
 
 .iconColor {
   @apply text-gray-300 dark:text-gray-700;
+}
+
+.linkColor {
+  @apply text-gray-500 hover:text-black dark:hover:text-white transition-all;
 }
 
 .lineColor {

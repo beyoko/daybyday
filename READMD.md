@@ -1,6 +1,10 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- check `CategoryLayout` and `TOC` & `TocMenu` background.
+- find `Container.astro` problem.
+- check `TocMenu` "input class='peer'" how to hide.
+- fuck `TocMenu` line follow.
 - fix `TOC.astro` line .
 - cut the `TocMenu` like `DropdownMenuItem`(hold)
 - `TocDisclosure.tsx` mobile mode for TOC.
