@@ -1,0 +1,44 @@
+---
+import '@/styles/prism.css'
+
+type Props = {
+  typeId: string
+  menuTitle?: string
+}
+
+const { typeId, menuTitle } = Astro.props
+---
+
+<div class="relative inline-block text-left">
+  <!-- Checkbox toggle -->
+  <input type="checkbox" id={typeId} class="hidden peer" />
+
+  <!-- Label as toggle button -->
+  <label
+    for={typeId}
+    class="z-50 flex items-center justify-center cursor-pointer"
+  >
+    <p class="linkColor lineColor border-l text-sm p-1">
+      {menuTitle}
+    </p>
+  </label>
+
+  <!-- TOC -->
+  <aside
+    class="fixed
+           bg-gray-100
+           dark:bg-gray-900
+           top-14
+           max-h-96
+           overflow-y-auto
+           scale-0
+           transition-transform
+           transform
+           peer-checked:scale-100
+           origin-top-left
+           border-l
+           rounded-md"
+  >
+    <slot />
+  </aside>
+</div>

@@ -1,54 +1,32 @@
 ---
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
-import Link from '@/components/Link.astro'
+import MobileMenu from '@/components/MobileMenu.astro'
 import HeaderLink from '@/components/HeaderLink.astro'
-import HeaderTagsList from '@/components/HeaderTagsList.astro'
-import TagsMenu from '@/lib/TagsMenu'
-import { allTags } from '@/lib/utils'
 import '@/styles/prism.css'
-
-type Props = {
-  category?: boolean
-}
-
-const sortedTags = Array.from(allTags).sort((a, b) =>
-  a.localeCompare(b, 'en', { sensitivity: 'base' }),
-)
-
-const { category = false } = Astro.props
 ---
 
 <header class="w-full z-20">
-  <div class="mx-auto max-w-5xl">
+  <div class="mx-auto max-w-4xl">
     <nav class="flex items-center gap-3 text-base">
-      <Link className="group " href="/" data-astro-prefetch="false">
+      <HeaderLink href="/" data-astro-prefetch="false">
         <h2 class="font-semibold tracking-tighter p-2 font-mplus text-lg">
           JOYO
         </h2>
-      </Link>
+      </HeaderLink>
       <div class="flex-1"></div>
-      <div class="flex items-center gap-4">
-        <HeaderLink href="/blog">Blog</HeaderLink>
-        {
-          category ? (
-            <>
-              <div class="hidden md:block" title="Category">
-                <HeaderTagsList tags={sortedTags} />
-              </div>
-              <div class="block md:hidden" title="Category">
-                <TagsMenu
-                  client:visible={{ rootMargin: '200px' }}
-                  tags={sortedTags}
-                />
-              </div>
-            </>
-          ) : (
-            ''
-          )
-        }
-        <div class="p-2" title="Theme">
-          <ThemeToggleButton client:visible />
+      <div class="flex items-center gap-4 p-2">
+        <div class="hidden sm:block">
+          <HeaderLink href="/blog">Blog</HeaderLink>
+          <slot />
         </div>
+        <div class="block md:hidden">
+          <MobileMenu typeId="categoryMenu" menuTitle="Menu">
+            <div class="p-2">
+              <HeaderLink href="/blog">Blog</HeaderLink>
+            </div>
+          </MobileMenu>
+        </div>
+        <ThemeToggleButton client:visible />
       </div>
     </nav>
   </div>

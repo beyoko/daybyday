@@ -1,6 +1,11 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- add `Location` to `Header` && move `tags` to `Blog` top line.
+- fix `DropdownMenu` and `tagsLink`.
+- cut `HeaderTags`, move to `tags/index.astro` ==> `ArrowCard` setup.
+- add `purgecss` 將使用不到的 CSS 從最終的 CSS bundle 中移除
+- `BackToButton` Desktop: toc, Mobile: paper.
 - check `CategoryLayout` and `TOC` & `TocMenu` background.
 - find `Container.astro` problem.
 - check `TocMenu` "input class='peer'" how to hide.

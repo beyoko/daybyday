@@ -4,21 +4,22 @@ import '@/styles/prism.css'
 
 type Props = {
   headings: MarkdownHeading[]
-  cutBgColor?: boolean
 }
 
-const { headings, cutBgColor = false } = Astro.props
+const { headings } = Astro.props
 ---
 
-{
-  headings.map((heading) => (
-  <li class=`lineColor border-l flex p-2 ${cutBgColor ? 'bg-white dark:bg-black transition-colors' : 'bg-transparent' }`>
-      <a
-        class="text-gray-300 dark:text-gray-700 block text-sm"
-        href={`#${heading.slug}`}
-      >
-        {heading.text}
-      </a>
-    </li>
-  ))
-}
+<ol class="list-none pl-0 my-0 ml-1 relative">
+  {
+    headings.map((heading) => (
+      <li class=" lineColor border-l flex p-2">
+        <a
+          class="text-gray-300 dark:text-gray-700 block text-sm"
+          href={`#${heading.slug}`}
+        >
+          {heading.text}
+        </a>
+      </li>
+    ))
+  }
+</ol>

@@ -1,8 +1,3 @@
-footer {
-  padding: 25px;
-  text-align: center;
-}
-
 .textColor {
   @apply text-gray-700 dark:text-gray-300;
 }
@@ -28,7 +23,7 @@ footer {
 }
 
 .linkColor {
-  @apply text-gray-500 hover:text-black dark:hover:text-white transition-all;
+  @apply text-gray-500 hover:text-black dark:hover:text-white;
 }
 
 .lineColor {
@@ -36,7 +31,7 @@ footer {
 }
 
 .mastheadTextColor {
-  color: #ff8c00;
+  @apply relative z-10 p-2 shadow-md;
 }
 
 .toc-item {
@@ -51,4 +46,9 @@ footer {
 .visible-sidebar {
   transform: translateX(0);
   transition: transform 0.5s ease-in-out;
+}
+
+footer {
+  padding: 25px;
+  text-align: center;
 }

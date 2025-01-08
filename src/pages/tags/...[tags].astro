@@ -1,7 +1,6 @@
 ---
-import type { CollectionEntry } from 'astro:content'
+import TagsLayout from '@/layouts/TagsLayout.astro'
 import { allTags } from '@/lib/utils'
-import CategoryLayout from '@/layouts/CategoryLayout.astro'
 import '@/styles/prism.css'
 
 // 动态生成路径
@@ -14,4 +13,4 @@ export const getStaticPaths = async () =>
 const { tagName } = Astro.props
 ---
 
-<CategoryLayout tagName={tagName} />
+<TagsLayout tagName={tagName} />

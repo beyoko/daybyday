@@ -1,0 +1,24 @@
+---
+type Props = {
+  buttonFunId: string
+  children: any
+}
+
+const { buttonFunId } = Astro.props
+---
+
+<button
+  id={buttonFunId}
+  class="linkColor
+           lineColor
+           relative
+           w-fit
+           flex
+           pl-2
+           pr-3
+           py-1.5
+           flex-nowrap
+           border-l"
+>
+  <slot />
+</button>

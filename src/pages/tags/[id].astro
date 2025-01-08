@@ -1,0 +1,16 @@
+---
+import { allTags } from '@/lib/utils'
+import TagsLayout from '@/layouts/TagsLayout.astro'
+import '@/styles/prism.css'
+
+// 动态生成路径
+export const getStaticPaths = async () =>
+  Array.from(allTags).map((tag) => ({
+    params: { id: tag.toLowerCase() },
+    props: { tagName: tag },
+  }))
+
+const { tagName } = Astro.props
+---
+
+<TagsLayout tagName={tagName} />

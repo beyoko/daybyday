@@ -10,6 +10,7 @@ heroImage: '/src/assets/images/log.png'
 ---
 
 # day
+- 08/01/2025: add "MarkdownLocation" to `Header`.
 - 23/12/2024: rebuild `Header`, `TOC`, `TocMenu`, `Container`(type problem).
 - 19/12/2024: `TocMenu` setup.
 - 12/12/2024: add moblie TOC function.
