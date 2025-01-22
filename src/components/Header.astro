@@ -1,12 +1,12 @@
 ---
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
-import MobileMenu from '@/components/MobileMenu.astro'
+import DropdownMenu from '@/lib/DropdownMenu'
 import HeaderLink from '@/components/HeaderLink.astro'
 import '@/styles/prism.css'
 ---
 
-<header class="w-full z-20">
-  <div class="mx-auto max-w-4xl">
+<header class="w-full p-2 z-20 backdrop-blur-md">
+  <div class="mx-auto max-w-3xl">
     <nav class="flex items-center gap-3 text-base">
       <HeaderLink href="/" data-astro-prefetch="false">
         <h2 class="font-semibold tracking-tighter p-2 font-mplus text-lg">
@@ -20,11 +20,11 @@ import '@/styles/prism.css'
           <slot />
         </div>
         <div class="block md:hidden">
-          <MobileMenu typeId="categoryMenu" menuTitle="Menu">
+          <DropdownMenu iconName="menu" client:visible>
             <div class="p-2">
               <HeaderLink href="/blog">Blog</HeaderLink>
             </div>
-          </MobileMenu>
+          </DropdownMenu>
         </div>
         <ThemeToggleButton client:visible />
       </div>

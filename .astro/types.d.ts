@@ -161,6 +161,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"fixing_sleep_on_archlinux_on_my_laptop.md": {
+	id: "fixing_sleep_on_archlinux_on_my_laptop.md";
+  slug: "fixing_sleep_on_archlinux_on_my_laptop";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "hotspot.md": {
 	id: "hotspot.md";
   slug: "hotspot";

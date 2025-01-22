@@ -1,6 +1,16 @@
 ---
-import { allTags } from '@/lib/utils'
+import type { CollectionEntry } from 'astro:content'
+import { allTags } from '@/lib/tag'
 import TagsLayout from '@/layouts/TagsLayout.astro'
+import '@/styles/prism.css'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Header from '@/components/Header.astro'
+import Container from '@/components/Container.astro'
+import ArrowCard from '@/components/ArrowCard.astro'
+import TagsArrowCard from '@/components/TagsArrowCard.astro'
+import { allPosts } from '@/lib/post'
+import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 
 // 动态生成路径
@@ -10,7 +20,67 @@ export const getStaticPaths = async () =>
     props: { tagName: tag },
   }))
 
+type Props = {
+  tagName: string[]
+}
+
+type Acc = {
+  [year: string]: CollectionEntry<'blog'>[]
+}
+
 const { tagName } = Astro.props
+
+// 筛选符合指定类别的文章
+const tagPosts = allPosts
+  .filter((item) => item.data.tags && item.data.tags.includes(tagName))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+
+// 文章按年份分组，展示全部文章
+const posts = tagPosts.reduce((acc: Acc, post) => {
+  const year = post.data.pubDate.getFullYear()
+
+  if (!acc[year]) {
+    acc[year] = []
+  }
+  acc[year].push(post)
+  return acc
+}, {})
+
+// 按年份排序
+const sortedTagsYear = Object.entries(posts).sort(
+  ([yearA], [yearB]) => Number(yearB) - Number(yearA),
+)
 ---
 
-<TagsLayout tagName={tagName} />
+<BaseLayout
+  title={`${tagName} / ${siteMeta.title}`}
+  description={siteMeta.description}
+>
+  <Header />
+  <main class="pt-[56px]">
+    <Container>
+      <div>
+        <TagsArrowCard />
+        <hr class="border-top border-gray-300 dark:border-gray-700 my-4" />
+        {
+          sortedTagsYear.map(([year]) => (
+            <section class="space-y-4">
+              <div class="text-4xl md:text-6xl font-bold whitespace-nowrap  pt-3">
+                {year}
+              </div>
+              <div>
+                <ul class="flex flex-col gap-4">
+                  {posts[year].map((post) => (
+                    <li>
+                      <ArrowCard entry={post} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </Container>
+  </main>
+</BaseLayout>

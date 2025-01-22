@@ -1,12 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import Container from '@/components/Container.astro'
+import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
 import TOC from '@/components/TOC.astro'
-import BackToButton from '@/components/BackToButton.astro'
-import MobileMenu from '@/components/MobileMenu.astro'
-import Header from '@/components/Header.astro'
-import { siteMeta } from '@/consts'
+import DropdownMenu from '@/lib/DropdownMenu'
 import '@/styles/prism.css'
 
 export const getStaticPaths = async () => {
@@ -39,46 +35,22 @@ const toc = headings.filter(
 )
 ---
 
-<BaseLayout title={blog + ` / ${siteMeta.title}`} description={description}>
-  <Header>
-    <span>/</span>
-    <span class="underline font-bold">{blog.data.title}</span>
-  </Header>
-  <main class="pt-[56px]">
-    <Container className="flex markdown-body">
-      <div class="md:w-4/6">
-        <BackToButton buttonFunId="back-to-prev">Back to blog</BackToButton>
-        <hr class="border-top lineColor my-4" />
-        <h1 class="flex text-3xl font-roto font-bold my-1 items-center">
-          {blog.data.title}
-          <div class="block sm:hidden">
-            <div class="inline-flex transform ml-2">
-              {
-                toc.length > 0 && (
-                  <MobileMenu typeId="tocMenu" menuTitle="TOC">
-                    <TOC headings={headings} />
-                  </MobileMenu>
-                )
-              }
-            </div>
-          </div>
-        </h1>
+<MarkdownLayout blog={blog} description={description}>
+  <h1 class="text-3xl font-roto font-bold flex">
+    {blog.data.title}
+    <div class="inline-flex ml-2">
+      {
+        toc.length > 0 && (
+          <DropdownMenu iconName="toc" client:visible>
+            <TOC headings={headings} />
+          </DropdownMenu>
+        )
+      }
+    </div>
+  </h1>
 
-        <Content />
-        <hr class="border-top lineColor my-4" />
-        <BackToButton buttonFunId="back-to-top">Back to top</BackToButton>
-      </div>
-
-      <div class="md:w-2/6">
-        <div class="hidden sm:block">
-          <aside class="fixed overflow-y-auto max-h-96">
-            {toc.length > 0 && <TOC headings={headings} />}
-          </aside>
-        </div>
-      </div>
-    </Container>
-  </main>
-</BaseLayout>
+  <Content />
+</MarkdownLayout>
 
 <style is:global>
   main article.markdown-body {

@@ -5,13 +5,13 @@ import Header from '@/components/Header.astro'
 import Container from '@/components/Container.astro'
 import ArrowCard from '@/components/ArrowCard.astro'
 import TagsArrowCard from '@/components/TagsArrowCard.astro'
-import { allPosts } from '@/lib/utils'
+import { allPosts } from '@/lib/post'
 import { siteMeta } from '@/consts'
 import '@/styles/prism.css'
 
 type Props = {
   tags: string
-  tagName: string & CollectionEntry<'blog'>
+  tagName: string[]
   date: string
 }
 
@@ -28,7 +28,7 @@ const tagPosts = allPosts
 
 // 文章按年份分组，展示全部文章
 const posts = tagPosts.reduce((acc: Acc, post) => {
-  const year = post.data.pubDate.getFullYear() // 提取年份
+  const year = post.data.pubDate.getFullYear()
 
   if (!acc[year]) {
     acc[year] = []
@@ -37,9 +37,10 @@ const posts = tagPosts.reduce((acc: Acc, post) => {
   return acc
 }, {})
 
+// 按年份排序
 const sortedTagsYear = Object.entries(posts).sort(
   ([yearA], [yearB]) => Number(yearB) - Number(yearA),
-) // 按年份排序
+)
 ---
 
 <BaseLayout
@@ -51,11 +52,11 @@ const sortedTagsYear = Object.entries(posts).sort(
     <Container>
       <div>
         <TagsArrowCard />
-        <hr class="border-top lineColor my-4" />
+        <hr class="border-top border-gray-300 dark:border-gray-700 my-4" />
         {
           sortedTagsYear.map(([year]) => (
             <section class="space-y-4">
-              <div class="text-4xl md:text-6xl font-bold whitespace-nowrap">
+              <div class="text-4xl md:text-6xl font-bold whitespace-nowrap  pt-3">
                 {year}
               </div>
               <div>

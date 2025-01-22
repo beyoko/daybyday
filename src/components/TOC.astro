@@ -1,5 +1,6 @@
 ---
 import type { MarkdownHeading } from 'astro'
+import Link from '@/components/Link.astro'
 import '@/styles/prism.css'
 
 type Props = {
@@ -9,17 +10,24 @@ type Props = {
 const { headings } = Astro.props
 ---
 
-<ol class="list-none pl-0 my-0 ml-1 relative">
+<ol class="pl-0 my-0 ml-1 toc">
   {
     headings.map((heading) => (
-      <li class=" lineColor border-l flex p-2">
-        <a
-          class="text-gray-300 dark:text-gray-700 block text-sm"
-          href={`#${heading.slug}`}
-        >
+      <li
+        style={{ '--indent-level': Math.max(0, heading.depth - 2) }}
+        class="lineColor border-l p-2"
+      >
+        <Link className="text-sm ml-2" href={`#${heading.slug}`}>
           {heading.text}
-        </a>
+        </Link>
       </li>
     ))
   }
 </ol>
+
+<style>
+  .toc li {
+    padding-left: calc(var(--indent-level) * 1rem);
+    border-left-width: 2px;
+  }
+</style>

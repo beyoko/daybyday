@@ -1,11 +1,11 @@
-import type { CollectionEntry } from 'astro:content'
+import { allPosts } from '@/lib/post'
 
 type Acc = {
   [year: string]: CollectionEntry<'blog'>[]
 }
 
 // 文章按年份分组，展示全部文章
-const PostList = ({ sortedPost }) => {
+const groupPostsByYear = ({ sortedPost }: string) => {
   sortedPost.reduce((acc: Acc, post) => {
     const year = post.data.pubDate.getFullYear() // 提取年份
 
@@ -16,3 +16,5 @@ const PostList = ({ sortedPost }) => {
     return acc
   }, {})
 }
+
+export { groupPostsByYear }

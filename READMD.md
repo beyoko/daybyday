@@ -1,6 +1,10 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- check `MarkdownLayout`.
+- `[id].astro` - tags.
+- rebuild `getPosts` && `getTags` like "egashira.dev".
+- `DropdownMenu` 点击 TOC 中的 Link 后，MobileMenu 窗口自动消失.
 - add `Location` to `Header` && move `tags` to `Blog` top line.
 - fix `DropdownMenu` and `tagsLink`.
 - cut `HeaderTags`, move to `tags/index.astro` ==> `ArrowCard` setup.

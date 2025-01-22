@@ -1,24 +1,12 @@
 ---
 type Props = {
-  buttonFunId: string
+  buttonFunctionId: string
   children: any
 }
 
-const { buttonFunId } = Astro.props
+const { buttonFunctionId } = Astro.props
 ---
 
-<button
-  id={buttonFunId}
-  class="linkColor
-           lineColor
-           relative
-           w-fit
-           flex
-           pl-2
-           pr-3
-           py-1.5
-           flex-nowrap
-           border-l"
->
+<button id={buttonFunctionId} class="linkColor lineColor pl-2 pr-3 border-l">
   <slot />
 </button>

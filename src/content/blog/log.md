@@ -5,11 +5,11 @@ draft: true
 tags:
   - 'Update'
 description: 'day to day, what im doing.'
-heroImageAlt: 'log'
-heroImage: '/src/assets/images/log.png'
 ---
 
 # day
+- 01/13/2025: - cut `TOC` by Desktop. - add `heroImage` to Markdown page.
+- 11/01/2025: fix `DropdownMenu` remote.
 - 08/01/2025: add "MarkdownLocation" to `Header`.
 - 23/12/2024: rebuild `Header`, `TOC`, `TocMenu`, `Container`(type problem).
 - 19/12/2024: `TocMenu` setup.
