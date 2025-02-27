@@ -1,6 +1,4 @@
 ---
-import '@/styles/prism.css'
-
 type Props = {
   href: string
   className?: string
@@ -13,7 +11,7 @@ const isExternal = pattern.test(href)
 ---
 
 <a
-  class={`linkColor block font-normal no-underline md:mr-3 z-10 ${className ?? ''}`}
+  class={`block font-normal no-underline md:mr-3 z-10 p-2 ${className ?? ''}`}
   href={href}
   target={isExternal ? '_blank' : undefined}
   rel={isExternal ? 'noreferrer noopener' : undefined}

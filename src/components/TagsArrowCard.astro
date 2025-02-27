@@ -1,14 +1,13 @@
 ---
 import HeaderLink from '@/components/HeaderLink.astro'
-import { allTags } from '@/lib/tag'
-import '@/styles/prism.css'
+import { allTags } from '@/lib/utils/tag'
 
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' }),
 )
 ---
 
-<nav class="relative w-fit flex pl-2 pr-3 py-1.5 flex-nowrap gap-3">
+<nav class="relative w-fit flex flex-nowrap gap-3">
   {
     sortedTags.map((tag) => (
       <HeaderLink href={`/tags/${tag.toLowerCase()}`}>{tag}</HeaderLink>

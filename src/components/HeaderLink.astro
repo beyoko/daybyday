@@ -1,5 +1,4 @@
 ---
-import '@/styles/prism.css'
 export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
   children: any
 }
@@ -10,7 +9,7 @@ const isActive = href === Astro.url.pathname.replace(/\/$/, '')
 
 <a
   href={href}
-  class="linkColor"
+  class="p-2 text-gray-500"
   class:list={[className, { active: isActive }]}
   {...props}
 >

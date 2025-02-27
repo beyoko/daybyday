@@ -8,6 +8,11 @@ description: 'day to day, what im doing.'
 ---
 
 # day
+- 25/02/2025: add tags link on `Header.astro`.
+- 24/02/2025: remove tag bar.
+- 22/02/2025: Synchronize the rendering structure across all pages.
+- 21/02/2025: `[tag].astro` add markdown number. rebuild the code.
+- 02/12/2025: remove `pri*.css`.
 - 01/13/2025: - cut `TOC` by Desktop. - add `heroImage` to Markdown page.
 - 11/01/2025: fix `DropdownMenu` remote.
 - 08/01/2025: add "MarkdownLocation" to `Header`.

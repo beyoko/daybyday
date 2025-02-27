@@ -1,5 +1,10 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
-import { dateSortDesc } from '@/lib/utils/dateSortDesc'
+
+const dateSortDesc = (a: string, b: string) => {
+  if (a > b) return -1
+  if (a < b) return 1
+  return 0
+}
 
 const allPosts = await getCollection('blog')
 

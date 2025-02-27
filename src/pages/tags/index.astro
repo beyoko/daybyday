@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Container from '@/components/Container.astro'
+import Header from '@/components/Header.astro'
+import TagsArrowCard from '@/components/TagsArrowCard.astro'
+import { siteMeta } from '@/consts'
+---
+
+<BaseLayout title={`${siteMeta.title}`} description={siteMeta.description}>
+  <Header />
+  <main class="pt-[56px]">
+    <Container>
+      <TagsArrowCard />
+    </Container>
+  </main>
+</BaseLayout>

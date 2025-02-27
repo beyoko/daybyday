@@ -20,7 +20,6 @@ const { title, description } = Astro.props
 <meta name="description" content={description} />
 
 <ViewTransitions />
-<!--this look like a function: but i dont know waht it is...-->
 <script>
   import type { TransitionBeforeSwapEvent } from 'astro:transitions/client'
   document.addEventListener('astro:before-swap', (e) =>

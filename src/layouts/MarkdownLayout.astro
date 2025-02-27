@@ -5,7 +5,6 @@ import Container from '@/components/Container.astro'
 import Header from '@/components/Header.astro'
 import BackToButton from '@/components/BackToButton.astro'
 import { siteMeta } from '@/consts'
-import '@/styles/prism.css'
 
 type Props = {
   children: any
@@ -24,12 +23,11 @@ const { blog, description } = Astro.props
   <main class="pt-[56px]">
     <Container className="pt-6 markdown-body">
       <div class="mb-8">
+        <slot />
+        <hr class="border-top border-gray-300 dark:border-gray-700 my-4" />
         <BackToButton buttonFunctionId="back-to-prev">
           Back to blog
         </BackToButton>
-        <hr class="border-top border-gray-300 dark:border-gray-700 my-4" />
-        <slot />
-        <hr class="border-top border-gray-300 dark:border-gray-700 my-4" />
         <BackToButton buttonFunctionId="back-to-top">Back to top</BackToButton>
       </div>
     </Container>

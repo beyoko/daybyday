@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
 import TOC from '@/components/TOC.astro'
 import DropdownMenu from '@/lib/DropdownMenu'
-import '@/styles/prism.css'
+import { readingTime } from '@/lib/utils/readingTime'
 
 export const getStaticPaths = async () => {
   const posts = (await getCollection('blog'))
@@ -36,18 +36,33 @@ const toc = headings.filter(
 ---
 
 <MarkdownLayout blog={blog} description={description}>
-  <h1 class="text-3xl font-roto font-bold flex">
-    {blog.data.title}
-    <div class="inline-flex ml-2">
-      {
-        toc.length > 0 && (
-          <DropdownMenu iconName="toc" client:visible>
-            <TOC headings={headings} />
-          </DropdownMenu>
-        )
-      }
+  <div class="pb-10">
+    <div class="flex">
+      <div class="text-5xl text-black dark:text-white font-bold">
+        {blog.data.title}
+      </div>
+      <span class="inline-flex ml-2">
+        {
+          toc.length > 0 && (
+            <DropdownMenu iconName="toc" client:visible>
+              <TOC headings={headings} />
+            </DropdownMenu>
+          )
+        }
+      </span>
     </div>
-  </h1>
+    <div class="text-lg text-gray-500">
+      <span>
+        {
+          blog.data.pubDate.toLocaleDateString('en-US', {
+            month: 'short',
+            day: '2-digit',
+          })
+        }
+      </span>
+      <span>{readingTime(blog.body)}</span>
+    </div>
+  </div>
 
   <Content />
 </MarkdownLayout>

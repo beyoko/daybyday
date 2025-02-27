@@ -1,17 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import Link from '@/components/Link.astro'
+import { readingTime } from '@/lib/utils/readingTime'
 
 type Props = {
   entry: CollectionEntry<'blog'>
-}
-
-// 阅读时间计算
-const readingTime = (word: string) => {
-  const textOnly = word.replace(/<[^>]+>/g, '')
-  const words = textOnly.split(/\s+/).length
-  const readingTimeMinutes = (words / 200 + 1).toFixed() // 平均阅读速度
-  return `·${readingTimeMinutes} Min`
 }
 
 const { entry } = Astro.props
@@ -22,7 +15,7 @@ const { entry } = Astro.props
     <Link href={`/${entry.collection}/${entry.slug}`}>
       <span class="font-medium truncate">{entry.data.title}</span>
     </Link>
-    <div class="secColor">
+    <div class="text-gray-300 dark:text-gray-700 text-sm">
       <span>
         {
           entry.data.pubDate.toLocaleDateString('en-US', {

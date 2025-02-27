@@ -1,6 +1,8 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- add "MoreYear". slice the Year by 6.
+- check poe(deepseek) '[id].astro' by tags.
 - check `MarkdownLayout`.
 - `[id].astro` - tags.
 - rebuild `getPosts` && `getTags` like "egashira.dev".

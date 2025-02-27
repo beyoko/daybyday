@@ -1,8 +1,7 @@
 ---
+import HeaderLink from '@/components/HeaderLink.astro'
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
-import HeaderLink from '@/components/HeaderLink.astro'
-import '@/styles/prism.css'
 ---
 
 <header class="w-full p-2 z-20 backdrop-blur-md">
@@ -17,13 +16,13 @@ import '@/styles/prism.css'
       <div class="flex items-center gap-4 p-2">
         <div class="hidden sm:block">
           <HeaderLink href="/blog">Blog</HeaderLink>
+            <HeaderLink href="/tags">Tags</HeaderLink>
           <slot />
         </div>
         <div class="block md:hidden">
           <DropdownMenu iconName="menu" client:visible>
-            <div class="p-2">
-              <HeaderLink href="/blog">Blog</HeaderLink>
-            </div>
+            <HeaderLink href="/blog">Blog</HeaderLink>
+          <HeaderLink href="/tags">Tags</HeaderLink>
           </DropdownMenu>
         </div>
         <ThemeToggleButton client:visible />
