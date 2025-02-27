@@ -41,15 +41,6 @@ const toc = headings.filter(
       <div class="text-5xl text-black dark:text-white font-bold">
         {blog.data.title}
       </div>
-      <span class="inline-flex ml-2">
-        {
-          toc.length > 0 && (
-            <DropdownMenu iconName="toc" client:visible>
-              <TOC headings={headings} />
-            </DropdownMenu>
-          )
-        }
-      </span>
     </div>
     <div class="text-lg text-gray-500">
       <span>

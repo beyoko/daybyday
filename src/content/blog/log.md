@@ -8,6 +8,7 @@ description: 'day to day, what im doing.'
 ---
 
 # day
+- 27/02/2025: remove `TOC.astro`: bec so late.
 - 25/02/2025: add tags link on `Header.astro`.
 - 24/02/2025: remove tag bar.
 - 22/02/2025: Synchronize the rendering structure across all pages.
