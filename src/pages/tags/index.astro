@@ -2,15 +2,26 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Container from '@/components/Container.astro'
 import Header from '@/components/Header.astro'
-import TagsArrowCard from '@/components/TagsArrowCard.astro'
+import HeaderLink from '@/components/HeaderLink.astro'
+import { allTags } from '@/lib/utils/tag'
 import { siteMeta } from '@/consts'
+
+const sortedTags = Array.from(allTags).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' }),
+)
 ---
 
 <BaseLayout title={`${siteMeta.title}`} description={siteMeta.description}>
   <Header />
   <main class="pt-[56px]">
     <Container>
-      <TagsArrowCard />
+      <nav class="relative w-fit flex flex-col gap-3">
+        {
+          sortedTags.map((tag) => (
+            <HeaderLink href={`/tags/${tag.toLowerCase()}`}>- {tag}</HeaderLink>
+          ))
+        }
+      </nav>
     </Container>
   </main>
 </BaseLayout>

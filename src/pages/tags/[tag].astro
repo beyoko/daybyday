@@ -8,48 +8,40 @@ import { allPosts } from '@/lib/utils/post'
 import { allTags } from '@/lib/utils/tag'
 import { siteMeta } from '@/consts'
 
-// 类型增强
-type TagParam = string
-type YearGroup = {
-  year: string
-  posts: CollectionEntry<'blog'>[]
-}
-
-interface StaticPathParams {
-  tag: TagParam
-}
-
 interface StaticPathProps {
   posts: CollectionEntry<'blog'>[]
   tagName: string
 }
 
-export const getStaticPaths = async () =>
-  Array.from(allTags).map((tag) => ({
-    params: { tag } satisfies StaticPathParams,
+const allPublishedPosts = allPosts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+
+export const getStaticPaths = async () => {
+  return Array.from(allTags).map((tag) => ({
+    params: { tag },
     props: {
       tagName: tag,
-      posts: allPosts
-        .filter(
-          (post) =>
-            !post.data.draft &&
-            post.data.tags?.some((t) => t.toLowerCase() === tag),
-        )
-        .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()),
+      posts: allPublishedPosts.filter((post) =>
+        post.data.tags?.some((t) => t.toLowerCase() === tag),
+      ),
     } satisfies StaticPathProps,
   }))
+}
 
 const { posts, tagName } = Astro.props as StaticPathProps
 
 // 使用Map提升分组性能
 const groupedYears = posts.reduce((acc, post) => {
   const year = post.data.pubDate.getFullYear().toString()
-  acc.set(year, [...(acc.get(year) || []), post])
+  const yearPosts = acc.get(year) || []
+  yearPosts.push(post)
+  acc.set(year, yearPosts)
   return acc
 }, new Map<string, CollectionEntry<'blog'>[]>())
 
 // 转换为排序后的数组
-const sortedYears: YearGroup[] = Array.from(groupedYears.entries())
+const sortedYears = Array.from(groupedYears)
   .sort(([a], [b]) => Number(b) - Number(a))
   .map(([year, posts]) => ({ year, posts }))
 ---

@@ -12,45 +12,42 @@ type YearGroup = {
   posts: CollectionEntry<'blog'>[]
 }
 
+// 获取并排序文章
 const posts = allPosts
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .filter((post) => !post.data.draft) // 过滤掉草稿文章
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()) // 按发布时间降序
 
-// 优化后的年份分组逻辑
-const groupedYears = posts.reduce((acc, post) => {
+// 按年份分组文章
+const groupedPosts = posts.reduce((acc, post) => {
   const year = post.data.pubDate.getFullYear().toString()
-  acc.set(year, [...(acc.get(year) || []), post])
+  if (!acc.has(year)) acc.set(year, []) // 初始化年份组
+  acc.get(year)?.push(post) // 添加文章到对应年份
   return acc
 }, new Map<string, CollectionEntry<'blog'>[]>())
 
-// 转换为排序后的数组
-const sortedYears: YearGroup[] = Array.from(groupedYears)
-  .sort(([a], [b]) => Number(b) - Number(a)) // 年份降序
+// 转换分组为数组，并按年份降序排序
+const sortedYears: YearGroup[] = [...groupedPosts.entries()]
+  .sort(([a], [b]) => Number(b) - Number(a))
   .map(([year, posts]) => ({ year, posts }))
 ---
 
-<BaseLayout title={`${siteMeta.title}`} description={siteMeta.description}>
+<BaseLayout title={siteMeta.title} description={siteMeta.description}>
   <Header />
   <main class="pt-[56px]">
     <Container>
-      {
-        sortedYears.map(({ year, posts }) => (
-          <section class="space-y-10 mb-20">
-            <div class="border-primary">
-              <h2 class="text-4xl md:text-6xl font-bold mb-8">
-                <a href={`/year/${year}`}>{year}</a>
-              </h2>
-            </div>
-            <ul class="grid gap-8 p-2">
-              {posts.map((post) => (
-                <li>
-                  <ArrowCard entry={post} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
+      {sortedYears.map(({ year, posts }) => (
+        <section class="space-y-10 mb-20">
+          <h2 class="text-4xl font-semibold">{year}</h2>
+          <ul class="grid gap-8 p-2">
+            {posts.map((post) => (
+              <li>
+                <ArrowCard entry={post} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </Container>
   </main>
 </BaseLayout>
+

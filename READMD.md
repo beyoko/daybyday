@@ -1,6 +1,7 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- watch `[Year]`, slow.
 - add "MoreYear". slice the Year by 6.
 - check poe(deepseek) '[id].astro' by tags.
 - check `MarkdownLayout`.

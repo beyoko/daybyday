@@ -1,8 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
 import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
-import TOC from '@/components/TOC.astro'
-import DropdownMenu from '@/lib/DropdownMenu'
 import { readingTime } from '@/lib/utils/readingTime'
 
 export const getStaticPaths = async () => {
@@ -23,16 +21,10 @@ type Props = {
 }
 
 const { blog } = Astro.props
-const { Content, headings } = await blog.render()
+const { Content } = await blog.render()
 
 const description =
   blog.data.description || blog.body.slice(0, 30).replace(/\n/g, '')
-
-const toc = headings.filter(
-  (heading) =>
-    heading.depth <= 3 &&
-    !(heading.slug === 'footnote-label' && heading.text === 'Footnotes'),
-)
 ---
 
 <MarkdownLayout blog={blog} description={description}>

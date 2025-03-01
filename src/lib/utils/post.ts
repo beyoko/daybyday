@@ -1,5 +1,16 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 
+let cachedPosts: CollectionEntry<'blog'>[] | null = null
+
+const getAllPublishedPosts = () => {
+  if (!cachedPosts) {
+    cachedPosts = allPosts
+      .filter((post) => !post.data.draft)
+      .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  }
+  return cachedPosts
+}
+
 const dateSortDesc = (a: string, b: string) => {
   if (a > b) return -1
   if (a < b) return 1
@@ -14,4 +25,4 @@ const getPosts = async (): Promise<CollectionEntry<'blog'>[]> => {
   )
 }
 
-export { allPosts, getPosts }
+export { allPosts, getPosts, getAllPublishedPosts }
