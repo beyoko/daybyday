@@ -7,16 +7,12 @@ tags:
 description: '共用插座是否能产生数据流量'
 ---
 
-## 缘由
 傍晚在咖啡厅时,一对情侣走了过来我旁边的位置,男方拿着一个托板客气地询问我是否愿意共用一个插座,我也不好意思拒绝就同意了.
 过了20分钟左右,我便发现电脑的温度比往常的烫,当然也可能是这里角落的温度稍高导致的(毕竟我也不断地冒汗中).当即便产生了一种不好的感觉,看着那共用的托板,会不会因此而产生流量,这个发热可能是正被扫盘或者传输着数据而导致的呢. 我看不到共用插座的另一方的电脑,未知的恐惧更加敲响了数据安全的警钟.
 
 当我转过去外面的位置后,电脑也基本上维持在45~48度的状态.
 
-
-
-## 
-这是在GPT得到的答案：
+## GPT的答案：
 ```
 When charging devices using a shared outlet, it's natural to have concerns about security and data privacy. Let's break down the scenario:
 Understanding the Scenario

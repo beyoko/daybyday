@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
 import MarkdownLayout from '@/layouts/MarkdownLayout.astro'
-import { readingTime } from '@/lib/utils/readingTime'
 
 export const getStaticPaths = async () => {
   const posts = (await getCollection('blog'))
@@ -38,12 +37,12 @@ const description =
       <span>
         {
           blog.data.pubDate.toLocaleDateString('en-US', {
+            year: 'numeric',
             month: 'short',
             day: '2-digit',
           })
         }
       </span>
-      <span>{readingTime(blog.body)}</span>
     </div>
   </div>
 

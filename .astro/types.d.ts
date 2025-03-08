@@ -168,13 +168,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"hotspot.md": {
-	id: "hotspot.md";
-  slug: "hotspot";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
 "kvm-nas-file-share.md": {
 	id: "kvm-nas-file-share.md";
   slug: "kvm-nas-file-share";
@@ -210,20 +203,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"niri_windows_manager.md": {
-	id: "niri_windows_manager.md";
-  slug: "niri_windows_manager";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"omv_file_name_2_long.md": {
-	id: "omv_file_name_2_long.md";
-  slug: "omv_file_name_2_long";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
 "power-security.md": {
 	id: "power-security.md";
   slug: "power-security";
@@ -241,13 +220,6 @@ declare module 'astro:content' {
 "ufw-kvm-qemu-network.md": {
 	id: "ufw-kvm-qemu-network.md";
   slug: "ufw-kvm-qemu-network";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"zellij.md": {
-	id: "zellij.md";
-  slug: "zellij";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">

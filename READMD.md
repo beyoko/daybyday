@@ -1,6 +1,9 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- check `Header.astro` nojs mode.
+- add `lru-cache` or `quick-lru`.
+- add Page Logo.
 - watch `[Year]`, slow.
 - add "MoreYear". slice the Year by 6.
 - check poe(deepseek) '[id].astro' by tags.

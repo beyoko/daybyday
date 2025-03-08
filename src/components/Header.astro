@@ -1,5 +1,7 @@
 ---
 import HeaderLink from '@/components/HeaderLink.astro'
+import HeaderList from '@/components/HeaderList.astro'
+import DropdownMenuNoJs from '@/components/DropdownMenuNoJs.astro'
 import ThemeToggleButton from '@/lib/ThemeToggleButton'
 import DropdownMenu from '@/lib/DropdownMenu'
 ---
@@ -15,18 +17,21 @@ import DropdownMenu from '@/lib/DropdownMenu'
       <div class="flex-1"></div>
       <div class="flex items-center gap-4 p-2">
         <div class="hidden sm:block">
-          <HeaderLink href="/blog">Blog</HeaderLink>
-            <HeaderLink href="/tags">Tags</HeaderLink>
+          <HeaderList />
           <slot />
         </div>
+        <!--yes js-->
         <div class="block md:hidden">
           <DropdownMenu iconName="menu" client:visible>
-            <HeaderLink href="/blog">Blog</HeaderLink>
-          <HeaderLink href="/tags">Tags</HeaderLink>
+            <HeaderList />
           </DropdownMenu>
         </div>
-        <ThemeToggleButton client:visible />
+        <!-- No js -->
+        <noscript>
+          <DropdownMenuNoJs />
+        </noscript>
       </div>
+      <ThemeToggleButton client:visible />
     </nav>
   </div>
 </header>

@@ -1,0 +1,18 @@
+---
+import HeaderList from '@/components/HeaderList.astro'
+---
+
+<details class="relative">
+  <summary
+    class="cursor-pointer p-2 rounded focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700"
+  >
+    ☰
+  </summary>
+  <ul
+    class="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-900 shadow-lg rounded-lg p-2 border border-gray-200 dark:border-gray-700"
+  >
+    <li class="relative w-fit flex flex-col gap-3">
+      <HeaderList />
+    </li>
+  </ul>
+</details>

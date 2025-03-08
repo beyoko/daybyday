@@ -1,14 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 
-let cachedPosts: CollectionEntry<'blog'>[] | null = null
-
-const getAllPublishedPosts = () => {
-  if (!cachedPosts) {
-    cachedPosts = allPosts
-      .filter((post) => !post.data.draft)
-      .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  }
-  return cachedPosts
+interface ProcessedPost extends CollectionEntry<'blog'> {
+  year: string
 }
 
 const dateSortDesc = (a: string, b: string) => {
@@ -19,10 +12,28 @@ const dateSortDesc = (a: string, b: string) => {
 
 const allPosts = await getCollection('blog')
 
-const getPosts = async (): Promise<CollectionEntry<'blog'>[]> => {
-  return (await getCollection('blog')).sort((a, b) =>
-    dateSortDesc(a.data.date, b.data.date),
-  )
+let cachedPosts: CollectionEntry<'blog'>[] | null = null
+export const getProcessedPosts = () => {
+  if (!cachedPosts) {
+    cachedPosts = allPosts
+      .filter((post) => !post.data.draft)
+      .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+      .map((post) => ({
+        ...post,
+        data: {
+          ...post.data,
+          tags: post.data.tags?.map((t) => t.toLowerCase()) || [],
+        },
+      }))
+  }
+  return cachedPosts
 }
 
-export { allPosts, getPosts, getAllPublishedPosts }
+// 添加内存清理策略
+if (import.meta.hot) {
+  import.meta.hot.on('vite:beforeFullReload', () => {
+    processedCache = null
+  })
+}
+
+export { allPosts }

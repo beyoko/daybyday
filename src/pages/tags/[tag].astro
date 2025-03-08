@@ -4,46 +4,30 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import Header from '@/components/Header.astro'
 import Container from '@/components/Container.astro'
 import ArrowCard from '@/components/ArrowCard.astro'
-import { allPosts } from '@/lib/utils/post'
-import { allTags } from '@/lib/utils/tag'
+import TagsArrowCard from '@/components/TagsArrowCard.astro'
+import { getProcessedPosts } from '@/lib/utils/post'
 import { siteMeta } from '@/consts'
 
-interface StaticPathProps {
-  posts: CollectionEntry<'blog'>[]
-  tagName: string
-}
+export async function getStaticPaths() {
+  const processedPosts = getProcessedPosts()
 
-const allPublishedPosts = allPosts
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  const tagMap = processedPosts.reduce((acc, post) => {
+    post.data.tags?.forEach((tag) => {
+      acc.set(tag, [...(acc.get(tag) || []), post])
+    })
+    return acc
+  }, new Map<string, CollectionEntry<'blog'>[]>())
 
-export const getStaticPaths = async () => {
-  return Array.from(allTags).map((tag) => ({
+  return Array.from(tagMap).map(([tag, posts]) => ({
     params: { tag },
     props: {
       tagName: tag,
-      posts: allPublishedPosts.filter((post) =>
-        post.data.tags?.some((t) => t.toLowerCase() === tag),
-      ),
-    } satisfies StaticPathProps,
+      posts,
+    },
   }))
 }
 
-const { posts, tagName } = Astro.props as StaticPathProps
-
-// 使用Map提升分组性能
-const groupedYears = posts.reduce((acc, post) => {
-  const year = post.data.pubDate.getFullYear().toString()
-  const yearPosts = acc.get(year) || []
-  yearPosts.push(post)
-  acc.set(year, yearPosts)
-  return acc
-}, new Map<string, CollectionEntry<'blog'>[]>())
-
-// 转换为排序后的数组
-const sortedYears = Array.from(groupedYears)
-  .sort(([a], [b]) => Number(b) - Number(a))
-  .map(([year, posts]) => ({ year, posts }))
+const { posts, tagName } = Astro.props
 ---
 
 <BaseLayout
@@ -53,24 +37,13 @@ const sortedYears = Array.from(groupedYears)
   <Header />
   <main class="pt-[56px]">
     <Container>
-      {
-        sortedYears.map(({ year, posts }) => (
-          <>
-            <section class="space-y-10 mb-20">
-              <div class="border-primary">
-                <h2 class="text-4xl md:text-6xl font-bold mb-8">
-                  <a href={`/year/${year}`}>{year}</a>
-                </h2>
-              </div>
-              <ul class="grid gap-8 p-2">
-                {posts.map((post) => (
-                  <ArrowCard entry={post} />
-                ))}
-              </ul>
-            </section>
-          </>
-        ))
-      }
+      <TagsArrowCard />
+      <hr class="dashed border-top border-gray-300 dark:border-gray-700 my-4" />
+      <section class="space-y-10 mb-20">
+        <ul class="grid gap-8 p-2">
+          {posts.map((post) => <ArrowCard entry={post} />)}
+        </ul>
+      </section>
     </Container>
   </main>
 </BaseLayout>

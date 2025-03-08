@@ -7,9 +7,8 @@ tags:
 description: '系统升级引发的网络错误以及虚拟机网络无法连接。'
 ---
 
-# 缘由
 久违的系统更新，我却忘记了之前就是因为更新而丢失网络([系统升级后的回滚修复](/src/content/post/zh-cn/archDowngrade))，导致无法连接上WIFI的情况。
-现在，Pacman经过翻云覆雨般的更新后。重启后再次无法连上网络，启动iwd，一直处于“waiting for IWD”的状态。
+现在，Pacman经过更新后。重启后再次无法连上网络，启动iwd，一直处于“waiting for IWD”的状态。
 
 ## `systemd-network` 无法连接网络
 查看`systemctl status systemd-network`，输出`io.systemd.Network.SetPersistentStorage`的错误。经过一番查询：

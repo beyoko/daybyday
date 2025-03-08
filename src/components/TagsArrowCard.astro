@@ -1,0 +1,23 @@
+---
+import HeaderLink from '@/components/HeaderLink.astro'
+import { allPosts } from '@/lib/utils/post'
+
+const allTags = new Set<string>(
+  allPosts.flatMap((post) =>
+    (post.data.tags ?? []).map((t) => t.toLowerCase()),
+  ),
+)
+const sortedTags = Array.from(allTags).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' }),
+)
+---
+
+<nav class="relative w-fit flex flex-nowrap gap-3">
+  {
+    sortedTags.map((tag) => (
+      <nav class="relative w-fit flex gap-3">
+        <HeaderLink href={`/tags/${tag.toLowerCase()}`}>{tag}</HeaderLink>
+      </nav>
+    ))
+  }
+</nav>

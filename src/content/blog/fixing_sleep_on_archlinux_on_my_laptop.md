@@ -16,6 +16,9 @@ heroImageAlt: 'build fish'
 ## Fix
 `acpi_enforce_resources=lax i915.enable_dc=0`将这段代码添加到 UEFI 引导加载程序中。
 
+- `acpi_enforce_resources=lax`放宽内核对 ACPI 资源冲突的检查。
+- `i915.enable_dc=0`禁用 Intel 集成显卡（i915 驱动）的显示省电功能（Display Power Saving Technology）。
+
 这里有常见两种加载程序的添加路径:
 ### GRUB
 `/etc/default/grub`到该路径的grub里，在`GRUB_CMDLINE_LINUX_DEFAULT=`处添加.
@@ -25,14 +28,12 @@ GRUB_CMDLINE_LINUX_DEFAULT=acpi_enforce_resources=lax i915.enable_dc=0
 然后用 `grub-mkconfig -o /boot/grub/grub.cfg` 重新生成了 `grub.cfg`。
 
 ### SYSTEM-BOOT
-`esp/loader/entries/arch.conf`到此路径的`arch.conf`，“options root=”添加到尾端.
+`/boot/loader/entries/arch.conf`到此路径的`arch.conf`，“options root=”添加到尾端.
 ```
 options root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx rw acpi_enforce_resources=lax i915.enable_dc=0
 ```
 然后`# bootctl update`更新引导列表，最后重启系统。
 
-
-
 ## Mark
-- lamargo 和 davze 在 Arch Linux 论坛上测试过的答案：[archlinux.org](https://bbs.archlinux.org/viewtopic.php?pid=1902330#p1902330)。
+lamargo 和 davze 在 Arch Linux 论坛上测试过的答案：[archlinux.org](https://bbs.archlinux.org/viewtopic.php?pid=1902330#p1902330)。
 

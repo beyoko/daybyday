@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import Link from '@/components/Link.astro'
-import { readingTime } from '@/lib/utils/readingTime'
 
 type Props = {
   entry: CollectionEntry<'blog'>
@@ -12,20 +11,17 @@ const { entry } = Astro.props
 
 <div class="flex items-center justify-between space-x-4">
   <div class="flex flex-col md:flex-row md:items-center truncate">
+    <span class="mr-10">
+      {
+        entry.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit',
+        })
+      }
+    </span>
     <Link href={`/${entry.collection}/${entry.slug}`}>
-      <span class="font-medium truncate">{entry.data.title}</span>
+      <span class="font-bold truncate">{entry.data.title}</span>
     </Link>
-    <div class="text-gray-300 dark:text-gray-700 text-sm">
-      <span>
-        {
-          entry.data.pubDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: '2-digit',
-          })
-        }
-      </span>
-      <span>{readingTime(entry.body)}</span>
-    </div>
   </div>
 </div>

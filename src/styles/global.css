@@ -19,11 +19,3 @@ body {
   overflow-wrap: break-word;
   scroll-behavior: smooth;
 }
-
-a {
-  @apply text-gray-500 hover:text-black dark:hover:text-white;
-}
-
-button {
-  @apply text-gray-500 hover:text-black dark:hover:text-white;
-}
