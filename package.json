@@ -2,9 +2,6 @@
   "name": "daybyday",
   "version": "0.0.6",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "repository": "git@github.com:beyoko/daybyday.git",
   "license": "MIT",
   "scripts": {
