@@ -21,7 +21,7 @@ const { blog, description } = Astro.props
     <span class="underline font-bold">{blog.data.title}</span>
   </Header>
   <style is:global>
-    @reference "@/styles/app.css";
+    @reference "../styles/app.css";
     main article.markdown-body {
       ul {
         @apply list-disc list-inside pl-4 mb-4
