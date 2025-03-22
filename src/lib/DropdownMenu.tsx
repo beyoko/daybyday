@@ -13,7 +13,6 @@ const ICONS = {
 
 export default function DropdownMenu({
   children,
-  className,
   iconName,
 }: DropdownMenuProps) {
   const Icon = ICONS[iconName]
@@ -35,8 +34,8 @@ export default function DropdownMenu({
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Menu.Items className=" absolute right-0 mt-2 w-56 bg-white dark:bg-gray-900 shadow-lg rounded-lg p-2 border border-gray-200 dark:border-gray-700">
-          <li class="relative w-fit flex flex-col gap-3">{children}</li>
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 max-h-96 overflow-y-auto rounded-lg backdrop-blur-sm shadow-lg focus:outline-none bg-gray-50 dark:bg-gray-950 border border-gray-300 dark:border-gray-700">
+          {children}
         </Menu.Items>
       </Transition>
     </Menu>

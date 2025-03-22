@@ -2,36 +2,72 @@
 import HeaderLink from '@/components/HeaderLink.astro'
 import HeaderList from '@/components/HeaderList.astro'
 import DropdownMenuNoJs from '@/components/DropdownMenuNoJs.astro'
-import ThemeToggleButton from '@/lib/ThemeToggleButton'
+import ThemeToggleButtonNoJs from '@/components/ThemeToggleButtonNoJs.astro'
 import DropdownMenu from '@/lib/DropdownMenu'
+import ThemeToggleButton from '@/lib/ThemeToggleButton'
+
+const hasJS = false; // 初始值，JavaScript 会在加载时更新
 ---
 
 <header class="w-full p-2 z-20 backdrop-blur-md">
   <div class="mx-auto max-w-3xl">
     <nav class="flex items-center gap-3 text-base">
+      <!-- LOGO -->
       <HeaderLink href="/" data-astro-prefetch="false">
-        <h2 class="font-semibold tracking-tighter p-2 font-mplus text-lg">
-          JOYO
-        </h2>
+        <h2 class="font-semibold tracking-tighter p-2 font-mplus text-lg">JOYO</h2>
       </HeaderLink>
+
       <div class="flex-1"></div>
+
+      <!-- 右侧功能栏 -->
       <div class="flex items-center gap-4 p-2">
+        <!-- 桌面端导航 -->
         <div class="hidden sm:block">
           <HeaderList />
           <slot />
         </div>
-        <!--yes js-->
+
+        <!-- 移动端菜单 -->
         <div class="block md:hidden">
-          <DropdownMenu iconName="menu" client:visible>
-            <HeaderList />
-          </DropdownMenu>
+          <!-- 无 JS 显示 -->
+          <noscript>
+            <div class="noscript-alert animate-fade-in">
+              <DropdownMenuNoJs />
+            </div>
+          </noscript>
+
+          <!-- 有 JS 显示 -->
+          <div id="js-dropdown" class="hidden">
+            <DropdownMenu iconName="menu" client:visible>
+              <HeaderLink href="/blog">Blog</HeaderLink>
+            </DropdownMenu>
+          </div>
         </div>
-        <!-- No js -->
-        <noscript>
-          <DropdownMenuNoJs />
-        </noscript>
+
+        <!-- 主题切换 -->
+        <div>
+          <!-- 无 JS 版本 -->
+          <noscript>
+            <div class="noscript-alert animate-fade-in">
+              <ThemeToggleButtonNoJs />
+            </div>
+          </noscript>
+
+          <!-- 有 JS 版本 -->
+          <div id="js-theme-toggle" class="hidden">
+            <ThemeToggleButton client:visible />
+          </div>
+        </div>
       </div>
-      <ThemeToggleButton client:visible />
     </nav>
   </div>
 </header>
+
+<!-- 检测 JS  -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('js-dropdown')?.classList.remove('hidden');
+    document.getElementById('js-theme-toggle')?.classList.remove('hidden');
+  });
+</script>
+

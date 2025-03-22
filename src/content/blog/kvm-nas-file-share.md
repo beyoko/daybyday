@@ -1,5 +1,5 @@
 ---
-title: 'file share'
+title: 'File Share'
 pubDate: '09/16/2024'
 draft: false
 tags:

@@ -1,6 +1,7 @@
 ## need 2 do
 > watch `Head.astro` -- `<script is:inline>`
 
+- React 2 Preact(mini_ver).
 - check `Header.astro` nojs mode.
 - add `lru-cache` or `quick-lru`.
 - add Page Logo.
