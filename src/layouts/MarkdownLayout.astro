@@ -3,7 +3,6 @@ import { type CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import Container from '@/components/Container.astro'
 import Header from '@/components/Header.astro'
-import BackToButton from '@/components/BackToButton.astro'
 import { siteMeta } from '@/consts'
 import "@/styles/app.css";
 
@@ -68,11 +67,6 @@ const { blog, description } = Astro.props
     <Container className="pt-6 markdown-body">
       <div class="mb-8">
         <slot />
-        <hr class="border-top border-gray-300 dark:border-gray-700 my-4" />
-        <BackToButton buttonFunctionId="back-to-prev">
-          Back to blog
-        </BackToButton>
-        <BackToButton buttonFunctionId="back-to-top">Back to top</BackToButton>
       </div>
     </Container>
   </main>
