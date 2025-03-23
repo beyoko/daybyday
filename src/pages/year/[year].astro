@@ -6,6 +6,7 @@ import Container from '@/components/Container.astro'
 import Header from '@/components/Header.astro'
 import ArrowCard from '@/components/ArrowCard.astro'
 import { allPosts } from '@/lib/utils/post'
+import "@/styles/app.css";
 
 export async function getStaticPaths() {
   const years = new Set(
