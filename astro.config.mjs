@@ -1,10 +1,11 @@
-import { defineConfig, sharpImageService } from 'astro/config'
+import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  site: 'http://127.0.0.1',
+  // TODO: Change this to your real domain before deployment
+  site: 'https://yourdomain.com',
   //prefetch: {
   //  defaultStrategy: 'viewport',
   //},
