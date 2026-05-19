@@ -1,6 +1,6 @@
 {
   "name": "daybyday",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "private": true,
   "repository": "git@github.com:beyoko/daybyday.git",
   "license": "MIT",
@@ -13,6 +13,7 @@
     "eslint:fix": "eslint ./src --fix --ext '.ts,.astro' --max-warnings 0",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
+    "build": "astro build",
     "lint": "lint-staged --config .lintstagedrc.js"
   },
   "eslintIgnore": [

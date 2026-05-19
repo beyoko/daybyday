@@ -15,7 +15,7 @@ export default function DropdownMenu({
   children,
   iconName,
 }: DropdownMenuProps) {
-  const Icon = ICONS[iconName]
+  const Icon = ICONS[iconName] ?? Bars3Icon
 
   return (
     <Menu as="div" className="relative inline-block text-left">

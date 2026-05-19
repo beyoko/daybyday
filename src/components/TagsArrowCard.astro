@@ -3,9 +3,11 @@ import HeaderLink from '@/components/HeaderLink.astro'
 import { allPosts } from '@/lib/utils/post'
 
 const allTags = new Set<string>(
-  allPosts.flatMap((post) =>
-    (post.data.tags ?? []).map((t) => t.toLowerCase()),
-  ),
+  allPosts
+    .filter((post) => !post.data.draft)
+    .flatMap((post) =>
+      (post.data.tags ?? []).map((t) => t.toLowerCase()),
+    ),
 )
 const sortedTags = Array.from(allTags).sort((a, b) =>
   a.localeCompare(b, 'en', { sensitivity: 'base' }),
