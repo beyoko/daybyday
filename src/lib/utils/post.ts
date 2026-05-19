@@ -1,6 +1,11 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 
-const allPosts = await getCollection('blog')
+let allPosts: CollectionEntry<'blog'>[] = []
+try {
+  allPosts = await getCollection('blog')
+} catch (e) {
+  console.error('[post.ts] Failed to load blog collection:', e)
+}
 
 let cachedPosts: CollectionEntry<'blog'>[] | null = null
 export const getProcessedPosts = () => {
@@ -22,7 +27,7 @@ export const getProcessedPosts = () => {
 // 添加内存清理策略
 if (import.meta.hot) {
   import.meta.hot.on('vite:beforeFullReload', () => {
-    processedCache = null
+    cachedPosts = null
   })
 }
 
