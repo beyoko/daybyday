@@ -24,7 +24,7 @@ const { blog } = Astro.props
 const { Content } = await blog.render()
 
 const description =
-  blog.data.description || blog.body.slice(0, 30).replace(/\n/g, '')
+  blog.data.description || (blog.body ?? '').slice(0, 30).replace(/\n/g, '')
 ---
 
 <MarkdownLayout blog={blog} description={description}>
