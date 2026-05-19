@@ -2,14 +2,13 @@
 import { ViewTransitions } from 'astro:transitions'
 import '@/styles/global.css'
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://yourdomain.com')
 
 const { title, description } = Astro.props
 ---
 
 <!-- Global Metadata-->
 <meta charset="utf-8" />
-<meta name="keywords" content="width=device-width, initial-scale=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 

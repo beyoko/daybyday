@@ -15,7 +15,7 @@ type Props = {
 const { blog, description } = Astro.props
 ---
 
-<BaseLayout title={blog + ` / ${siteMeta.title}`} description={description}>
+<BaseLayout title={`${blog.data.title} / ${siteMeta.title}`} description={description}>
   <Header>
     <span>/</span>
     <span class="underline font-bold">{blog.data.title}</span>
