@@ -5,7 +5,7 @@ type Props = {
   children: any
 }
 
-const { href, className = '' } = Astro.props
+const { href = '/', className = '' } = Astro.props
 const pattern = /^(http|https):\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+$/
 const isExternal = pattern.test(href)
 ---
@@ -21,7 +21,7 @@ const isExternal = pattern.test(href)
     md:mr-3
     z-10
     p-2
-    ${className ?? ''}
+    ${className}
   `}
   href={href}
   target={isExternal ? '_blank' : undefined}
